@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/step1", {data:[{}],fetch:{},mutations:void 0});

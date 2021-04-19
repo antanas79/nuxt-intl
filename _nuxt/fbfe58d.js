@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{401:function(o){o.exports=JSON.parse('{"message":"Bonjour","about":"about fr","contact":"contact fr"}')}}]);
