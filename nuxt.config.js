@@ -41,8 +41,6 @@ export default {
       'nuxt-i18n',
       {
         detectBrowserLanguage: {
-          useCookie: true,
-          cookieKey: 'i18n_redirected',
           onlyOnRoot: true,  // recommended
         },
         strategy: 'prefix_and_default',
