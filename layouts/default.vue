@@ -1,10 +1,89 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+  <v-card
+    class="mx-auto overflow-hidden"
+    height="100%"
+    width="100%"
+  >
+    <v-system-bar dark color="purple"></v-system-bar>
+
+    <v-app-bar
+      color="deep-purple accent-4"
+    >
+     <v-img
+          class="mx-2"
+          src="logo.svg"
+          max-height="40"
+          max-width="40"
+          contain
+        ></v-img>
+      <v-spacer></v-spacer>
+    <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+      right
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+               <v-list-item>
+            <v-list-item-title>               
+            <nuxt-link :to="localePath('/step1')">Step1</nuxt-link>
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <nuxt-link :to="localePath('/step2')">Step2</nuxt-link>
+            </v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>               
+            <nuxt-link :to="localePath('/step3')">Step3</nuxt-link>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-card-text>
+      <Nuxt/>
+    </v-card-text>
+    <v-divider></v-divider>
+    <Footer/>
+  </v-card>
+
 </template>
 
-<style>
+
+
+<script >
+   export default {
+    data: () => ({
+      drawer: false,
+      group: null,
+    }),
+
+    watch: {
+      group () {
+        this.drawer = false
+      },
+    },
+  }
+</script>
+<style lang="scss" scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -15,6 +94,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 *,
@@ -52,4 +132,15 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+.md-app {
+    min-height: 350px;
+    border: 1px solid rgba(#000, .12);
+  }
+
+
+  .md-drawer {
+    width: 230px;
+    max-width: calc(100vw - 125px);
+  }
 </style>

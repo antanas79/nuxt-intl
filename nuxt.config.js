@@ -1,11 +1,19 @@
 import i18n from './config/i18n'
+// import * from 'vuetify.css.map'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-    base: '/nuxt-intl/'
+    base: '/nuxt-intl/',
   },
+  rules: [
+    {
+      test: /\.js$/,
+      enforce: "pre",
+      use: ["source-map-loader"],
+    },
+  ],
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -34,6 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/vuetify',
     [
       'nuxt-i18n',
       {
@@ -44,16 +53,16 @@ export default {
           {
             code: 'en',
             name: 'English',
-            iso: 'en-US'
+            iso: 'en-US',
           },
           {
             code: 'fr',
             name: 'Français',
             iso: 'fr-FR'
-          }
+          },
         ],
-        vueI18n: i18n
-      }
+        vueI18n: i18n,
+      },
     ],
   ],
 
