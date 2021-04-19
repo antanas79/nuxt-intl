@@ -1,35 +1,30 @@
 <template>
-
-  <div class="container">
+  <div class="container pa-0">
     <div class="mb-3 upper">
-      <LanguageInput/>
+      <LanguageInput />
       <h6 class="title">{{ $t('message') }}</h6>
       <nuxt-link :to="localePath('step1')">Step 1</nuxt-link>
       <nuxt-link :to="localePath('step2')">Step 2</nuxt-link>
       <nuxt-link :to="localePath('step3')">Step 3</nuxt-link>
-
     </div>
     <div class="cards">
-         <CustomCard/>
+      <CustomCard />
     </div>
     <div class="steps">
-        <CustomStepper/>
+      <CustomStepper />
     </div>
   </div>
-
 </template>
 
-
-
 <script lang="ts">
- export default {
-    data: () => ({
-      show: false,
-    }),
-  }
+export default {
+  data: () => ({
+    show: false,
+  }),
+}
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .container {
   margin: 0 auto;
   display: flex;
@@ -39,7 +34,7 @@
   text-align: center;
   .cards {
     width: 100%;
-    div{ 
+    div {
       display: flex;
       justify-content: space-evenly;
     }
@@ -48,10 +43,10 @@
     display: flex;
     margin-bottom: 50px;
   }
- 
+
   div.steps {
     width: 100%;
-    margin-top:30px;
+    margin-top: 30px;
   }
 }
 
