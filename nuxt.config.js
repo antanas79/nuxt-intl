@@ -43,7 +43,7 @@ export default {
         detectBrowserLanguage: {
           onlyOnRoot: true,  // recommended
         },
-        strategy: 'prefix_and_default',
+        strategy: 'prefix_except_default',
         defaultLocale: 'en',
         seo: true,
         locales: [
