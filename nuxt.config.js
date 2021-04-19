@@ -40,7 +40,7 @@ export default {
     [
       'nuxt-i18n',
       {
-        strategy: 'prefix',
+        strategy: 'prefix_and_default',
         defaultLocale: 'en',
         seo: true,
         locales: [
@@ -55,6 +55,7 @@ export default {
             iso: 'fr-FR'
           },
         ],
+        lazy: true,
         vueI18n: i18n,
       },
     ],
