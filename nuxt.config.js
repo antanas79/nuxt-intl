@@ -1,5 +1,5 @@
 import i18n from './config/i18n'
-// import * from 'vuetify.css.map'
+
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,14 +7,6 @@ export default {
   router: {
     base: '/nuxt-intl/',
   },
-  rules: [
-    {
-      test: /\.js$/,
-      enforce: "pre",
-      use: ["source-map-loader"],
-    },
-  ],
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-intl',

@@ -1,13 +1,15 @@
 <template>
+<v-app>
+
   <v-card
     class="mx-auto overflow-hidden"
     height="100%"
     width="100%"
   >
-    <v-system-bar dark color="purple"></v-system-bar>
+    <v-system-bar color="red"></v-system-bar>
 
     <v-app-bar
-      color="deep-purple accent-4"
+      color="white accent-4"
     >
      <v-img
           class="mx-2"
@@ -23,7 +25,7 @@
 
        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
-
+     <v-system-bar color="grey" height="40"></v-system-bar>
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -59,12 +61,13 @@
     </v-navigation-drawer>
 
     <v-card-text>
+   
       <Nuxt/>
     </v-card-text>
     <v-divider></v-divider>
     <Footer/>
   </v-card>
-
+</v-app>
 </template>
 
 
