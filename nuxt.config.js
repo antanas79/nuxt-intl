@@ -7,6 +7,7 @@ export default {
   router: {
     base: '/nuxt-intl/',
   },
+  loading: '~/components/LoadingBar.vue',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-intl',
