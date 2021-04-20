@@ -1,8 +1,8 @@
 <template>
   <div>
-    <ul v-for="mountain in mountains" :key="mountain.id">
-      <NuxtLink :to="`${mountain.continent.toLowerCase()}/${mountain.slug}`">
-        <li>{{ mountain.title }}</li>
+    <ul v-for="step in steps" :key="step.id">
+      <NuxtLink :to="`steps/${step.id}`">
+        <li>{{ step.title }}</li>
       </NuxtLink>
     </ul>
   </div>
@@ -19,7 +19,7 @@ export default {
   //   },
 
   data: () => ({
-    mountains: [
+    steps: [
       {
         id: 1,
         continent: 'europe',

@@ -89,7 +89,7 @@ export default {
     // subFolders: false
     // routes: function () {
     //   return fetch('http://chunkbytes.com/userlist')
-    //     .then((res) => {
+    //     .then((res) => {§
     //       return res.data.map((user) => {
     //         return {
     //           route: '/users/' + user.id
@@ -97,6 +97,41 @@ export default {
     //       })
     //     })
     // }
-    routes: ['/europe/slug1', '/asia/slug2']
+    // routes: ['/steps/1', '/steps/2']
+    
+    routes() {
+        const steps = [
+      {
+          id: 1,
+          continent: 'europe',
+          slug: 'slug1',
+          title: 'title1'
+      },
+      {
+          id: 2,
+          continent: 'asia',
+          slug: 'slug2',
+          title: 'title2',
+      },
+    ]
+      return [
+        {route: 'steps/1',
+        payload: {
+          id: 1,
+          continent: 'europe',
+          slug: 'slug1',
+          title: 'title1'
+      }
+        },
+        {route: 'steps/2',
+        payload: {
+          id: 2,
+          continent: 'asia',
+          slug: 'slug2',
+          title: 'title2',
+      }
+        }
+      ]
+    }
   }
 }
