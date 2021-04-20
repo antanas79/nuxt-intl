@@ -6,6 +6,13 @@ export default {
   target: 'static',
   router: {
     base: '/nuxt-intl/',
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue')
+      })
+    }
   },
   loading: '~/components/LoadingBar.vue',
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -78,7 +85,18 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  // generate: {
-  //   subFolders: false
-  // }
+  generate: {
+    // subFolders: false
+    // routes: function () {
+    //   return fetch('http://chunkbytes.com/userlist')
+    //     .then((res) => {
+    //       return res.data.map((user) => {
+    //         return {
+    //           route: '/users/' + user.id
+    //         }
+    //       })
+    //     })
+    // }
+    routes: ['/europe/slug1', '/asia/slug2']
+  }
 }
