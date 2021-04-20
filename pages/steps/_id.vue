@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 v-if="step">Step id: {{ step.id }}</h1>
+    <h1 v-if="step">Step id: {{ step }}</h1>
     <p>Path: {{ $route.path }}</p>
     <NuxtLink to="/">Back to Steps</NuxtLink>
   </div>
@@ -8,8 +8,7 @@
 <script>
 export default {
   async asyncData({ route, error, payload }) {
-    console.log(route.params.id)
-    console.log(payload)
+    if (payload) console.log(payload)
     if (payload) return { step: payload }
   },
   //   async asyncData({ params, redirect }) {
