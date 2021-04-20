@@ -38,7 +38,7 @@
 <style lang="scss">
 .v-stepper,
 .v-stepper__header {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .v-stepper__step span {
   width: 12px;
