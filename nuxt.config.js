@@ -10,7 +10,8 @@ export default {
       routes.push({
         name: 'custom',
         path: '*',
-        component: resolve(__dirname, 'pages/404.vue')
+        component: resolve(__dirname, 'pages/404.vue'),
+        payload: 'test1'
       })
     }
   },
@@ -121,16 +122,14 @@ export default {
           continent: 'europe',
           slug: 'slug1',
           title: 'title1'
-      }
-        },
+        }},
         {route: 'steps/2',
         payload: {
           id: 2,
           continent: 'asia',
           slug: 'slug2',
           title: 'title2',
-      }
-        }
+         }}
       ]
     }
   }

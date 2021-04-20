@@ -8,9 +8,15 @@
 <script>
 export default {
   async asyncData({ route, error, payload }) {
+    console.log(payload)
     if (payload) console.log(payload)
     if (payload) return { step: payload }
   },
+  data: () => ({
+    step: null,
+    // loaded: false,
+  }),
+
   //   async asyncData({ params, redirect }) {
   //     const mountains = await fetch(
   //       'https://api.nuxtjs.dev/mountains'
@@ -31,10 +37,6 @@ export default {
   //     }
   //   },
 
-  data: () => ({
-    step: null,
-    // loaded: false,
-  }),
   // fetch() {
   //   console.log(this)
   // },
