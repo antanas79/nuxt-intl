@@ -12,22 +12,36 @@
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper />
+      <CustomStepper :steps="steps" />
     </div>
   </div>
 </template>
-
-<script lang="ts">
+<script>
 export default {
+  async asyncData({ store, params }) {
+    await store.dispatch('step/getStepById', params.id)
+    await store.dispatch('steps/getSteps')
+  },
   data: () => ({
+    step: null,
     show: false,
   }),
+  computed: {
+    currentStep() {
+      return this.$store.state.steps.currentStep
+    },
+    steps() {
+      return this.$store.state.steps.steps
+    },
+    isLoading() {
+      return this.$store.state.steps.isLoading
+    },
+  },
   watch: {
     '$route.query': '$fetch',
   },
 }
 </script>
-
 <style lang="scss" scoped>
 .container {
   margin: 0 auto;

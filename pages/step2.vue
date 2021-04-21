@@ -1,11 +1,12 @@
 <template>
   <div class="container pa-0">
-    <div class="mb-3 upper">
-      <LanguageInput />
-      <h6 class="title">{{ $t('message') }}</h6>
-      <nuxt-link :to="localePath('step1')">Step 1</nuxt-link>
-      <nuxt-link :to="localePath('step2')">Step 2</nuxt-link>
-      <nuxt-link :to="localePath('step3')">Step 3</nuxt-link>
+    <div class="mb-3 upper d-flex flex-column">
+      <!-- <LanguageInput />
+      <h6 class="title">{{ $t('message') }}</h6> -->
+      <h1 class="font-weight-bold mb-3">Choose Sync2 License</h1>
+      <div class="text-subtitle-1 mb-3">
+        Every user account (on each workstation) needs an individual license
+      </div>
     </div>
     <div class="cards">
       <CustomCard />
@@ -21,6 +22,9 @@ export default {
   data: () => ({
     show: false,
   }),
+  watch: {
+    '$route.query': '$fetch',
+  },
 }
 </script>
 
