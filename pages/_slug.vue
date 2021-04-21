@@ -7,7 +7,6 @@
 <script>
 export default {
   async asyncData({ params }) {
-    console.log(params)
     const slug = params.slug
     return { slug }
   },

@@ -3,11 +3,7 @@
 </template>
 
 <script lang="ts">
-export default {
-  asyncData({ payload }) {
-    console.log(payload)
-  },
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>

@@ -13,7 +13,11 @@
   },
   "dependencies": {
     "@mdi/font": "^5.9.55",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/markdownit": "^2.0.0",
+    "contentful": "^8.3.0",
     "core-js": "^3.9.1",
+    "fs": "0.0.1-security",
     "nuxt": "^2.15.3",
     "nuxt-i18n": "^6.25.0",
     "sass": "^1.32.8",

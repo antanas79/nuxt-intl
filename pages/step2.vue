@@ -22,10 +22,6 @@ export default {
   data: () => ({
     show: false,
   }),
-  async fetch() {
-    console.log('changed')
-    // Called also on query changes
-  },
   watch: {
     '$route.query': '$fetch',
   },

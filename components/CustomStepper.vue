@@ -6,7 +6,14 @@
         <v-col cols="12" sm="8" md="8">
           <v-stepper alt-labels>
             <v-stepper-header>
-              <v-stepper-step step=""> Licenses </v-stepper-step>
+              <template v-for="step of steps">
+                <v-stepper-step :key="step.Id" step="">
+                  {{ step.fields.title }}
+                </v-stepper-step>
+
+                <v-divider :key="step.Id"></v-divider>
+              </template>
+              <!-- <v-stepper-step step=""> Licenses </v-stepper-step>
 
               <v-divider></v-divider>
 
@@ -18,7 +25,7 @@
 
               <v-divider></v-divider>
 
-              <v-stepper-step step=""> Extras </v-stepper-step>
+              <v-stepper-step step=""> Extras </v-stepper-step> -->
             </v-stepper-header>
           </v-stepper>
         </v-col>
@@ -55,5 +62,7 @@
 </style>
 
 <script lang="ts">
-export default {}
+export default {
+  props: ['steps'],
+}
 </script>

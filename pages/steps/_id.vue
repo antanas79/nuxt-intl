@@ -1,47 +1,92 @@
 <template>
-  <div>
-    <h1 v-if="step">Step id: {{ step }}</h1>
-    <p>Path: {{ $route.path }}</p>
-    <NuxtLink to="/">Back to Steps</NuxtLink>
+  <div class="container pa-0">
+    <div class="mb-3 upper d-flex flex-column">
+      <!-- <LanguageInput />
+      <h6 class="title">{{ $t('message') }}</h6> -->
+      <h1 class="font-weight-bold mb-3">Choose Sync2 License</h1>
+      <div class="text-subtitle-1 mb-3">
+        Every user account (on each workstation) needs an individual license
+      </div>
+    </div>
+    <div class="cards">
+      <CustomCard />
+    </div>
+    <div class="steps">
+      <CustomStepper :steps="steps" />
+    </div>
   </div>
 </template>
 <script>
 export default {
-  async asyncData({ route, error, payload }) {
-    console.log(payload)
-    if (payload) console.log(payload)
-    if (payload) return { step: payload }
+  async asyncData({ store, params }) {
+    await store.dispatch('step/getStepById', params.id)
+    await store.dispatch('steps/getSteps')
   },
   data: () => ({
     step: null,
-    // loaded: false,
+    show: false,
   }),
-
-  //   async asyncData({ params, redirect }) {
-  //     const mountains = await fetch(
-  //       'https://api.nuxtjs.dev/mountains'
-  //     ).then((res) => res.json())
-
-  //     const filteredMountain = mountains.find(
-  //       (el) =>
-  //         el.continent.toLowerCase() === params.continent &&
-  //         el.slug === params.mountain
-  //     )
-  //     if (filteredMountain) {
-  //       return {
-  //         continent: filteredMountain.continent,
-  //         mountain: filteredMountain.title,
-  //       }
-  //     } else {
-  //       redirect('/')
-  //     }
-  //   },
-
-  // fetch() {
-  //   console.log(this)
-  // },
-  // mounted() {
-  //   this.loaded = true
-  // },
+  computed: {
+    currentStep() {
+      return this.$store.state.steps.currentStep
+    },
+    steps() {
+      return this.$store.state.steps.steps
+    },
+    isLoading() {
+      return this.$store.state.steps.isLoading
+    },
+  },
+  watch: {
+    '$route.query': '$fetch',
+  },
 }
 </script>
+<style lang="scss" scoped>
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  .cards {
+    width: 100%;
+    div {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+  > div.upper {
+    display: flex;
+    margin-bottom: 50px;
+  }
+
+  div.steps {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+</style>

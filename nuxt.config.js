@@ -1,5 +1,6 @@
 import i18n from './config/i18n'
-
+require('dotenv').config();
+const contentful = require('contentful');
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -82,11 +83,42 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/dotenv'
+  ],
+  markdownit: {
+    injected: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+      /*
+        ** Run ESLint on save
+        */
+        extend (config, { isDev, isClient }) {
+          config.node = {
+              fs: 'empty'
+          }
+      }
+  },
   generate: {
+    routes: () => {
+      const client = contentful.createClient({
+          space:  process.env.CTF_SPACE_ID,
+          accessToken: process.env.CTF_CD_ACCESS_TOKEN
+      });
+  
+      return client.getEntries({
+          content_type: 'steps'
+      }).then((response) => {
+          return response.items.map(entry => {
+              return {
+                  route: entry.fields.id,
+                  payload: entry
+              };
+          });
+      });
+  }
     // subFolders: false
     // routes: function () {
     //   return fetch('http://chunkbytes.com/userlist')
@@ -100,37 +132,37 @@ export default {
     // }
     // routes: ['/steps/1', '/steps/2']
     
-    routes() {
-        const steps = [
-      {
-          id: 1,
-          continent: 'europe',
-          slug: 'slug1',
-          title: 'title1'
-      },
-      {
-          id: 2,
-          continent: 'asia',
-          slug: 'slug2',
-          title: 'title2',
-      },
-    ]
-      return [
-        {route: 'steps/1',
-        payload: {
-          id: 1,
-          continent: 'europe',
-          slug: 'slug1',
-          title: 'title1'
-        }},
-        {route: 'steps/2',
-        payload: {
-          id: 2,
-          continent: 'asia',
-          slug: 'slug2',
-          title: 'title2',
-         }}
-      ]
-    }
+    // routes() {
+    //     const steps = [
+    //   {
+    //       id: 1,
+    //       continent: 'europe',
+    //       slug: 'slug1',
+    //       title: 'title1'
+    //   },
+    //   {
+    //       id: 2,
+    //       continent: 'asia',
+    //       slug: 'slug2',
+    //       title: 'title2',
+    //   },
+    // ]
+    //   return [
+    //     {route: 'steps/1',
+    //     payload: {
+    //       id: 1,
+    //       continent: 'europe',
+    //       slug: 'slug1',
+    //       title: 'title1'
+    //     }},
+    //     {route: 'steps/2',
+    //     payload: {
+    //       id: 2,
+    //       continent: 'asia',
+    //       slug: 'slug2',
+    //       title: 'title2',
+    //      }}
+    //   ]
+    // }
   }
 }
