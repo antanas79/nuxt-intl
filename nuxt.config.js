@@ -1,4 +1,4 @@
-import i18n from './config/i18n'
+import i18n from './config/i18n';
 require('dotenv').config();
 const contentful = require('contentful');
 
