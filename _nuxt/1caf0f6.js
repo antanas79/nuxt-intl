@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{523:function(o,t,n){"use strict";n.r(t),t.default={message:"Bonjour",about:"about fr",contact:"contact fr"}}}]);
