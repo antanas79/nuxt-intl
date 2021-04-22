@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul v-for="step in steps" :key="step.fields.id">
+    <!-- <ul v-for="step in steps" :key="step.fields.id">
       <NuxtLink :to="localePath({ path: `steps/${step.fields.id}` })">
         <li>{{ step.fields.title }}</li>
       </NuxtLink>
@@ -10,7 +10,7 @@
       :key="locale.code"
       :to="switchLocalePath(locale.code)"
       >{{ locale.name }}LOCALE
-    </NuxtLink>
+    </NuxtLink> -->
   </div>
 </template>
 <script>

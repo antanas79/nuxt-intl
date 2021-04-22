@@ -10,7 +10,7 @@
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper :steps="steps" :current-step="currentStep" />
+      <CustomStepper :steps="steps" :current-step="parseInt(currentStep)" />
     </div>
   </div>
 </template>

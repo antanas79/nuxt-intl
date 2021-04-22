@@ -78,7 +78,7 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -128,6 +128,8 @@ html {
   background-color: #35495e;
 }
 
+//style overrides
+
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);
@@ -136,5 +138,9 @@ html {
 .md-drawer {
   width: 230px;
   max-width: calc(100vw - 125px);
+}
+
+button {
+  border-radius: 25px!important;
 }
 </style>
