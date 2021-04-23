@@ -66,6 +66,9 @@
 
 <script>
 export default {
+  async asyncData({ store, params, payload }) {
+    // await store.dispatch('steps/getSteps')
+  },
   data: () => ({
     drawer: false,
     group: null,

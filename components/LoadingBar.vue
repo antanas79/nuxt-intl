@@ -21,8 +21,8 @@
 <style scoped>
   .loading-page {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: calc(50% - 1.5rem);
+    right: calc(50% - 1.5rem);
     z-index: 1000;
     padding: 1rem;
     text-align: center;

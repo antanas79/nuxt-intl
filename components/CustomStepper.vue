@@ -1,5 +1,5 @@
 <template>
-  <div class="stepper-container">
+  <div class="stepper-container" v-if="steps">
     <v-container class="pa-0">
       <v-row no-gutters>
         <v-col  sm="2" md="2" class="align-center justify-center justify-sm-end d-none d-sm-flex px-1"> 
@@ -10,7 +10,7 @@
         <v-col cols="12" sm="8" md="8">
           <v-stepper alt-labels>
             <v-stepper-header>
-              <template v-for="(step, index) in steps">
+              <template v-for="(step, index) in steps.steps">
                 <v-stepper-step
                   :key="step.fields.Id"
                   step=""
@@ -42,15 +42,52 @@
           md="2"
           class="d-flex align-center justify-center justify-sm-start px-1"
         >
-        <NuxtLink :to="localePath({ path: `/steps/${currentStep + 1}` })">
-          <v-btn> Next </v-btn>
+        <NuxtLink :to="localePath({ path: `/steps/${currentStep + 1}` })" >
+          <v-btn :disabled="!selectedCardIndex"> Next </v-btn>
         </NuxtLink>
-
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
+
+
+<script lang="ts">
+import { mapState } from "vuex";
+export default {
+  async asyncData({ store, params, payload }) {
+    console.log('store state steps: ', store.state.steps)
+  },
+  //TODO steps interface
+  props: {  
+      // steps: {
+      //   type: Array,
+      //   required: true
+      // },
+      currentStep: {
+        type: [Number],
+        default: 1,
+        required: true
+      },
+      selectedCardIndex: {
+        type: [Number],
+        default: null,
+        required: false
+      }
+  },
+  // mounted(): {
+  //    steps() {
+  //     return this.$store.state.steps.steps
+  //   }
+  // }
+  computed: {
+    ...mapState(["steps"]),
+    // steps() {
+    //   return this.$store.state.steps.steps
+    // }
+  }
+}
+</script>
 
 <style lang="scss">
 // $color-pack: false;
@@ -83,19 +120,3 @@ a {
 
 }
 </style>
-
-<script lang="ts">
-export default {
-  //TODO 
-  props: {  
-      steps: {
-        type: Array,
-        required: true
-      },
-      currentStep: {
-        type: [Number],
-        required: true
-      }
-  }
-}
-</script>

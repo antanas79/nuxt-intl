@@ -10,16 +10,15 @@
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper :steps="steps" :current-step="parseInt(currentStep)" />
+      <CustomStepper :current-step="parseInt(currentStep)" />
     </div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   async asyncData({ store, params, payload }) {
-    console.log(payload)
-    await store.dispatch('step/getStepById', params.id)
-    await store.dispatch('steps/getSteps')
+    // await store.dispatch('steps/getSteps')
   },
   data: () => ({
     step: null,
@@ -29,11 +28,9 @@ export default {
     currentStep() {
       return this.$route.params.id
     },
-    steps() {
-      return this.$store.state.steps.steps
-    },
+    ...mapState(['steps']),
     isLoading() {
-      return this.$store.state.steps.isLoading
+      return this.$store.state.step.isLoading
     },
   },
   watch: {

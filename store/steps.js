@@ -11,13 +11,33 @@ export const mutations = {
 }
 
 export const actions = {
-    async getSteps({commit}) {
-        const response = await client.getEntries({
-            content_type: 'steps'
-        });
-        if (response.items.length > 0) {
-            commit('setSteps', response.items);
+    async nuxtServerInit ({ commit }) {
+        try {
+          const response = await client.getEntries({
+                content_type: 'steps'
+            });
+            if (response.items.length > 0) {
+                console.log(response.items)
+                commit('setSteps', response.items);
+            }
+        } catch (error) {
+          // you could redirect to custom error page for instance
+          console.error(error);
         }
-    }
+      },
+    // async getSteps({commit}) {
+        
+    //     if (state.steps?.length >0) {
+                
+    //     } else {
+    //         const response = await client.getEntries({
+    //             content_type: 'steps'
+    //         });
+    //         if (response.items.length > 0) {
+    //             console.log(response.items)
+    //             commit('setSteps', response.items);
+    //         }
+    //     }
+    // }
 }
 

@@ -15,9 +15,9 @@
 </template>
 <script>
 export default {
-  async asyncData({ store, params, payload }) {
-    await store.dispatch('steps/getSteps')
-  },
+  // async asyncData({ store, params, payload }) {
+  //   await store.dispatch('steps/getSteps')
+  // },
   data: () => ({
     step: null,
     show: false,

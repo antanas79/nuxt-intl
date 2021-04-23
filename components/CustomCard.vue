@@ -3,7 +3,7 @@
     <v-container class="lighten-5 pa-0">
       <v-row no-gutters>
         <v-col
-          v-for="item of [1, 2, 3]"
+          v-for="(item, index) in [1, 2, 3]"
           :key="item"
           :data="item"
           cols="12"
@@ -48,7 +48,7 @@
 
                 <v-card-actions class="d-flex justify-center align-end">
                   <v-btn color="primary lighten-2" class="" text outlined>
-                    Select
+                    {{selectedCardId == index ? 'Selected' : 'Select'}}
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -68,5 +68,12 @@ div:not(.v-card) > {
 </style>
 
 <script lang="ts">
-export default {}
+export default {
+  props: {  
+      selectedCardId: {
+        type: [Number],
+        required: false
+      }
+  }
+}
 </script>
