@@ -15,7 +15,6 @@ export const actions = {
         const response = await client.getEntries({
             content_type: 'steps'
         });
-        console.log(response)
         if (response.items.length > 0) {
             commit('setSteps', response.items);
         }

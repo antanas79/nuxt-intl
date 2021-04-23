@@ -5,7 +5,7 @@
         <v-system-bar color="red"></v-system-bar>
 
         <v-app-bar color="white accent-4">
-          <NuxtLink :to="localePath('/')">
+          <NuxtLink class="d-flex align-center" :to="localePath('/')">
             <Logo />
           </NuxtLink>
 
@@ -30,21 +30,21 @@
               v-model="group"
               active-class="deep-purple--text text--accent-4"
             >
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/step1')"
+              <!-- <v-list-item>
+                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
                   >Step1</NuxtLink
                 >
               </v-list-item>
               <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/step2')"
+                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
                   >Step2</NuxtLink
                 >
               </v-list-item>
               <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/step3')"
+                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
                   >Step3</NuxtLink
                 >
-              </v-list-item>
+              </v-list-item> -->
               <v-list-item>
                 <v-list-item-title>
                   <NuxtLink to="/loading">Loading</NuxtLink>
@@ -78,7 +78,7 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -128,6 +128,8 @@ html {
   background-color: #35495e;
 }
 
+//style overrides
+
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);
@@ -136,5 +138,9 @@ html {
 .md-drawer {
   width: 230px;
   max-width: calc(100vw - 125px);
+}
+
+button {
+  border-radius: 25px!important;
 }
 </style>

@@ -4,16 +4,17 @@ const contentful = require('contentful');
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
+  alias: [],
   target: 'static',
   router: {
     base: '/nuxt-intl/',
     extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'custom',
-        path: '*',
-        component: resolve(__dirname, 'pages/404.vue'),
-        payload: 'test1'
-      })
+      // routes.push({
+      //   name: 'custom',
+      //   path: '*',
+      //   component: resolve(__dirname, 'pages/404.vue'),
+      //   payload: 'test1'
+      // })
     }
   },
   loading: '~/components/LoadingBar.vue',
@@ -47,6 +48,7 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
+    "@nuxt/http",
     [
       'nuxt-i18n',
       {
@@ -58,16 +60,16 @@ export default {
         seo: true,
         locales: [
           {
-            code: 'en',
-            name: 'English',
-            iso: 'en-US',
-            file: 'en.json'
-          },
-          {
             code: 'fr',
             name: 'Français',
             iso: 'fr-FR',
-            file: 'fr.json'
+            file: 'fr.js'
+          },
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en-US',
+            file: 'en.js'
           },
         ],
         lazy: true,
@@ -84,7 +86,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   markdownit: {
     injected: true
@@ -107,62 +109,17 @@ export default {
           space:  process.env.CTF_SPACE_ID,
           accessToken: process.env.CTF_CD_ACCESS_TOKEN
       });
-  
+   
       return client.getEntries({
           content_type: 'steps'
       }).then((response) => {
           return response.items.map(entry => {
               return {
-                  route: entry.fields.id,
+                  route: '/steps/' + entry.fields.id,
                   payload: entry
               };
           });
       });
-  }
-    // subFolders: false
-    // routes: function () {
-    //   return fetch('http://chunkbytes.com/userlist')
-    //     .then((res) => {§
-    //       return res.data.map((user) => {
-    //         return {
-    //           route: '/users/' + user.id
-    //         }
-    //       })
-    //     })
-    // }
-    // routes: ['/steps/1', '/steps/2']
-    
-    // routes() {
-    //     const steps = [
-    //   {
-    //       id: 1,
-    //       continent: 'europe',
-    //       slug: 'slug1',
-    //       title: 'title1'
-    //   },
-    //   {
-    //       id: 2,
-    //       continent: 'asia',
-    //       slug: 'slug2',
-    //       title: 'title2',
-    //   },
-    // ]
-    //   return [
-    //     {route: 'steps/1',
-    //     payload: {
-    //       id: 1,
-    //       continent: 'europe',
-    //       slug: 'slug1',
-    //       title: 'title1'
-    //     }},
-    //     {route: 'steps/2',
-    //     payload: {
-    //       id: 2,
-    //       continent: 'asia',
-    //       slug: 'slug2',
-    //       title: 'title2',
-    //      }}
-    //   ]
-    // }
+    }
   }
 }

@@ -1,24 +1,23 @@
 <template>
   <div class="container pa-0">
     <div class="mb-3 upper d-flex flex-column">
-      <!-- <LanguageInput />
-      <h6 class="title">{{ $t('message') }}</h6> -->
-      <h1 class="font-weight-bold mb-3">Choose Sync2 License</h1>
+      <h1 class="font-weight-bold my-3">{{ $t('steps_title') }}</h1>
       <div class="text-subtitle-1 mb-3">
-        Every user account (on each workstation) needs an individual license
+        {{ $t('steps_subtitle') }}
       </div>
     </div>
     <div class="cards">
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper :steps="steps" />
+      <CustomStepper :steps="steps" :current-step="parseInt(currentStep)" />
     </div>
   </div>
 </template>
 <script>
 export default {
-  async asyncData({ store, params }) {
+  async asyncData({ store, params, payload }) {
+    console.log(payload)
     await store.dispatch('step/getStepById', params.id)
     await store.dispatch('steps/getSteps')
   },
@@ -28,7 +27,7 @@ export default {
   }),
   computed: {
     currentStep() {
-      return this.$store.state.steps.currentStep
+      return this.$route.params.id
     },
     steps() {
       return this.$store.state.steps.steps
