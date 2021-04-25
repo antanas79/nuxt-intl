@@ -3,9 +3,9 @@
     <v-container class="pa-0">
       <v-row no-gutters>
         <v-col  sm="2" md="2" class="align-center justify-center justify-sm-end d-none d-sm-flex px-1"> 
-          <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
+          <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
             <v-btn> Back </v-btn>
-          </NuxtLink>
+          </NuxtLink> -->
         </v-col>
         <v-col cols="12" sm="8" md="8">
           <v-stepper alt-labels>
@@ -32,9 +32,9 @@
           </v-stepper>
         </v-col>
          <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1"> 
-              <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
+              <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
                 <v-btn> Back </v-btn>
-              </NuxtLink>
+              </NuxtLink> -->
         </v-col>
         <v-col
           cols="6"
@@ -42,9 +42,9 @@
           md="2"
           class="d-flex align-center justify-center justify-sm-start px-1"
         >
-        <NuxtLink :to="localePath({ path: `/steps/${currentStep + 1}` })" >
+        <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep + 1}` })" >
           <v-btn :disabled="!selectedCardIndex"> Next </v-btn>
-        </NuxtLink>
+        </NuxtLink> -->
         </v-col>
       </v-row>
     </v-container>
