@@ -1,6 +1,12 @@
 <template>
   <v-app>
     <v-main>
+       payloadData: {{payloadData}}
+        <br/>
+        contextData: {{contextData}}
+             <br/>
+       storeData:  {{storeData}}
+             <br/>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
 
@@ -53,7 +59,7 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-
+       
         <v-card-text>
           <Nuxt />
         </v-card-text>
@@ -66,10 +72,16 @@
 
 <script>
 export default {
-  async asyncData({ store, params, payload }) {
+  async asyncData({context, store, params, payload }) {
+    this.payloadData = payload;
+    this.contextData = context;
+    this.storeData = store;
     // await store.dispatch('steps/getSteps')
   },
   data: () => ({
+    payloadData: null,
+    contextData: null,
+    storeData: null,
     drawer: false,
     group: null,
   }),

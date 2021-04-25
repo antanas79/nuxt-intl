@@ -46,6 +46,8 @@
           <v-btn :disabled="!selectedCardIndex"> Next </v-btn>
         </NuxtLink> -->
         </v-col>
+
+
       </v-row>
     </v-container>
   </div>
@@ -55,9 +57,14 @@
 <script lang="ts">
 import { mapState } from "vuex";
 export default {
-  async asyncData({ store, params, payload }) {
-    console.log('store state steps: ', store.state.steps)
-  },
+  // data: () => ({
+  //   steps: null,
+  // }),
+  // async fetch({store}) {
+  //   // console.log(store.state.steps.steps)
+  //   // steps = await store.state.steps.steps;
+  // },
+  // fetchOnServer: true,
   //TODO steps interface
   props: {  
       // steps: {
@@ -75,16 +82,13 @@ export default {
         required: false
       }
   },
-  // mounted(): {
-  //    steps() {
-  //     return this.$store.state.steps.steps
-  //   }
-  // }
-  computed: {
-    ...mapState(["steps"]),
-    // steps() {
-    //   return this.$store.state.steps.steps
-    // }
+
+  // mounted() {
+  //   this.steps = this.$store.state.steps
+  //   console.log(this.$store.state)
+  // },
+ computed: {
+    ...mapState(['steps'])
   }
 }
 </script>
