@@ -1,5 +1,11 @@
 <template>
   <div class="container pa-0">
+           <!-- payloadData: {{payloadData}}
+        <br/>
+        contextData: {{contextData}}
+             <br/>
+       storeData:  {{storeData}}
+             <br/> -->
     <div class="mb-3 upper d-flex flex-column">
       <h1 class="font-weight-bold my-3">{{ $t('steps_title') }}</h1>
       <div class="text-subtitle-1 mb-3">
@@ -10,18 +16,23 @@
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper :steps="steps" :current-step="parseInt(currentStep)" />
+      <CustomStepper :current-step="parseInt(currentStep)" />
     </div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
-  async asyncData({ store, params, payload }) {
-    console.log(payload)
-    await store.dispatch('step/getStepById', params.id)
-    await store.dispatch('steps/getSteps')
+  async asyncData({ context, store, params, payload }) {
+    // await store.dispatch('steps/getSteps')
+    // this.payloadData = payload;
+    // this.contextData = context;
+    // this.storeData = store;
   },
   data: () => ({
+    // payloadData: null,
+    // contextData: null,
+    // storeData: null,
     step: null,
     show: false,
   }),
@@ -29,11 +40,9 @@ export default {
     currentStep() {
       return this.$route.params.id
     },
-    steps() {
-      return this.$store.state.steps.steps
-    },
+    ...mapState(['steps']),
     isLoading() {
-      return this.$store.state.steps.isLoading
+      return this.$store.state.step.isLoading
     },
   },
   watch: {

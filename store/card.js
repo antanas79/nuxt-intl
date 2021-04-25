@@ -1,13 +1,13 @@
 import client from '../plugins/contentful'
 
 export const state = () => ({
-    currentSteps: {},
+    currentCards: {},
     isLoading: true
 })
 
 export const mutations = {
-    setCurrentStep(state, payload) {
-        state.currentStep = payload
+    setCurrentCard(state, payload) {
+        state.currentPost = payload
     },
     setLoading(state, payload) {
         state.isLoading = payload
@@ -15,13 +15,13 @@ export const mutations = {
 }
 
 export const actions = {
-    async getStepById({commit}, id) {
+    async getCardById({commit}, id) {
         commit('setLoading', true);
         const response = await client.getEntries({
-            content_type: 'steps',
+            content_type: 'cards',
             'fields.id': id
-        });
-        commit('setCurrentStep', response.items[0])
+        })
+        commit('setCurrentCard', response.items[0])
         commit('setLoading', false)
     }
 }

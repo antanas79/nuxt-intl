@@ -4,18 +4,18 @@ const contentful = require('contentful');
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  alias: [],
+  // alias: [],
   target: 'static',
   router: {
     base: '/nuxt-intl/',
-    extendRoutes(routes, resolve) {
-      // routes.push({
-      //   name: 'custom',
-      //   path: '*',
-      //   component: resolve(__dirname, 'pages/404.vue'),
-      //   payload: 'test1'
-      // })
-    }
+    // extendRoutes(routes, resolve) {
+    //   routes.push({
+    //     name: 'custom',
+    //     path: '*',
+    //     component: resolve(__dirname, 'pages/404.vue'),
+    //     payload: 'test1'
+    //   })
+    // }
   },
   loading: '~/components/LoadingBar.vue',
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -38,7 +38,10 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{
+    src: '~/plugins/vuex-persist',
+    mode: 'client'
+  }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -70,6 +73,12 @@ export default {
             name: 'English',
             iso: 'en-US',
             file: 'en.js'
+          },
+          {
+            code: 'de',
+            name: 'Deutsch',
+            iso: 'de-de',
+            file: 'de.js'
           },
         ],
         lazy: true,
@@ -113,12 +122,26 @@ export default {
       return client.getEntries({
           content_type: 'steps'
       }).then((response) => {
-          return response.items.map(entry => {
-              return {
-                  route: '/steps/' + entry.fields.id,
-                  payload: entry
-              };
-          });
+          // return response.items.map(entry => {
+          //     return {
+          //         route: '/steps/' + entry.fields.id,
+          //         payload: entry.fields
+          //     };
+          // });
+          let routes = [];
+          let locales = ['', '/de', '/fr']
+          if (response) {
+            for (let i =0; i< response.items.length; i++) {
+                for (let j=0; j< locales.length; j++) {
+                  routes.push({
+                    route: locales[j] + '/steps/' + response.items[i].fields.id,
+                    payload: response.items[i].fields
+                  })
+                }
+            }
+            console.log(routes)
+            return routes;
+          }
       });
     }
   }
