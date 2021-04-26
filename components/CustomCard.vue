@@ -47,7 +47,9 @@
                 </v-card-subtitle>
 
                 <v-card-actions class="d-flex justify-center align-end">
-                  <v-btn color="primary lighten-2" class="" text outlined>
+                  <v-btn color="primary lighten-2" class="" text outlined 
+  
+                  >
                     {{selectedCardId == index ? 'Selected' : 'Select'}}
                   </v-btn>
                 </v-card-actions>
@@ -74,6 +76,11 @@ export default {
         type: [Number],
         required: false
       }
-  }
+  },
+  //  methods: {
+  //       selectCard (index) {
+  //           this.$store.commit('setSelectedCards', index)
+  //       },
+  //   }
 }
 </script>

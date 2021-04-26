@@ -1,13 +1,17 @@
 import client from '../plugins/contentful'
 
 export const state = () => ({
-    cards: []
+    cards: [],
+    selectedCards: []
 })
 
 export const mutations = {
     setCards(state, payload) {
         state.cards = payload
-    }
+    },
+    setSelectedCards(state, payload) {
+        state.selectedCards.push(payload)
+    },
 }
 
 export const actions = {

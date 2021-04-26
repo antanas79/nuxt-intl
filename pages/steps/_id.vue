@@ -15,6 +15,7 @@
     <div class="cards">
       <CustomCard />
     </div>
+    <div                 @click="selectCard(1)">setselectcard</div >
     <div class="steps">
       <CustomStepper :current-step="parseInt(currentStep)" />
     </div>
@@ -48,6 +49,11 @@ export default {
   watch: {
     '$route.query': '$fetch',
   },
+  methods: {
+      selectCard (index) {
+          this.$store.commit('cards/setSelectedCards', index)
+      },
+  }
 }
 </script>
 <style lang="scss" scoped>
