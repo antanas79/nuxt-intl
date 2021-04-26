@@ -52,7 +52,6 @@
                   >
                     {{cards.selectedCards.includes(index)  ? 'Selected' : 'Select'}}
                   </v-btn>
-                 SelectedCards: {{cards.selectedCards}}
 
                 </v-card-actions>
               </v-card>
