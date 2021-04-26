@@ -48,7 +48,7 @@
 
                 <v-card-actions class="d-flex justify-center align-end">
                   <v-btn color="primary lighten-2" class="" text outlined 
-                    @click="toggleCard(index)"
+                    @click="$store.commit('cards/toggleCard', index)"
                   >
                     {{cards.selectedCards.includes(index)  ? 'Selected' : 'Select'}}
                   </v-btn>
@@ -81,11 +81,11 @@ export default {
       ...mapState(['cards']),  
   },
   methods: {
-      toggleCard (index) {
-          if (process.browser) {
-            this.$store.commit('cards/toggleCard', index)
-          }
-      }
+      // toggleCard (index) {
+      //     if (process.browser) {
+      //       this.$store.commit('cards/toggleCard', index)
+      //     }
+      // }
   }
 }
 </script>
