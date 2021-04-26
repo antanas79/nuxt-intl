@@ -1,11 +1,11 @@
 <template>
   <div class="container pa-0">
-           <!-- payloadData: {{payloadData}}
-        <br/>
-        contextData: {{contextData}}
-             <br/>
+      <!-- payloadData: {{payloadData}}
+      <br/>
+      contextData: {{contextData}}
+            <br/>
        storeData:  {{storeData}}
-             <br/> -->
+      <br/> -->
     <div class="mb-3 upper d-flex flex-column">
       <h1 class="font-weight-bold my-3">{{ $t('steps_title') }}</h1>
       <div class="text-subtitle-1 mb-3">
@@ -15,6 +15,9 @@
     <div class="cards">
       <CustomCard />
     </div>
+    <div @click="selectCard(1)">setselectcard</div >
+    <!-- <div>SelectedCards: {{cards.selectedCards}}</div>
+    <div>{{steps}}</div> -->
     <div class="steps">
       <CustomStepper :current-step="parseInt(currentStep)" />
     </div>
@@ -40,7 +43,7 @@ export default {
     currentStep() {
       return this.$route.params.id
     },
-    ...mapState(['steps']),
+    ...mapState(['steps', 'cards']),
     isLoading() {
       return this.$store.state.step.isLoading
     },
@@ -48,6 +51,11 @@ export default {
   watch: {
     '$route.query': '$fetch',
   },
+  methods: {
+      selectCard (index) {
+          this.$store.commit('cards/setSelectedCards', index)
+      },
+  }
 }
 </script>
 <style lang="scss" scoped>

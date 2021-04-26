@@ -82,13 +82,17 @@ export default {
         required: false
       }
   },
-
   // mounted() {
   //   this.steps = this.$store.state.steps
   //   console.log(this.$store.state)
   // },
  computed: {
-    ...mapState(['steps'])
+  ...mapState(['steps']),
+  //  computeStates() {
+  //     if (process.browser) {
+  //       ...mapState(['steps'])
+  //     }
+  //  }
   }
 }
 </script>

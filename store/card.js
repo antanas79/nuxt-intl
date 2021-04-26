@@ -1,13 +1,16 @@
 import client from '../plugins/contentful'
 
 export const state = () => ({
-    currentCards: {},
+    selectedCards: [],
     isLoading: true
 })
 
 export const mutations = {
     setCurrentCard(state, payload) {
-        state.currentPost = payload
+        state.currentCard = payload
+    },
+    setSelectedCards(state, payload) {
+        state.selectedCards.push(payload)
     },
     setLoading(state, payload) {
         state.isLoading = payload
