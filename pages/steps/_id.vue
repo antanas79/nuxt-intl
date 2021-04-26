@@ -15,7 +15,10 @@
     <div class="cards">
       <CustomCard />
     </div>
-    <div                 @click="selectCard(1)">setselectcard</div >
+    <div @click="selectCard(1)">setselectcard</div >
+
+    <div>SelectedCards: {{cards.selectedCards}}</div>
+    <div>{{steps}}</div>
     <div class="steps">
       <CustomStepper :current-step="parseInt(currentStep)" />
     </div>
@@ -41,7 +44,7 @@ export default {
     currentStep() {
       return this.$route.params.id
     },
-    ...mapState(['steps']),
+    ...mapState(['steps', 'cards']),
     isLoading() {
       return this.$store.state.step.isLoading
     },

@@ -12,11 +12,13 @@ export const mutations = {
 
 export const actions = {
     async nuxtServerInit ({ commit }) {
+        debugger
         try {
           const response = await client.getEntries({
                 content_type: 'steps'
             });
             if (response.items.length > 0) {
+                debugger
                 console.log(response.items)
                 commit('setSteps', response.items);
             }
@@ -24,7 +26,7 @@ export const actions = {
           // you could redirect to custom error page for instance
           console.error(error);
         }
-      },
+    },
     // async getSteps({commit}) {
         
     //     if (state.steps?.length >0) {
@@ -40,4 +42,9 @@ export const actions = {
     //     }
     // }
 }
+
+export const getters = {
+   
+}
+
 
