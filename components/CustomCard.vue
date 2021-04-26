@@ -48,7 +48,7 @@
 
                 <v-card-actions class="d-flex justify-center align-end">
                   <v-btn color="primary lighten-2" class="" text outlined>
-                    {{selectedCardId == index ? 'Selected' : 'Select'}}
+                    {{ selectedCardId == index ? 'Selected' : 'Select' }}
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -60,20 +60,20 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  props: {
+    selectedCardId: {
+      type: [Number],
+      required: false,
+    },
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 div:not(.v-card) > {
   width: 100%;
   display: flex;
 }
 </style>
-
-<script lang="ts">
-export default {
-  props: {  
-      selectedCardId: {
-        type: [Number],
-        required: false
-      }
-  }
-}
-</script>

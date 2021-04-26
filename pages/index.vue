@@ -5,6 +5,7 @@
         <li>{{ step.title }}</li>
       </NuxtLink>
     </ul>
+    <!-- <div class="new">Hi</div> -->
   </div>
 </template>
 <script>
@@ -36,3 +37,4 @@ export default {
   }),
 }
 </script>
+<style lang="scss" scoped></style>

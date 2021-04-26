@@ -1,24 +1,37 @@
 <template>
   <v-app>
     <v-main>
-       payloadData: {{payloadData}}
-        <br/>
-        contextData: {{contextData}}
-             <br/>
-       storeData:  {{storeData}}
-             <br/>
+      payloadData: {{ payloadData }}
+      <br />
+      contextData: {{ contextData }}
+      <br />
+      storeData: {{ storeData }}
+      <br />
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
 
         <v-app-bar color="white accent-4">
-          <NuxtLink class="d-flex align-center" :to="localePath('/')">
+          <NuxtLink class="d-flex align-center" :to="switchLocalePath('fr')">
             <Logo />
           </NuxtLink>
-
           <v-spacer></v-spacer>
-          <v-btn icon>
-            <v-icon>mdi-web</v-icon>
-          </v-btn>
+          <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-web</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item v-for="(locale, i) in availableLocales" :key="i">
+                <v-list-item-title>
+                  <NuxtLink :to="switchLocalePath(locale.code)">
+                    {{ locale.name }}
+                  </NuxtLink>
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <v-btn icon>
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
@@ -59,7 +72,7 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-       
+
         <v-card-text>
           <Nuxt />
         </v-card-text>
@@ -72,10 +85,10 @@
 
 <script>
 export default {
-  async asyncData({context, store, params, payload }) {
-    this.payloadData = payload;
-    this.contextData = context;
-    this.storeData = store;
+  async asyncData({ context, store, params, payload }) {
+    this.payloadData = payload
+    this.contextData = context
+    this.storeData = store
     // await store.dispatch('steps/getSteps')
   },
   data: () => ({
@@ -85,7 +98,11 @@ export default {
     drawer: false,
     group: null,
   }),
-
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
+  },
   watch: {
     group() {
       this.drawer = false
@@ -156,6 +173,6 @@ html {
 }
 
 button {
-  border-radius: 25px!important;
+  border-radius: 25px !important;
 }
 </style>
