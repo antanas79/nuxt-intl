@@ -3,9 +3,9 @@
     <v-container class="pa-0">
       <v-row no-gutters>
         <v-col  sm="2" md="2" class="align-center justify-center justify-sm-end d-none d-sm-flex px-1"> 
-          <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
+          <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
             <v-btn> Back </v-btn>
-          </NuxtLink> -->
+          </NuxtLink>
         </v-col>
         <v-col cols="12" sm="8" md="8">
           <v-stepper alt-labels>
@@ -21,7 +21,7 @@
                 {{step.fields.title}}
                 </v-stepper-step>
                 <v-divider
-                  v-if="steps.length - 1 !== index"
+                  v-if="steps.steps.length - 1 !== index"
                   :key="step.fields.Id"
                   :class="{
                     'passed-or-current-steps': currentStep > step.fields.id,
@@ -32,9 +32,9 @@
           </v-stepper>
         </v-col>
          <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1"> 
-              <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
+              <NuxtLink :to="localePath({ path: `/steps/${currentStep - 1}` })" v-if="currentStep != 1">
                 <v-btn> Back </v-btn>
-              </NuxtLink> -->
+              </NuxtLink>
         </v-col>
         <v-col
           cols="6"
@@ -42,12 +42,17 @@
           md="2"
           class="d-flex align-center justify-center justify-sm-start px-1"
         >
-        <!-- <NuxtLink :to="localePath({ path: `/steps/${currentStep + 1}` })" >
-          <v-btn :disabled="!selectedCardIndex"> Next </v-btn>
-        </NuxtLink> -->
+        <NuxtLink  v-if="currentStep < steps.steps.length" :to="localePath({ path: `/steps/${currentStep + 1}` })" >
+          <v-btn :disabled="!cards.selectedCards" > 
+              Next ({{cards.selectedCards.length }}) 
+          </v-btn>
+        </NuxtLink>
+
+          <v-btn :disabled="!cards.selectedCards" v-if="currentStep === steps.steps.length"> 
+            <a href="http://www.4team.biz/">Submit ({{cards.selectedCards.length }}) </a>
+          </v-btn>
+
         </v-col>
-
-
       </v-row>
     </v-container>
   </div>
@@ -57,20 +62,7 @@
 <script lang="ts">
 import { mapState } from "vuex";
 export default {
-  // data: () => ({
-  //   steps: null,
-  // }),
-  // async fetch({store}) {
-  //   // console.log(store.state.steps.steps)
-  //   // steps = await store.state.steps.steps;
-  // },
-  // fetchOnServer: true,
-  //TODO steps interface
   props: {  
-      // steps: {
-      //   type: Array,
-      //   required: true
-      // },
       currentStep: {
         type: [Number],
         default: 1,
@@ -82,18 +74,9 @@ export default {
         required: false
       }
   },
-  // mounted() {
-  //   this.steps = this.$store.state.steps
-  //   console.log(this.$store.state)
-  // },
  computed: {
-  ...mapState(['steps']),
-  //  computeStates() {
-  //     if (process.browser) {
-  //       ...mapState(['steps'])
-  //     }
-  //  }
-  }
+  ...mapState(['steps', 'cards']),
+  },
 }
 </script>
 

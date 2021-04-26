@@ -1,12 +1,6 @@
 <template>
   <v-app>
     <v-main>
-       payloadData: {{payloadData}}
-        <br/>
-        contextData: {{contextData}}
-             <br/>
-       storeData:  {{storeData}}
-             <br/>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
 
