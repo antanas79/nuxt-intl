@@ -87,7 +87,12 @@ export default {
   //   console.log(this.$store.state)
   // },
  computed: {
-    ...mapState(['steps'])
+  ...mapState(['steps']),
+  //  computeStates() {
+  //     if (process.browser) {
+  //       ...mapState(['steps'])
+  //     }
+  //  }
   }
 }
 </script>

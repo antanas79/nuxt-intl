@@ -48,12 +48,15 @@
 
                 <v-card-actions class="d-flex justify-center align-end">
                   <v-btn color="primary lighten-2" class="" text outlined 
-  
+                    @click="toggleCard(index)"
                   >
-                    {{selectedCardId == index ? 'Selected' : 'Select'}}
+                    {{cards.selectedCards.includes(index)  ? 'Selected' : 'Select'}}
                   </v-btn>
+                 SelectedCards: {{cards.selectedCards}}
+
                 </v-card-actions>
               </v-card>
+                           
             </template>
           </v-hover>
         </v-col>
@@ -62,14 +65,11 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-div:not(.v-card) > {
-  width: 100%;
-  display: flex;
-}
-</style>
+
 
 <script lang="ts">
+
+import { mapState } from "vuex";
 export default {
   props: {  
       selectedCardId: {
@@ -77,10 +77,22 @@ export default {
         required: false
       }
   },
-  //  methods: {
-  //       selectCard (index) {
-  //           this.$store.commit('setSelectedCards', index)
-  //       },
-  //   }
+  computed: {
+      ...mapState(['cards']),  
+  },
+  methods: {
+      toggleCard (index) {
+          if (process.browser) {
+            this.$store.commit('cards/toggleCard', index)
+          }
+      }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+div:not(.v-card) > {
+  width: 100%;
+  display: flex;
+}
+</style>
