@@ -10,39 +10,30 @@
       <CustomCard />
     </div>
     <div class="steps">
-      <CustomStepper :current-step="parseInt(currentStep)" />
+      <CustomStepper/>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
 export default {
-  async asyncData({ context, store, params, payload }) {
-    // await store.dispatch('steps/getSteps')
-    // this.payloadData = payload;
-    // this.contextData = context;
-    // this.storeData = store;
-  },
   data: () => ({
     step: null,
     show: false,
   }),
-  computed: {
-    currentStep() {
-      return this.$route.params.id
-    },
-    ...mapState(['steps', 'cards']),
-    isLoading() {
-      return this.$store.state.step.isLoading
-    },
+  mounted() {
+    if (process.browser) {
+        this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.fields.link == this.$route.params.id)?.fields?.id)
+        this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep -1))?.fields?.link)
+        this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep +1))?.fields?.link)
+    }
   },
   watch: {
     '$route.query': '$fetch',
   },
   methods: {
-      selectCard (index) {
-          this.$store.commit('cards/setSelectedCards', index)
-      },
+    selectCard (index) {
+        this.$store.commit('cards/setSelectedCards', index)
+    },
   }
 }
 </script>
