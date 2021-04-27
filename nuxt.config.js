@@ -131,13 +131,13 @@ export default {
           let routes = []
           let locales = ['', '/de', '/fr']
           if (response) {
-            for (let i = 0; i < response.items.length; i++) {
-              for (let j = 0; j < locales.length; j++) {
-                routes.push({
-                  route: locales[j] + '/steps/' + response.items[i].fields.id,
-                  payload: response.items[i].fields,
-                })
-              }
+            for (let i =0; i< response.items.length; i++) {
+                for (let j=0; j< locales.length; j++) {
+                  routes.push({
+                    route: locales[j] + '/steps/' + response.items[i].fields.link,
+                    payload: response.items[i].fields
+                  })
+                }
             }
             console.log(routes)
             return routes

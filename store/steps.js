@@ -1,12 +1,24 @@
 import client from '../plugins/contentful'
 
 export const state = () => ({
-    steps: []
+    steps: [],
+    currentStep: null,
+    previousStepLink: '',
+    nextStepLink: ''
 })
 
 export const mutations = {
     setSteps(state, payload) {
         state.steps = payload
+    },
+    setCurrentStep(state, payload) {
+        state.currentStep = payload
+    },
+    setPreviousStepLink(state, payload) {
+        state.previousStepLink = payload
+    },
+    setNextStepLink(state, payload) {
+        state.nextStepLink = payload
     }
 }
 
@@ -15,7 +27,8 @@ export const actions = {
         try {
             const response = await client.getEntries({
                   content_type: 'steps'
-              });
+            });
+
             if (response.items.length > 0) {
                 commit('setSteps', response.items);
             }
