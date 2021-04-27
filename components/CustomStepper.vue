@@ -42,14 +42,14 @@
           md="2"
           class="d-flex align-center justify-center justify-sm-start px-1"
         >
-        <NuxtLink v-if="steps.currentStep < steps.steps.length" :to="localePath({ path: `/steps/${steps.nextStepLink}` })" >
-          <v-btn :disabled="!cards.selectedCards" :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
+        <NuxtLink :class="cards.selectedCards.length > 0 ? '': 'disabled'" v-if="steps.currentStep < steps.steps.length" :to="localePath({ path: `/steps/${steps.nextStepLink}` })" >
+          <v-btn :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
               Next ({{cards.selectedCards.length }}) 
           </v-btn>
         </NuxtLink>
 
-          <v-btn :disabled="!cards.selectedCards" v-if="steps.currentStep === steps.steps.length" :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
-            <a href="http://www.4team.biz/">Submit ({{cards.selectedCards.length }}) </a>
+          <v-btn :disabled="cards.selectedCards.length === 0" v-if="steps.currentStep === steps.steps.length" :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
+            <a :class="cards.selectedCards.length > 0 ? 'white--text': 'black--text disabled'" href="http://www.4team.biz/" >Submit ({{cards.selectedCards.length }}) </a>
           </v-btn>
 
         </v-col>
@@ -62,23 +62,7 @@
 <script lang="ts">
 import { mapState } from "vuex";
 export default {
-  // props: {  
-  //     currentStep: {
-  //       type: [Number],
-  //       default: 1,
-  //       required: true
-  //     },
-  //     previousStepLink: {
-  //       type: [String],
-  //       default: null,
-  //       required: false
-  //     },
-  //     nextStepLink: {
-  //       type: [String],
-  //       default: null,
-  //       required: false
-  //     },
-  // },
+
   computed: {
   ...mapState(['steps', 'cards']),
   },
@@ -89,6 +73,10 @@ export default {
 <style lang="scss">
 // $color-pack: false;
 // @import '../node_modules/vuetify/src/styles/main.sass';
+.disabled {
+   pointer-events: none;
+   opacity: 0.5;
+}
 .stepper-container {
 a {
   text-decoration: none;

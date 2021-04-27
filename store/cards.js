@@ -2,20 +2,17 @@ import client from '../plugins/contentful'
 
 export const state = () => ({
     cards: [],
-    selectedCards: []
+    selectedCards: [],
+    currentStepCards: []
 })
 
 export const mutations = {
     setCards(state, payload) {
         state.cards = payload
     },
-    // addCard(state, payload) {
-    //     state.selectedCards.push(payload)
-    // },
-    // removeCard(state, payload) {
-    //     let index = state.selectedCards.findIndex(payload)
-    //     state.selectedCards.splice(index, 1)
-    // },
+    setCurrentStepCards(state, payload) {
+        state.currentStepCards = state.cards.filter(el => el.fields.stepId === payload)
+    },
     toggleCard(state, payload) {
         if (state.selectedCards.includes(payload)) {
             console.log(state.selectedCards)
@@ -25,7 +22,6 @@ export const mutations = {
             state.selectedCards.push(payload)
         }   
     },
-    
 }
 
 export const actions = {
@@ -37,6 +33,5 @@ export const actions = {
             commit('setCards', response.items);
         }
     },
-  
 }
 

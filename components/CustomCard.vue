@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-container class="lighten-5 pa-0">
+    <v-container class="lighten-5 pa-0" v-if="cards">
       <v-row no-gutters>
         <v-col
-          v-for="(item, index) in [1, 2, 3]"
-          :key="item"
-          :data="item"
+          v-for="card in cards.currentStepCards"
+          :key="card.fields.cardId"
+          :data="card.fields.cardId"
           cols="12"
           sm="6"
           md="4"
@@ -21,7 +21,7 @@
                 <v-card-title
                   class="col-12 mb-6 d-flex justify-start blue darken-4"
                 >
-                  License
+                {{$t(card.fields.title)}}
                 </v-card-title>
 
                 <v-card-subtitle class="text-subtitle-1 pt-3 pb-0">
@@ -48,9 +48,9 @@
 
                 <v-card-actions class="d-flex justify-center align-end">
                   <v-btn color="primary lighten-2" class="" text outlined 
-                    @click="$store.commit('cards/toggleCard', index)"
+                    @click="$store.commit('cards/toggleCard', card.fields.cardId)"
                   >
-                    {{cards.selectedCards.includes(index)  ? 'Selected' : 'Select'}}
+                    {{cards.selectedCards.includes(card.fields.cardId)  ? $t(card.fields.buttonTextRemove) : $t(card.fields.buttonTextAdd)}}
                   </v-btn>
 
                 </v-card-actions>
@@ -93,5 +93,11 @@ export default {
 div:not(.v-card) > {
   width: 100%;
   display: flex;
+}
+
+@media all and (min-width: 800px) {
+  .row.no-gutters {
+    flex-wrap: nowrap;
+  }
 }
 </style>

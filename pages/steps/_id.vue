@@ -22,9 +22,10 @@ export default {
   }),
   mounted() {
     if (process.browser) {
-        this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.fields.link == this.$route.params.id)?.fields?.id)
-        this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep -1))?.fields?.link)
-        this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep +1))?.fields?.link)
+        this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.fields.link == this.$route.params.id)?.fields?.id);
+        this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep -1))?.fields?.link);
+        this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep +1))?.fields?.link);
+        this.$store.commit('cards/setCurrentStepCards', this.$store.state.steps.currentStep)
     }
   },
   watch: {
