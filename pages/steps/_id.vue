@@ -9,6 +9,7 @@
     </div>
     <div class="cards" >
         <v-container class="lighten-5 pa-0">
+          
             <v-row no-gutters>
                 <CustomCard  :card="card" :cards="cards" :steps="steps" v-for="card in cards.currentStepCards" :key="card.id"/>  
             </v-row>

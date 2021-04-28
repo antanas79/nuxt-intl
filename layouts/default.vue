@@ -30,21 +30,11 @@
               v-model="group"
               active-class="deep-purple--text text--accent-4"
             >
-              <!-- <v-list-item>
+              <v-list-item>
                 <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
                   >Step1</NuxtLink
                 >
               </v-list-item>
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step2</NuxtLink
-                >
-              </v-list-item>
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step3</NuxtLink
-                >
-              </v-list-item> -->
               <v-list-item>
                 <v-list-item-title>
                   <NuxtLink to="/loading">Loading</NuxtLink>
@@ -55,7 +45,9 @@
         </v-navigation-drawer>
        
         <v-card-text>
-          <Nuxt />
+          <v-scroll-x-transition  :hide-on-leave="true">
+            <Nuxt />
+          </v-scroll-x-transition>
         </v-card-text>
         <v-divider></v-divider>
         <Footer />
