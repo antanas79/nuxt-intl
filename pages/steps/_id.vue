@@ -1,14 +1,18 @@
 <template>
 <div class="steps-container">
-  <div class="container  pa-0" v-if="steps && steps.currentStep">
+  <div class="container  pa-0" v-if="cards && steps && steps.currentStep">
     <div class="mb-3 upper d-flex flex-column">
       <h1 class="font-weight-bold my-3">{{ $t(steps.steps[(steps.currentStep -1)].h1) }}</h1>
       <div class="text-subtitle-1 mb-3">
         {{ $t(steps.steps[(steps.currentStep -1)].paragraph) }}
       </div>
     </div>
-    <div class="cards">
-      <CustomCard />  
+    <div class="cards" >
+        <v-container class="lighten-5 pa-0">
+            <v-row no-gutters>
+                <CustomCard  :card="card" :cards="cards" :steps="steps" v-for="card in cards.currentStepCards" :key="card.id"/>  
+            </v-row>
+        </v-container>
     </div>
     <div class="steps">
       <CustomStepper/>
@@ -25,10 +29,10 @@ export default {
   }),
   mounted() {
     if (process.browser) {
-        this.$nextTick(() => {
-          this.$nuxt.$loading.start()
-          setTimeout(() => this.$nuxt.$loading.finish(), 500)
-        })
+        // this.$nextTick(() => {
+        //   this.$nuxt.$loading.start()
+        //   setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        // })
         this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.link == this.$route.params.id)?.id);
         this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep -1))?.link);
         this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep +1))?.link);
@@ -42,16 +46,20 @@ export default {
   computed: {
       ...mapState(['cards', 'steps']),  
   },
-  methods: {
-    selectCard (index) {
-        this.$store.commit('cards/setSelectedCards', index)
-    },
-  }
+  // methods: {
+  //   selectCard (index) {
+  //       this.$store.commit('cards/setSelectedCards', index)
+  //   },
+  // }
 }
 </script>
 <style lang="scss" scoped>
+
 .steps-container {
   min-height: 560px;
+}
+.row.no-gutters {
+  width:100%;
 }
 .container {
   margin: 0 auto;
@@ -64,7 +72,7 @@ export default {
     width: 100%;
     div {
       display: flex;
-      justify-content: space-evenly;
+      // justify-content: space-evenly;
     }
   }
   > div.upper {
@@ -94,5 +102,11 @@ export default {
 }
 .links {
   padding-top: 15px;
+}
+
+@media all and (min-width: 800px) {
+  .row.no-gutters {
+    flex-wrap: nowrap;
+  }
 }
 </style>

@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <v-container class="lighten-5 pa-0" v-if="cards && steps">
-      <v-row no-gutters>
+ 
         <v-col
-          v-for="card in cards.currentStepCards"
-          :key="card.cardId"
-          :data="card.cardId"
           cols="12"
           sm="6"
           md="4"
@@ -63,9 +58,8 @@
             </template>
           </v-hover>
         </v-col>
-      </v-row>
-    </v-container>
-  </div>
+
+
 </template>
 
 
@@ -74,18 +68,22 @@
 import { mapState } from "vuex";
 export default {
   props: {  
-      // cards: {
-      //   type: Array,
-      //   required: true
-      // },
-      // steps: {
-      //   type: Array,
-      //   required: true
-      // }
+      card: {
+        type: Object,
+        required: true
+      },
+      cards: {
+        type: Object,
+        required: true
+      },
+      steps: {
+        type: Object,
+        required: true
+      }
   },
-  computed: {
-      ...mapState(['cards', 'steps']),  
-  },
+  // computed: {
+  //     ...mapState(['cards', 'steps']),  
+  // },
   methods: {
       // toggleCard (index) {
       //     if (process.browser) {
@@ -97,13 +95,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div:not(.v-card) > {
-  width: 100%;
-  display: flex;
-}
-@media all and (min-width: 800px) {
-  .row.no-gutters {
-    flex-wrap: nowrap;
-  }
-}
+
 </style>

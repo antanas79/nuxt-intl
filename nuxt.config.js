@@ -5,7 +5,9 @@ const contentful = require('contentful');
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   // alias: [],
+  // mode: 'spa',
   target: 'static',
+  ssr: true,
   router: {
     base: '/nuxt-intl/',
     // extendRoutes(routes, resolve) {
@@ -18,6 +20,11 @@ export default {
     // }
   },
   loading: '~/components/LoadingBar.vue',
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-intl',
