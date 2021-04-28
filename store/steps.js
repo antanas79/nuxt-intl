@@ -10,7 +10,6 @@ export const state = () => ({
 export const mutations = {
     setSteps(state, payload) {
         // payload.sort((a, b) => a.fields.order.localeCompare(b.fields.order));
-        console.log(payload)
         state.steps = payload.sort((a, b) => a.fields.order.toString().localeCompare(b.fields.order.toString()))
     },
     setCurrentStep(state, payload) {
