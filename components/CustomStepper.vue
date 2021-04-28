@@ -12,19 +12,19 @@
             <v-stepper-header>
               <template v-for="(step, index) in steps.steps">
                 <v-stepper-step
-                  :key="step.fields.Id"
+                  :key="step.Id"
                   step=""
                   :class="{
-                    'passed-or-current-steps': steps.currentStep >= step.fields.id,
+                    'passed-or-current-steps': steps.currentStep >= step.id,
                   }"
                 >
-                {{$t(step.fields.title)}}
+                {{$t(step.title)}}
                 </v-stepper-step>
                 <v-divider
                   v-if="steps.steps.length - 1 !== index"
-                  :key="step.fields.Id"
+                  :key="step.Id"
                   :class="{
-                    'passed-or-current-steps': steps.currentStep > step.fields.id,
+                    'passed-or-current-steps': steps.currentStep > step.id,
                   }"
                 ></v-divider>
               </template>
@@ -62,11 +62,9 @@
 <script lang="ts">
 import { mapState } from "vuex";
 export default {
-
   computed: {
   ...mapState(['steps', 'cards']),
   },
-
 }
 </script>
 
@@ -96,12 +94,10 @@ a {
   background: #0D47A1!important;
   background-color: #0D47A1!important;
 }
-
 @media all and (min-width: 320px) and (max-width: 600px) {
   .v-stepper__step {
     flex-basis: 160px !important;
   }
 }
-
 }
 </style>

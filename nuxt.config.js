@@ -122,12 +122,6 @@ export default {
       return client.getEntries({
           content_type: 'steps'
       }).then((response) => {
-          // return response.items.map(entry => {
-          //     return {
-          //         route: '/steps/' + entry.fields.id,
-          //         payload: entry.fields
-          //     };
-          // });
           let routes = [];
           let locales = ['', '/de', '/fr']
           if (response) {
@@ -135,7 +129,7 @@ export default {
                 for (let j=0; j< locales.length; j++) {
                   routes.push({
                     route: locales[j] + '/steps/' + response.items[i].fields.link,
-                    payload: response.items[i].fields
+                    // payload: response.items[i].fields
                   })
                 }
             }

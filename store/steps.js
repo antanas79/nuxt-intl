@@ -9,8 +9,7 @@ export const state = () => ({
 
 export const mutations = {
     setSteps(state, payload) {
-        // payload.sort((a, b) => a.fields.order.localeCompare(b.fields.order));
-        state.steps = payload.sort((a, b) => a.fields.order.toString().localeCompare(b.fields.order.toString()))
+        state.steps = payload.sort((a, b) => a.order.toString().localeCompare(b.order.toString()))
     },
     setCurrentStep(state, payload) {
         state.currentStep = payload
@@ -31,7 +30,7 @@ export const actions = {
             });
 
             if (response.items.length > 0) {
-                commit('setSteps', response.items);
+                commit('setSteps', response.items.map(el=> el.fields));
             }
           } catch (error) {
             // you could redirect to custom error page for instance

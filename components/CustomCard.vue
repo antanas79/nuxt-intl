@@ -4,8 +4,8 @@
       <v-row no-gutters>
         <v-col
           v-for="card in cards.currentStepCards"
-          :key="card.fields.cardId"
-          :data="card.fields.cardId"
+          :key="card.cardId"
+          :data="card.cardId"
           cols="12"
           sm="6"
           md="4"
@@ -21,7 +21,7 @@
                 <v-card-title
                   class="col-12 mb-6 d-flex justify-start blue darken-4"
                 >
-                {{$t(card.fields.title)}}
+                {{$t(card.title)}}
                 </v-card-title>
 
                 <v-card-subtitle class="text-subtitle-1 pt-3 pb-0">
@@ -50,11 +50,11 @@
                   <v-btn outlined text
                     color="primary"
                    :style="{
-                          backgroundColor : cards.selectedCards.includes(card.fields.cardId)? 'lightgrey !important' : '',
+                          backgroundColor : cards.selectedCards.includes(card.cardId)? 'lightgrey !important' : '',
                           }"
-                    @click="$store.commit('cards/toggleCard', {cardId: card.fields.cardId, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].fields.maxCards })"
+                    @click="$store.commit('cards/toggleCard', {cardId: card.cardId, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })"
                   >
-                    {{cards.selectedCards.includes(card.fields.cardId)  ? $t(card.fields.buttonTextRemove) : $t(card.fields.buttonTextAdd)}}
+                    {{cards.selectedCards.includes(card.cardId)  ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}
                   </v-btn>
 
                 </v-card-actions>
@@ -71,7 +71,6 @@
 
 
 <script lang="ts">
-
 import { mapState } from "vuex";
 export default {
   props: {  
@@ -102,7 +101,6 @@ div:not(.v-card) > {
   width: 100%;
   display: flex;
 }
-
 @media all and (min-width: 800px) {
   .row.no-gutters {
     flex-wrap: nowrap;
