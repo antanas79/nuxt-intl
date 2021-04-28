@@ -19,14 +19,14 @@ export const mutations = {
         state.currentStepSelectedCards = state.cards.filter(el=> el?.stepId == payload && state.selectedCards.includes(el?.cardId)) 
     },
     toggleCard(state, payload) {
-        if (state.selectedCards.includes(payload.cardId)) {
-            let index = state.selectedCards.findIndex((el) => el == payload.cardId )
+        if (state.selectedCards.includes(payload.card.cardId)) {
+            let index = state.selectedCards.findIndex((el) => el == payload.card.cardId )
             state.selectedCards.splice(index, 1)
         } else {
-            state.selectedCards.push(payload.cardId);
+            state.selectedCards.push(payload.card.cardId);
             //delete previous card if more than step limit of cards
             if (state.cards.filter(el => el?.stepId == payload.currentStep && state.selectedCards.includes(el.cardId)).length > payload.maxCards) {
-                let index = state.selectedCards.findIndex(el => el == state.currentStepSelectedCards.find(el=> el.cardId !== payload.cardId).cardId);
+                let index = state.selectedCards.findIndex(el => el == state.currentStepSelectedCards.find(el=> el.cardId !== payload.card.cardId).cardId);
                 state.selectedCards.splice(index, 1);
             }
         };
@@ -51,4 +51,3 @@ export const actions = {
           }
     },
 }
-

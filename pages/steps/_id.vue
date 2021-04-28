@@ -29,10 +29,10 @@ export default {
   }),
   mounted() {
     if (process.browser) {
-        // this.$nextTick(() => {
-        //   this.$nuxt.$loading.start()
-        //   setTimeout(() => this.$nuxt.$loading.finish(), 500)
-        // })
+        this.$nextTick(() => {
+          this.$nuxt.$loading.start()
+          setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        })
         this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.link == this.$route.params.id)?.id);
         this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep -1))?.link);
         this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep +1))?.link);
@@ -44,8 +44,9 @@ export default {
   //   '$route.query': '$fetch',
   // },
   computed: {
-      ...mapState(['cards', 'steps']),  
+      ...mapState(['cards', 'steps', 'cards/currentStepCards']),  
   },
+  // ...mapState(['cards', 'steps', 'cards/currentStepCards']),  
   // methods: {
   //   selectCard (index) {
   //       this.$store.commit('cards/setSelectedCards', index)
@@ -60,6 +61,7 @@ export default {
 }
 .row.no-gutters {
   width:100%;
+  overflow-x: auto;
 }
 .container {
   margin: 0 auto;

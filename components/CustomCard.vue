@@ -1,11 +1,11 @@
 <template>
- 
         <v-col
           cols="12"
           sm="6"
           md="4"
           class="pa-3"
         >
+        <!-- {{card}} -->
           <v-hover>
             <template #default="{ hover }">
               <v-card
@@ -45,11 +45,11 @@
                   <v-btn outlined text
                     color="primary"
                    :style="{
-                          backgroundColor : cards.selectedCards.includes(card.cardId)? 'lightgrey !important' : '',
+                          backgroundColor : cards.selectedCards.includes(card.cardId) ? 'lightgrey !important' : '',
                           }"
-                    @click="$store.commit('cards/toggleCard', {cardId: card.cardId, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })"
+                    @click="$store.commit('cards/toggleCard', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })"
                   >
-                    {{cards.selectedCards.includes(card.cardId)  ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}
+                    {{cards.selectedCards.includes(card.cardId) ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}
                   </v-btn>
 
                 </v-card-actions>
@@ -58,8 +58,6 @@
             </template>
           </v-hover>
         </v-col>
-
-
 </template>
 
 
@@ -79,8 +77,18 @@ export default {
       steps: {
         type: Object,
         required: true
-      }
+      },
   },
+  //  watch: {
+  //     card: {
+  //       deep: true,
+  //       immediate: true,
+  //     }
+  //   },
+
+  // watch() {
+
+  // },
   // computed: {
   //     ...mapState(['cards', 'steps']),  
   // },
