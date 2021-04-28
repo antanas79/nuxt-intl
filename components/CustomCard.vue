@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="lighten-5 pa-0" v-if="cards">
+    <v-container class="lighten-5 pa-0" v-if="cards && steps">
       <v-row no-gutters>
         <v-col
           v-for="card in cards.currentStepCards"
@@ -47,8 +47,12 @@
                 </v-card-subtitle>
 
                 <v-card-actions class="d-flex justify-center align-end">
-                  <v-btn color="primary lighten-2" class="" text outlined 
-                    @click="$store.commit('cards/toggleCard', card.fields.cardId)"
+                  <v-btn outlined text
+                    color="primary"
+                   :style="{
+                          backgroundColor : cards.selectedCards.includes(card.fields.cardId)? 'lightgrey !important' : '',
+                          }"
+                    @click="$store.commit('cards/toggleCard', {cardId: card.fields.cardId, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].fields.maxCards })"
                   >
                     {{cards.selectedCards.includes(card.fields.cardId)  ? $t(card.fields.buttonTextRemove) : $t(card.fields.buttonTextAdd)}}
                   </v-btn>
@@ -71,13 +75,17 @@
 import { mapState } from "vuex";
 export default {
   props: {  
-      selectedCardId: {
-        type: [Number],
-        required: false
-      }
+      // cards: {
+      //   type: Array,
+      //   required: true
+      // },
+      // steps: {
+      //   type: Array,
+      //   required: true
+      // }
   },
   computed: {
-      ...mapState(['cards']),  
+      ...mapState(['cards', 'steps']),  
   },
   methods: {
       // toggleCard (index) {

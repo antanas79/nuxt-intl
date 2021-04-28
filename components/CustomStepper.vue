@@ -18,7 +18,7 @@
                     'passed-or-current-steps': steps.currentStep >= step.fields.id,
                   }"
                 >
-                {{step.fields.title}}
+                {{$t(step.fields.title)}}
                 </v-stepper-step>
                 <v-divider
                   v-if="steps.steps.length - 1 !== index"
@@ -42,14 +42,14 @@
           md="2"
           class="d-flex align-center justify-center justify-sm-start px-1"
         >
-        <NuxtLink :class="cards.selectedCards.length > 0 ? '': 'disabled'" v-if="steps.currentStep < steps.steps.length" :to="localePath({ path: `/steps/${steps.nextStepLink}` })" >
-          <v-btn :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
-              Next ({{cards.selectedCards.length }}) 
+        <NuxtLink :class="cards.currentStepSelectedCards.length > 0 ? '': 'disabled'" v-if="steps.currentStep < steps.steps.length" :to="localePath({ path: `/steps/${steps.nextStepLink}` })" >
+          <v-btn :class="cards.currentStepSelectedCards.length > 0 ? 'primary': ''"> 
+              Next ({{cards.currentStepSelectedCards.length }}) 
           </v-btn>
         </NuxtLink>
 
-          <v-btn :disabled="cards.selectedCards.length === 0" v-if="steps.currentStep === steps.steps.length" :class="cards.selectedCards.length > 0 ? 'primary': ''"> 
-            <a :class="cards.selectedCards.length > 0 ? 'white--text': 'black--text disabled'" href="http://www.4team.biz/" >Submit ({{cards.selectedCards.length }}) </a>
+          <v-btn :disabled="cards.currentStepSelectedCards.length === 0" v-if="steps.currentStep === steps.steps.length" :class="cards.currentStepSelectedCards.length > 0 ? 'primary': ''"> 
+            <a :class="cards.currentStepSelectedCards.length > 0 ? 'white--text': 'black--text disabled'" href="http://www.4team.biz/" >Submit ({{cards.currentStepSelectedCards.length }}) </a>
           </v-btn>
 
         </v-col>

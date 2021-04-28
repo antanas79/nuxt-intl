@@ -1,13 +1,13 @@
 <template>
-  <div class="container pa-0">
+  <div class="container pa-0" v-if="steps && steps.currentStep">
     <div class="mb-3 upper d-flex flex-column">
-      <h1 class="font-weight-bold my-3">{{ $t('steps_title') }}</h1>
+      <h1 class="font-weight-bold my-3">{{ $t(steps.steps[(steps.currentStep -1)].fields.h1) }}</h1>
       <div class="text-subtitle-1 mb-3">
-        {{ $t('steps_subtitle') }}
+        {{ $t(steps.steps[(steps.currentStep -1)].fields.paragraph) }}
       </div>
     </div>
     <div class="cards">
-      <CustomCard />
+      <CustomCard />  
     </div>
     <div class="steps">
       <CustomStepper/>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   data: () => ({
     step: null,
@@ -22,14 +23,19 @@ export default {
   }),
   mounted() {
     if (process.browser) {
+      console.log('mounted browser')
         this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.fields.link == this.$route.params.id)?.fields?.id);
         this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep -1))?.fields?.link);
         this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.fields.id == (this.$store.state.steps.currentStep +1))?.fields?.link);
         this.$store.commit('cards/setCurrentStepCards', this.$store.state.steps.currentStep)
+        this.$store.commit('cards/setCurrentStepSelectedCards', this.$store.state.steps.currentStep)
     }
   },
   watch: {
     '$route.query': '$fetch',
+  },
+  computed: {
+      ...mapState(['cards', 'steps']),  
   },
   methods: {
     selectCard (index) {
