@@ -4,7 +4,8 @@ export const state = () => ({
     steps: [],
     currentStep: null,
     previousStepLink: '',
-    nextStepLink: ''
+    nextStepLink: '',
+    currentSteps: []
 })
 
 export const mutations = {
@@ -13,6 +14,9 @@ export const mutations = {
     },
     setCurrentStep(state, payload) {
         state.currentStep = payload
+    },
+    setCurrentSteps(state, payload) {
+        state.currentSteps = payload;
     },
     setPreviousStepLink(state, payload) {
         state.previousStepLink = payload

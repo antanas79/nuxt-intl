@@ -4,8 +4,8 @@
           sm="6"
           md="4"
           class="pa-3"
-        >
-        <!-- {{card}} -->
+     >
+
           <v-hover>
             <template #default="{ hover }">
               <v-card
@@ -42,12 +42,12 @@
                 </v-card-subtitle>
 
                 <v-card-actions class="d-flex justify-center align-end">
-                  <v-btn outlined text
+                  <!-- @click="$store.commit('cards/toggleCard', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })" -->
+
+                  <v-btn outlined text rounded
                     color="primary"
-                   :style="{
-                          backgroundColor : cards.selectedCards.includes(card.cardId) ? 'lightgrey !important' : '',
-                          }"
-                    @click="$store.commit('cards/toggleCard', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })"
+                    @click="$emit('card-toggled', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards } )"
+                   :style="{backgroundColor : cards.selectedCards.includes(card.cardId) ? 'lightgrey !important' : ''}"
                   >
                     {{cards.selectedCards.includes(card.cardId) ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}
                   </v-btn>
@@ -59,9 +59,6 @@
           </v-hover>
         </v-col>
 </template>
-
-
-
 <script lang="ts">
 import { mapState } from "vuex";
 export default {
@@ -79,26 +76,29 @@ export default {
         required: true
       },
   },
-  //  watch: {
-  //     card: {
-  //       deep: true,
-  //       immediate: true,
-  //     }
-  //   },
-
-  // watch() {
-
+  // data: function () {
+  //   return {
+  //     isLoaded: false
+  //   }
   // },
-  // computed: {
-  //     ...mapState(['cards', 'steps']),  
+  // computed: function () {
+  //   return {
+  //     computedName: require(`/static/images/svg/sprite.svg#${this.name}`)
+  //   }
   // },
   methods: {
-      // toggleCard (index) {
-      //     if (process.browser) {
-      //       this.$store.commit('cards/toggleCard', index)
-      //     }
-      // }
-  }
+    // a computed getter
+    // computedName: function () {
+    //   // `this` points to the vm instance
+    //   return require('/static/images/svg/sprite.svg#' + this.name)
+    // },
+    // buildLogoUrl() {
+    //   return require(`/static/images/svg/sprite.svg#'${this.name}`);
+    // },
+  },
+  // mounted() {
+  //   this.isLoaded = true;
+  // }
 }
 </script>
 

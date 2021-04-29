@@ -141,7 +141,4 @@ html {
   max-width: calc(100vw - 125px);
 }
 
-button {
-  border-radius: 25px!important;
-}
 </style>

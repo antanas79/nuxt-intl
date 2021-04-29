@@ -28,5 +28,7 @@ export default  {
     "EVERY_USER_ACCOUNT_ON_EACH_WORKSTATION_NEEDS_AN_INDIVIDUAL_LICENSE": "Every user account (on each workstation needs) an individual license",
     "BUNDLE_AND_SAVE": "Bundle and save",
     "THIS_LIFETIME_THERE_IS_NO_NEED_FOR_YEARLY_UPDATES_SUPPORT_IS_FREE": "This Lifetime there is no need for yearly updates, support is Free.", 
-    "SELECT_UPGRADE_OR_LIFETIME": "Select Upgrade or Lifetime"
+    "SELECT_UPGRADE_OR_LIFETIME": "Select Upgrade or Lifetime",
+    "BACK": "Back",
+    "NEXT": "Next"
 }
