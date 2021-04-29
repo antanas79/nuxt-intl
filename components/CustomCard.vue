@@ -46,7 +46,7 @@
 
                   <v-btn outlined text rounded
                     color="primary"
-                    @click="$emit('card-toggled', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards } )"
+                    @click="$emit('card-toggled', {card: card, currentStep: steps.currentStep, maxCards: steps.currentStepMaxCards } )"
                    :style="{backgroundColor : cards.selectedCards.includes(card.cardId) ? 'lightgrey !important' : ''}"
                   >
                     {{cards.selectedCards.includes(card.cardId) ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}

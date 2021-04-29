@@ -1,11 +1,11 @@
 <template>
 <div class="steps-container">
-  <div class="container  pa-0" v-if="cards && steps && steps.currentStep">
+  <div class="container  pa-0" v-if="cards && steps && steps.currentStep && cards.currentStepCards">
     <div class="mb-3 upper d-flex flex-column">
-      <h1 class="font-weight-bold my-3">{{ $t(steps.steps[(steps.currentStep -1)].h1) }}</h1>
+      <!-- <h1 class="font-weight-bold my-3">{{ $t(steps.steps[(steps.currentStep -1)].h1) }}</h1>
       <div class="text-subtitle-1 mb-3">
         {{ $t(steps.steps[(steps.currentStep -1)].paragraph) }}
-      </div>
+      </div> -->
     </div>
     <div class="cards" >
         <v-container class="lighten-5 pa-0">
@@ -28,8 +28,23 @@ export default {
   },
   methods: {
     onCardToggled(event) {
-      this.$store.commit('cards/toggleCard', event)
-      console.log('toggled', event)
+      this.$store.commit('cards/toggleCard', event);
+      this.setNextPreviousLinks();
+    },
+    setNextPreviousLinks() {
+        let index = this.$store.state.steps.currentSteps.findIndex(el => el.link === this.$store.state.steps.currentStep);
+        if (this.$store.state.steps.steps[0].link == this.$store.state.steps.currentStep && this.$store.state.cards.currentStepSelectedCards?.length > 0) {
+          this.$store.commit('steps/setNextStepLink', this.$store.state.cards.currentStepSelectedCards[0].nextStep)
+          this.$store.commit('steps/setPreviousStepLink', '')
+        } else {
+          this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.currentSteps[index - 1]?.link);
+          this.$store.commit('steps/setNextStepLink', this.$store.state.steps.currentSteps[index + 1]?.link);
+        }
+
+        console.log(this.$store.state.steps.nextStepLink)
+        console.log(this.$store.state.steps.previousStepLink)
+        console.log(this.$store.state.steps.currentSteps)
+        console.log(this.$store.state.steps.index)
     }
   },
   mounted() {
@@ -38,17 +53,18 @@ export default {
           this.$nuxt.$loading.start()
           setTimeout(() => this.$nuxt.$loading.finish(), 500)
         })
-        this.$store.commit('steps/setCurrentStep', this.$store.state.steps.steps.find(el => el.link == this.$route.params.id)?.id);
-        this.$store.commit('steps/setPreviousStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep -1))?.link);
-        this.$store.commit('steps/setNextStepLink', this.$store.state.steps.steps.find(el => el.id == (this.$store.state.steps.currentStep +1))?.link);
+        this.$store.commit('steps/setCurrentStep', this.$route.params.id);
         let selectedFirstStepCard = this.$store.state.cards.cards.find(el=> el.stepId === 1 && this.$store.state.cards.selectedCards?.includes(el.cardId));
-        if (selectedFirstStepCard && this.$store.state.steps.currentStep !== 1){
+        if (selectedFirstStepCard && this.$store.state.steps.currentStep != this.$store.state.steps.steps[0].link){
             this.$store.commit('steps/setCurrentSteps', this.$store.state.steps.steps.filter(el => selectedFirstStepCard.steps.includes(el.link)))
         } else {
             this.$store.commit('steps/setCurrentSteps', this.$store.state.steps.steps);
         };
         this.$store.commit('cards/setCurrentStepCards', this.$store.state.steps.currentStep)
+        this.$store.commit('steps/setCurrentStepNumber', this.$store.state.steps.currentSteps.findIndex(el => el.link == this.$store.state.steps.currentStep))
         this.$store.commit('cards/setCurrentStepSelectedCards', this.$store.state.steps.currentStep)
+        this.$store.commit('steps/setCurrentStepMaxCards', this.$store.state.steps.steps.find(el => el.link == this.$store.state.steps.currentStep).maxCards)
+        this.setNextPreviousLinks();
     }
   }
 }

@@ -3,9 +3,11 @@ import client from '../plugins/contentful'
 export const state = () => ({
     steps: [],
     currentStep: null,
+    currentStepNumber: null,
     previousStepLink: '',
     nextStepLink: '',
-    currentSteps: []
+    currentSteps: [],
+    currentStepMaxCards: null
 })
 
 export const mutations = {
@@ -15,8 +17,14 @@ export const mutations = {
     setCurrentStep(state, payload) {
         state.currentStep = payload
     },
+    setCurrentStepNumber(state, payload) {
+        state.currentStepNumber = payload
+    },
     setCurrentSteps(state, payload) {
         state.currentSteps = payload;
+    },
+    setCurrentStepMaxCards(state, payload) {
+        state.currentStepMaxCards = payload;
     },
     setPreviousStepLink(state, payload) {
         state.previousStepLink = payload
