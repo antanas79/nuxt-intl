@@ -74,10 +74,7 @@ export default {
 .steps-container {
   min-height: 560px;
 }
-.row.no-gutters {
-  width:100%;
-  overflow-x: auto;
-}
+
 .container {
   margin: 0 auto;
   display: flex;
@@ -124,6 +121,8 @@ export default {
 @media all and (min-width: 800px) {
   .row.no-gutters {
     flex-wrap: nowrap;
+    width:100%;
+  overflow-x: auto;
   }
 }
 </style>
