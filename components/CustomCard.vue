@@ -14,7 +14,7 @@
                 max-width="344"
               >
                 <v-card-title
-                  class="col-12 mb-6 d-flex justify-start blue darken-4"
+                  class="mb-6 d-flex justify-start blue darken-4"
                 >
                 {{$t(card.title)}}
                 </v-card-title>
