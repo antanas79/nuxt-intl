@@ -2,10 +2,10 @@
 <div class="steps-container">
   <div class="container  pa-0" v-if="cards && steps && steps.currentStep && cards.currentStepCards">
     <div class="mb-3 upper d-flex flex-column">
-      <!-- <h1 class="font-weight-bold my-3">{{ $t(steps.steps[(steps.currentStep -1)].h1) }}</h1>
+      <h1 class="font-weight-bold my-3">{{ $t(steps.currentSteps[steps.currentStepNumber].h1) }}</h1>
       <div class="text-subtitle-1 mb-3">
-        {{ $t(steps.steps[(steps.currentStep -1)].paragraph) }}
-      </div> -->
+        {{ $t(steps.currentSteps[steps.currentStepNumber].paragraph) }}
+      </div>
     </div>
     <div class="cards" >
         <v-container class="lighten-5 pa-0">
@@ -120,9 +120,9 @@ export default {
 
 @media all and (min-width: 800px) {
   .row.no-gutters {
-    flex-wrap: nowrap;
-    width:100%;
-  overflow-x: auto;
-  }
+      flex-wrap: nowrap;
+      width:100%;
+      overflow-x: auto;
+   }
 }
 </style>
