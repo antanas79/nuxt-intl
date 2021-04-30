@@ -50,7 +50,7 @@
           </v-btn>
         </NuxtLink>
 
-        <v-btn color="green" rounded :disabled="cards.currentStepSelectedCards.length === 0" v-if="steps.currentStep == steps.currentSteps[steps.currentSteps.length - 1].link" :class="cards.currentStepSelectedCards.length > 0 ? 'primary': ''"> 
+        <v-btn rounded :disabled="cards.currentStepSelectedCards.length === 0" v-if="steps.currentStep == steps.currentSteps[steps.currentSteps.length - 1].link" :class="cards.currentStepSelectedCards.length > 0 ? 'green': ''"> 
             <a :class="cards.currentStepSelectedCards.length > 0 ? 'white--text': 'black--text disabled'" href="http://www.4team.biz/" >{{$t("NEXT")}} ({{cards.currentStepSelectedCards.length }}) </a>
         </v-btn>
 
