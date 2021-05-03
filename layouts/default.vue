@@ -43,9 +43,9 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-       
+
         <v-card-text>
-          <v-scroll-x-transition  :hide-on-leave="true">
+          <v-scroll-x-transition :hide-on-leave="true">
             <Nuxt />
           </v-scroll-x-transition>
         </v-card-text>
@@ -58,10 +58,10 @@
 
 <script>
 export default {
-  async asyncData({context, store, params, payload }) {
-    this.payloadData = payload;
-    this.contextData = context;
-    this.storeData = store;
+  async asyncData({ context, store, params, payload }) {
+    this.payloadData = payload
+    this.contextData = context
+    this.storeData = store
     // await store.dispatch('steps/getSteps')
   },
   data: () => ({
@@ -140,5 +140,7 @@ html {
   width: 230px;
   max-width: calc(100vw - 125px);
 }
-
+.no-uppercase {
+  text-transform: none !important;
+}
 </style>
