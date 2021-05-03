@@ -6,7 +6,7 @@
 
         <v-app-bar color="white accent-4">
           <NuxtLink class="d-flex align-center" :to="switchLocalePath('fr')">
-            <Logo />
+            Logo
           </NuxtLink>
           <v-spacer></v-spacer>
           <v-menu bottom left>
@@ -66,11 +66,11 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-
         <v-card-text>
           <Nuxt />
         </v-card-text>
         <v-divider></v-divider>
+        <Payment />
         <Footer />
       </v-card>
     </v-main>
@@ -155,7 +155,9 @@ html {
 }
 
 //style overrides
-
+/* .v-application a {
+  color: #337dc1;
+} */
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);

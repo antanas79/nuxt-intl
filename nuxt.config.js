@@ -33,7 +33,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@mdi/font/css/materialdesignicons.min.css'],
+  css: ['@mdi/font/css/materialdesignicons.min.css', '~/assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -91,10 +91,52 @@ export default {
   vuetify: {
     defaultAssets: false,
     treeShake: true,
+    icons: {
+      iconfont: 'mdi',
+    },
+    theme: {
+      themes: {
+        dark: {
+          gray: {
+            base: '#EDEDED',
+            darken1: '#EFEFEF',
+          },
+          red: {
+            base: '#EC1C24',
+          },
+          blue: {
+            base: '#337DC1',
+          },
+          primary: '#fff',
+          'my-custom-color': '#fff',
+          'next-custom-color': '#fff',
+        },
+        light: {
+          gray: {
+            base: '#EDEDED',
+            darken1: '#EFEFEF',
+          },
+          red: {
+            base: '#EC1C24',
+          },
+          blue: {
+            base: '#337DC1',
+          },
+          'my-custom-color': {
+            base: '#7ed525',
+          },
+        },
+      },
+      // ...
+    },
+  },
+  svgSprite: {
+    input: '~/assets/sprite/svg',
+    output: '~/assets/sprite/gen',
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg'],
   markdownit: {
     injected: true,
   },
@@ -131,13 +173,13 @@ export default {
           let routes = []
           let locales = ['', '/de', '/fr']
           if (response) {
-            for (let i =0; i< response.items.length; i++) {
-                for (let j=0; j< locales.length; j++) {
-                  routes.push({
-                    route: locales[j] + '/steps/' + response.items[i].fields.link,
-                    payload: response.items[i].fields
-                  })
-                }
+            for (let i = 0; i < response.items.length; i++) {
+              for (let j = 0; j < locales.length; j++) {
+                routes.push({
+                  route: locales[j] + '/steps/' + response.items[i].fields.link,
+                  payload: response.items[i].fields,
+                })
+              }
             }
             console.log(routes)
             return routes
