@@ -15,7 +15,6 @@
             <Card
               @card-toggled="onCardToggled"
               :card="card"
-              :customClass="'no-uppercase'"
               :currentStep="currentStep"
               :currentStepMaxCards="currentStepMaxCards"
               :currentStepMinCards="currentStepMinCards"
@@ -66,6 +65,7 @@ export default {
   }),
   methods: {
     onCardToggled(event) {
+      console.log('toggled')
       this.toggleCard(event)
       this.setNextPreviousLinks()
     },

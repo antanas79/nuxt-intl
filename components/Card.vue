@@ -25,28 +25,26 @@
             <span class="font-weight-black" color="primary"> 13.32 x 3 Payments </span>
           </v-card-subtitle>
 
-          <v-card-actions class="d-flex justify-center align-end">
-            <v-btn
-              outlined
-              text
-              :rounded="true"
-              :disabled="card.isPreSelected"
-              :class="customClass"
+          <v-card-actions
+            class="d-flex justify-center align-end"
+            @click="
+              $emit('card-toggled', {
+                cardId: card.cardId,
+                currentStep: currentStep,
+                maxCards: currentStepMaxCards,
+                minCards: currentStepMinCards,
+              })
+            "
+          >
+            <Button
+              :isDisabled="card.isPreSelected"
               color="primary"
-              @click="
-                $emit('card-toggled', {
-                  cardId: card.cardId,
-                  currentStep: currentStep,
-                  maxCards: currentStepMaxCards,
-                  minCards: currentStepMinCards,
-                })
-              "
-              :style="{
-                backgroundColor: selectedCards && selectedCards.includes(card.cardId) ? 'lightgrey !important' : '',
-              }"
+              :isOutlined="true"
+              :isText="true"
+              :buttonClassName="selectedCards && selectedCards.includes(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
+              :buttonText="selectedCards && selectedCards.includes(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
             >
-              {{ selectedCards && selectedCards.includes(card.cardId) ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd) }}
-            </v-btn>
+            </Button>
           </v-card-actions>
         </v-card>
       </template>
@@ -59,10 +57,6 @@ export default {
   props: {
     card: {
       type: Object,
-      required: true,
-    },
-    customClass: {
-      type: String,
       required: true,
     },
     currentStep: {
@@ -87,13 +81,13 @@ export default {
   //     isLoaded: false
   //   }
   // },
-  computed: function () {
-    return {
-      // isCardSelected: function () {
-      //   this.selectedCards && this.selectedCards.includes(this.card.cardId)
-      // },
-    }
-  },
+  // computed: function () {
+  //   return {
+  //     // isCardSelected: function () {
+  //     //   this.selectedCards && this.selectedCards.includes(this.card.cardId)
+  //     // },
+  //   }
+  // },
   methods: {
     // a computed getter
     // computedName: function () {

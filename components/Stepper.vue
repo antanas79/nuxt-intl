@@ -3,9 +3,7 @@
     <v-container class="pa-0" v-if="currentSteps">
       <v-row no-gutters>
         <v-col sm="2" md="2" class="align-center justify-center justify-sm-end d-none d-sm-flex px-1">
-          <NuxtLink :to="localePath({ path: `/steps/${previousStepLink}` })" v-if="previousStepLink">
-            <v-btn rounded small> {{ $t(backButton) }} </v-btn>
-          </NuxtLink>
+          <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
         </v-col>
         <v-col cols="12" sm="8" md="8">
           <v-stepper alt-labels>
@@ -34,29 +32,21 @@
           </v-stepper>
         </v-col>
         <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1">
-          <NuxtLink :to="localePath({ path: `/steps/${previousStepLink}` })" v-if="previousStepLink">
-            <v-btn rounded small> {{ $t(backButton) }}</v-btn>
-          </NuxtLink>
+          <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
         </v-col>
         <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
-          <NuxtLink
-            :class="currentStepSelectedCards.length < currentStepMinCards ? 'disabled' : ''"
-            v-if="currentStep != currentSteps[currentSteps.length - 1].link"
-            :to="localePath({ path: `/steps/${nextStepLink}` })"
+          <Button
+            :isNuxtLink="currentStep == currentSteps[currentSteps.length - 1].link ? false : true"
+            :isAnchor="currentStep == currentSteps[currentSteps.length - 1].link ? true : false"
+            :anchorClassName="currentStepSelectedCards.length > 0 ? 'white--text' : 'black--text disabled'"
+            :isDisabled="currentStepSelectedCards.length > 0 ? false : true"
+            :nuxtLinkClassName="currentStepSelectedCards.length < currentStepMinCards ? 'disabled' : ''"
+            :link="currentStep == currentSteps[currentSteps.length - 1].link ? 'https://www.4team.biz' : `/steps/${nextStepLink}`"
+            :buttonClassName="currentStep == currentSteps[currentSteps.length - 1].link && currentStepSelectedCards.length > 0 ? 'green white--text' : ''"
+            :buttonText="nextButton"
           >
-            <v-btn rounded :class="currentStepSelectedCards.length > 0 ? 'primary' : ''"> {{ $t(nextButton) }} ({{ currentStepSelectedCards.length }}) </v-btn>
-          </NuxtLink>
-
-          <v-btn
-            rounded
-            :disabled="currentStepSelectedCards.length < currentStepMinCards"
-            v-if="currentStep == currentSteps[currentSteps.length - 1].link"
-            :class="currentStepSelectedCards.length > 0 ? 'green' : ''"
-          >
-            <a :class="currentStepSelectedCards.length > 0 ? 'white--text' : 'black--text disabled'" href="http://www.4team.biz/"
-              >{{ $t(nextButton) }} ({{ currentStepSelectedCards.length }})
-            </a>
-          </v-btn>
+            ({{ currentStepSelectedCards.length }})
+          </Button>
         </v-col>
       </v-row>
     </v-container>
@@ -91,17 +81,17 @@ export default {
       type: String,
       required: false,
     },
-    nextStepLink: {
-      type: String,
-      required: false,
-    },
     backButton: {
       type: String,
-      required: true,
+      required: false,
     },
     nextButton: {
       type: String,
       required: true,
+    },
+    nextStepLink: {
+      type: String,
+      required: false,
     },
   },
   computed: {
@@ -118,10 +108,7 @@ export default {
 .v-stepper__header {
   margin: 0 auto;
 }
-.disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
+
 .stepper-container {
   a {
     text-decoration: none;
