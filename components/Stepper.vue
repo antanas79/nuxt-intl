@@ -36,13 +36,13 @@
         </v-col>
         <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
           <Button
-            :isNuxtLink="currentStep == currentSteps[currentSteps.length - 1].link ? false : true"
-            :isAnchor="currentStep == currentSteps[currentSteps.length - 1].link ? true : false"
-            :anchorClassName="currentStepSelectedCards.length > 0 ? 'white--text' : 'black--text disabled'"
-            :isDisabled="currentStepSelectedCards.length > 0 ? false : true"
-            :nuxtLinkClassName="currentStepSelectedCards.length < currentStepMinCards ? 'disabled' : ''"
-            :link="currentStep == currentSteps[currentSteps.length - 1].link ? 'https://www.4team.biz' : `/steps/${nextStepLink}`"
-            :buttonClassName="currentStep == currentSteps[currentSteps.length - 1].link && currentStepSelectedCards.length > 0 ? 'green white--text' : ''"
+            :isNuxtLink="isLastStep ? false : true"
+            :isAnchor="isLastStep ? true : false"
+            :anchorClassName="isStepperNextButtonEnabled ? 'white--text ' : 'black--text disabled'"
+            :isDisabled="isStepperNextButtonEnabled ? false : true"
+            :nuxtLinkClassName="isStepperNextButtonEnabled ? '' : 'disabled'"
+            :link="isLastStep ? 'https://www.4team.biz' : `/steps/${nextStepLink}`"
+            :buttonClassName="isLastStep && isStepperNextButtonEnabled ? 'green white--text' : ''"
             :buttonText="nextButton"
           >
             ({{ currentStepSelectedCards.length }})
@@ -60,6 +60,16 @@ export default {
     currentSteps: {
       type: Array,
       required: true,
+    },
+    isLastStep: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    isStepperNextButtonEnabled: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
     currentStep: {
       type: String,

@@ -1,16 +1,25 @@
 <template>
   <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
-    <v-btn :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
+    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </NuxtLink>
 
   <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor">
-    <v-btn :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
+    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </a>
-  <v-btn :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName" v-else-if="isButton"
+  <v-btn
+    :disabled="isDisabled"
+    :text="isText"
+    :outlined="isOutlined"
+    :color="color"
+    :rounded="isRounded"
+    :small="isSmall"
+    :class="buttonClassName"
+    @click="$emit(eventName, payload)"
+    v-else-if="isButton"
     >{{ $t(buttonText) }} <slot />
   </v-btn>
 </template>
@@ -93,13 +102,7 @@ export default {
       required: false,
     },
   },
-  computed: {
-    // a computed getter
-    // lastStepName: function () {
-    //   // `this` points to the vm instance
-    //   return this.currentSteps[this.currentSteps.length - 1].link
-    // },
-  },
+  // computed: {},
 }
 </script>
 

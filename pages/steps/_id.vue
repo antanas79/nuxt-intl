@@ -13,15 +13,45 @@
         <v-container class="lighten-5 pa-0">
           <v-row no-gutters>
             <Card
-              @card-toggled="onCardToggled"
+              :colsSm="6"
+              :colsMd="4"
+              @pricing-card-toggled="onCardToggled"
               :card="card"
-              :currentStep="currentStep"
-              :currentStepMaxCards="currentStepMaxCards"
-              :currentStepMinCards="currentStepMinCards"
-              :selectedCards="selectedCards"
+              :hasButton="true"
+              :payload="{
+                cardId: card.cardId,
+                currentStep: currentStep,
+                maxCards: currentStepMaxCards,
+                minCards: currentStepMinCards,
+              }"
+              :maxWidth="344"
+              :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
+              :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
+              eventName="pricing-card-toggled"
+              :isSelected="isSelected(card.cardId)"
               v-for="card in currentStepCards"
-              :key="card.id"
-            />
+              :key="card.cardId"
+            >
+              <Dialog :maxWidth="600" :cols="12">
+                <v-card-subtitle class="text-subtitle-1 pt-3 pb-0"> 1 year Free upgrade and support included </v-card-subtitle>
+
+                <v-card-subtitle class="text-subtitle-1 py-0">
+                  <span class="font-weight-black"> Note: </span>
+                  1 license can be used when moving data between 2 PCs.
+                </v-card-subtitle>
+
+                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
+                  <span class="font-weight-black"> $39.95</span>
+                  $49.95
+                </v-card-subtitle>
+
+                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
+                  or
+                  <span class="font-weight-black"> Pay Later</span>
+                  <span class="font-weight-black" color="primary"> 13.32 x 3 Payments </span>
+                </v-card-subtitle>
+              </Dialog>
+            </Card>
           </v-row>
         </v-container>
       </div>
@@ -31,9 +61,11 @@
           :currentStepNumber="currentStepNumber"
           :currentStepMinCards="currentStepMinCards"
           :currentStepSelectedCards="currentStepSelectedCards"
+          :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
           :previousStepLink="previousStepLink"
           :nextStepLink="nextStepLink"
           :currentSteps="currentSteps"
+          :isLastStep="isLastStep()"
           :backButton="'BACK'"
           :nextButton="'NEXT'"
         />
@@ -65,7 +97,6 @@ export default {
   }),
   methods: {
     onCardToggled(event) {
-      console.log('toggled')
       this.toggleCard(event)
       this.setNextPreviousLinks()
     },
@@ -95,6 +126,15 @@ export default {
         this.$store.commit('steps/setPreviousStepLink', this.currentSteps[index - 1]?.link)
         this.$store.commit('steps/setNextStepLink', this.currentSteps[index + 1]?.link)
       }
+    },
+    isSelected(id) {
+      return this.selectedCards.includes(id)
+    },
+    isLastStep() {
+      return this.currentStep == this.currentSteps[this.currentSteps.length - 1].link
+    },
+    isStepperNextButtonEnabled() {
+      return this.currentStepSelectedCards.length >= this.currentStepMinCards
     },
   },
   mounted() {
