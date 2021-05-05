@@ -17,23 +17,16 @@
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
 
-          <v-app-bar-nav-icon
-            @click.stop="drawer = !drawer"
-          ></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
 
         <v-system-bar color="grey" height="40"></v-system-bar>
 
         <v-navigation-drawer v-model="drawer" absolute temporary right>
           <v-list nav dense>
-            <v-list-item-group
-              v-model="group"
-              active-class="deep-purple--text text--accent-4"
-            >
+            <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
               <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step1</NuxtLink
-                >
+                <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>
@@ -81,8 +74,7 @@ export default {
 </script>
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -142,5 +134,9 @@ html {
 }
 .no-uppercase {
   text-transform: none !important;
+}
+
+.no-pointer-events {
+  pointer-events: none;
 }
 </style>

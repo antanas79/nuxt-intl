@@ -17,7 +17,11 @@
               :colsMd="4"
               @pricing-card-toggled="onCardToggled"
               :card="card"
+              cardClass="mx-auto d-flex flex-column transition-swing mb-3"
               :hasButton="true"
+              iconName="information"
+              iconColor="blue"
+              iconClass="ml-3"
               :payload="{
                 cardId: card.cardId,
                 currentStep: currentStep,
@@ -32,25 +36,6 @@
               v-for="card in currentStepCards"
               :key="card.cardId"
             >
-              <Dialog :maxWidth="600" :cols="12">
-                <v-card-subtitle class="text-subtitle-1 pt-3 pb-0"> 1 year Free upgrade and support included </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0">
-                  <span class="font-weight-black"> Note: </span>
-                  1 license can be used when moving data between 2 PCs.
-                </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
-                  <span class="font-weight-black"> $39.95</span>
-                  $49.95
-                </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
-                  or
-                  <span class="font-weight-black"> Pay Later</span>
-                  <span class="font-weight-black" color="primary"> 13.32 x 3 Payments </span>
-                </v-card-subtitle>
-              </Dialog>
             </Card>
           </v-row>
         </v-container>
@@ -191,6 +176,7 @@ export default {
 }
 
 .row.no-gutters {
+  padding-top: 30px;
   padding-bottom: 30px;
 }
 
