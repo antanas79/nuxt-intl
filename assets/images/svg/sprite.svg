@@ -1,0 +1,20 @@
+<svg>
+    <symbol version="1.1" id="team-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 115.6 138.5" style="enable-background:new 0 0 115.6 138.5;" xml:space="preserve">
+    <g id="_x34_Team_animated_logo">
+        <path style="fill:#8CB9E3;" d="M58.6,115.6h57V70.4l-47.3,7.4L58.6,115.6z"/>
+        <polygon style="fill:#54B848;" points="62.4,65.9 69,19.4 22.7,65.9  "/>
+        <polygon style="fill:#54B848;" points="0,0 0,65.9 71.8,0    "/>
+        <polygon style="fill:#FFD939;" points="88.4,0 71.4,65.9 115.6,65.9 115.6,0  "/>
+        <polygon style="fill:#EF6C4B;" points="55.4,115.6 60.5,79.1 0,88.6 0,115.6  "/>
+        <g>
+            <path style="fill:#7F7F7F;" d="M9.4,124.7h0.8v7.7h1.5v1.7h-1.5v4.5H8.3V134H2.5v-0.8L9.4,124.7z M8.3,132.4v-4l-3.2,4H8.3z"/>
+            <path style="fill:#7F7F7F;" d="M25.6,124.9H37v1.7h-4.8v11.9h-2v-11.9h-4.7V124.9z"/>
+            <path style="fill:#7F7F7F;" d="M51.9,124.9h7.7v1.7h-5.8v4.2h5.6v1.7h-5.6v4.2h6v1.7h-7.9V124.9z"/>
+            <path style="fill:#7F7F7F;" d="M79.2,124.8h1.4l6.1,13.7h-2l-1.8-4h-5.8l-1.7,4h-2L79.2,124.8z M82.1,132.8l-2.2-4.9l-2,4.9H82.1z
+                "/>
+            <path style="fill:#7F7F7F;" d="M112.1,124.9h1.8v13.7h-2v-10.6l-4.2,5.3h-0.4l-4.2-5.3v10.6h-2v-13.7h1.8l4.5,5.6L112.1,124.9z"/>
+        </g>
+    </g>
+    </symbol>
+	</svg>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'payment-cards': payment }" v-html="src"></div>
+  <div v-if="name" :class="{ 'payment-cards': payment, 'current-flag': flag }" v-html="src"></div>
 </template>
 <script>
 export default {
@@ -9,6 +9,7 @@ export default {
       required: true,
     },
     payment: Boolean,
+    flag: Boolean,
   },
   computed: {
     src() {
@@ -26,5 +27,9 @@ export default {
   &:first-child {
     margin-left: 0;
   }
+}
+.current-flag {
+  height: 35px;
+  width: 35px;
 }
 </style>

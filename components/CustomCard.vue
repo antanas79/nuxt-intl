@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <v-container class="lighten-5 pa-0">
-      <v-row no-gutters>
         <v-col
-          v-for="(item, index) in [1, 2, 3]"
-          :key="item"
-          :data="item"
           cols="12"
           sm="6"
           md="4"
           class="pa-3"
-        >
+     >
+
           <v-hover>
             <template #default="{ hover }">
               <v-card
@@ -19,9 +14,9 @@
                 max-width="344"
               >
                 <v-card-title
-                  class="col-12 mb-6 d-flex justify-start blue darken-4"
+                  class="mb-6 d-flex justify-start blue darken-4"
                 >
-                  License
+                {{$t(card.title)}}
                 </v-card-title>
 
                 <v-card-subtitle class="text-subtitle-1 pt-3 pb-0">
@@ -47,54 +42,64 @@
                 </v-card-subtitle>
 
                 <v-card-actions class="d-flex justify-center align-end">
-                  <v-btn
-                    color="primary lighten-2"
-                    class=""
-                    text
-                    outlined
-                    @click="$store.commit('cards/toggleCard', index)"
+                  <!-- @click="$store.commit('cards/toggleCard', {card: card, currentStep: steps.currentStep, maxCards: steps.steps[(steps.currentStep-1)].maxCards })" -->
+
+                  <v-btn outlined text rounded
+                    color="primary"
+                    @click="$emit('card-toggled', {card: card, currentStep: steps.currentStep, maxCards: steps.currentStepMaxCards } )"
+                   :style="{backgroundColor : cards.selectedCards.includes(card.cardId) ? 'lightgrey !important' : ''}"
                   >
-                    {{
-                      cards.selectedCards.includes(index)
-                        ? 'Selected'
-                        : 'Select'
-                    }}
+                    {{cards.selectedCards.includes(card.cardId) ? $t(card.buttonTextRemove) : $t(card.buttonTextAdd)}}
                   </v-btn>
                 </v-card-actions>
               </v-card>
             </template>
           </v-hover>
         </v-col>
-      </v-row>
-    </v-container>
-  </div>
 </template>
-
 <script lang="ts">
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
-  props: {
-    selectedCardId: {
-      type: [Number],
-      required: false,
-    },
+  props: {  
+      card: {
+        type: Object,
+        required: true
+      },
+      cards: {
+        type: Object,
+        required: true
+      },
+      steps: {
+        type: Object,
+        required: true
+      },
   },
-  computed: {
-    ...mapState(['cards']),
-  },
+  // data: function () {
+  //   return {
+  //     isLoaded: false
+  //   }
+  // },
+  // computed: function () {
+  //   return {
+  //     computedName: require(`/static/images/svg/sprite.svg#${this.name}`)
+  //   }
+  // },
   methods: {
-    // toggleCard (index) {
-    //     if (process.browser) {
-    //       this.$store.commit('cards/toggleCard', index)
-    //     }
-    // }
+    // a computed getter
+    // computedName: function () {
+    //   // `this` points to the vm instance
+    //   return require('/static/images/svg/sprite.svg#' + this.name)
+    // },
+    // buildLogoUrl() {
+    //   return require(`/static/images/svg/sprite.svg#'${this.name}`);
+    // },
   },
+  // mounted() {
+  //   this.isLoaded = true;
+  // }
 }
 </script>
 
 <style lang="scss" scoped>
-div:not(.v-card) > {
-  width: 100%;
-  display: flex;
-}
+
 </style>

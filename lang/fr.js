@@ -5,13 +5,12 @@ export default {
   steps_title: 'Choisissez la licence Sync2',
   steps_subtitle:
     'Chaque compte utilisateur (sur chaque poste de travail) nécessite une licence individuelle',
-  footer: {
-    footer_corporation_information: '',
-    footer_links: '',
-    footer_contacts: 'Hello',
-  },
-  FOOTER_BOTTOM: {
-    COPYRIGHT: '4Team Corporation Tous les droits sont réservés',
-    MAIN_TEXT: `Microsoft et le logo Office sont des marques déposées de Microsoft Corporation aux États-Unis et / ou dans d'autres pays. Apple et les logos iPhone, iCloud et iTunes sont des marques déposées d'Apple Inc. Aux États-Unis et / ou dans d'autres pays. Google et le calendrier Google, les contacts Google et les logos Google Tasks sont des marques déposées de Google LLC. Aux États-Unis et / ou dans d'autres pays`,
+  PAYMENT: {
+    TOP_CAPTION:
+      'Aucun engagement. Politique de confidentialité et configuration système requise. Des logiciels fiables. Licence (CLUF)',
+    MAIN_TEXT_HEADING: 'Garantie de remboursement',
+    MAIN_TEXT: `* Nous sommes impatients de vous assurer que vous serez vraiment satisfait de votre achat. {br} Nous vous rembourserons ** votre argent si nos techniciens ne sont pas en mesure de faire fonctionner notre logiciel sur votre ordinateur pendant la période de garantie de remboursement de 14 jours après l'achat.`,
+    MAIN_TEXT_REFUND: '** Les lots de produits ne sont pas remboursables',
+    MAIN_TEXT_BOTTOM: 'Politique de remboursement',
   },
 }

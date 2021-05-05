@@ -1,7 +1,9 @@
+import { numberFormats } from '../formats/numberFormats'
 import en from '../lang/en.js'
 import fr from '../lang/fr.js'
 export default {
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: { en, fr }
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: { en, fr },
+  numberFormats,
 }

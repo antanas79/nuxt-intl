@@ -2,10 +2,10 @@
   <v-col class="pt-5 footer-bottom">
     <p class="">
       Copyright {{ date() }}
-      {{ $t('FOOTER_BOTTOM.COPYRIGHT') }}
+      {{ $t('FOOTER.FOOTER_BOTTOM.COPYRIGHT') }}
     </p>
     <p>
-      {{ $t('FOOTER_BOTTOM.MAIN_TEXT') }}
+      {{ $t('FOOTER.FOOTER_BOTTOM.MAIN_TEXT') }}
     </p>
   </v-col>
 </template>

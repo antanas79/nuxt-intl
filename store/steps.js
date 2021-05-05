@@ -3,16 +3,28 @@ import client from '../plugins/contentful'
 export const state = () => ({
     steps: [],
     currentStep: null,
+    currentStepNumber: null,
     previousStepLink: '',
-    nextStepLink: ''
+    nextStepLink: '',
+    currentSteps: [],
+    currentStepMaxCards: null
 })
 
 export const mutations = {
     setSteps(state, payload) {
-        state.steps = payload
+        state.steps = payload.sort((a, b) => a.order.toString().localeCompare(b.order.toString()))
     },
     setCurrentStep(state, payload) {
         state.currentStep = payload
+    },
+    setCurrentStepNumber(state, payload) {
+        state.currentStepNumber = payload
+    },
+    setCurrentSteps(state, payload) {
+        state.currentSteps = payload;
+    },
+    setCurrentStepMaxCards(state, payload) {
+        state.currentStepMaxCards = payload;
     },
     setPreviousStepLink(state, payload) {
         state.previousStepLink = payload
@@ -30,7 +42,7 @@ export const actions = {
             });
 
             if (response.items.length > 0) {
-                commit('setSteps', response.items);
+                commit('setSteps', response.items.map(el=> el.fields));
             }
           } catch (error) {
             // you could redirect to custom error page for instance

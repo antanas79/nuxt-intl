@@ -3,12 +3,46 @@
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
-
         <v-app-bar color="white accent-4">
-          <NuxtLink class="d-flex align-center" :to="switchLocalePath('fr')">
-            Logo
+          <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
+            <Logo />
           </NuxtLink>
+
+          <!--           <v-select
+            v-validate="'required'"
+            :items="countryData"
+            item-text="name"
+            item-value="id"
+            v-model="country"
+            :error-messages="errors.collect('country')"
+            label="Country"
+            data-vv-name="country"
+            prepend-icon="mdi-flag"
+            required
+          ></v-select> -->
+
           <v-spacer></v-spacer>
+          <v-select
+            v-model="selectedCurrency"
+            :items="currencies"
+            item-text="currency"
+            label="select currency"
+            hide-details
+            flat
+            solo
+            :key="selectedCurrency.id"
+            return-object
+            single-line
+            @input="itemChanged"
+            class="currency-selection"
+          >
+            <template v-slot:selection="{ item }">
+              <SvgRender flag payment :name="item.path" />
+              {{ item.currency }}
+            </template>
+            <template v-slot:item="{ item }"> <SvgRender flag payment :name="item.path" />{{ item.currency }} </template>
+          </v-select>
+
           <v-menu bottom left>
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon v-bind="attrs" v-on="on">
@@ -30,34 +64,17 @@
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
 
-          <v-app-bar-nav-icon
-            @click.stop="drawer = !drawer"
-          ></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
 
         <v-system-bar color="grey" height="40"></v-system-bar>
 
         <v-navigation-drawer v-model="drawer" absolute temporary right>
           <v-list nav dense>
-            <v-list-item-group
-              v-model="group"
-              active-class="deep-purple--text text--accent-4"
-            >
-              <!-- <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step1</NuxtLink
-                >
-              </v-list-item>
+            <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
               <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step2</NuxtLink
-                >
+                <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
               </v-list-item>
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')"
-                  >Step3</NuxtLink
-                >
-              </v-list-item> -->
               <v-list-item>
                 <v-list-item-title>
                   <NuxtLink to="/loading">Loading</NuxtLink>
@@ -67,9 +84,15 @@
           </v-list>
         </v-navigation-drawer>
         <v-card-text>
-          <Nuxt />
+          <v-scroll-x-transition :hide-on-leave="true">
+            <Nuxt />
+          </v-scroll-x-transition>
         </v-card-text>
         <v-divider></v-divider>
+        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
+        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
+        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
+        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
         <Payment />
         <Footer />
       </v-card>
@@ -78,7 +101,9 @@
 </template>
 
 <script>
+import SvgRender from '~/components/SvgRender.vue'
 export default {
+  components: { SvgRender },
   async asyncData({ context, store, params, payload }) {
     this.payloadData = payload
     this.contextData = context
@@ -91,7 +116,19 @@ export default {
     storeData: null,
     drawer: false,
     group: null,
+    selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+    currencies: [
+      { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+      { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
+      { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
+      { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
+    ],
   }),
+  methods: {
+    itemChanged(item) {
+      console.log(item.name, item.currency, item.path)
+    },
+  },
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
@@ -102,12 +139,17 @@ export default {
       this.drawer = false
     },
   },
+  /*   updated() {
+    console.log(this.selectedCurrency)
+  }, */
+  components: {
+    SvgRender,
+  },
 }
 </script>
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -155,9 +197,12 @@ html {
 }
 
 //style overrides
-/* .v-application a {
-  color: #337dc1;
-} */
+#app .currency-selection {
+  max-width: 160px;
+}
+#app .currency-selection .v-input__slot {
+  padding-left: 0;
+}
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);
@@ -166,9 +211,5 @@ html {
 .md-drawer {
   width: 230px;
   max-width: calc(100vw - 125px);
-}
-
-button {
-  border-radius: 25px !important;
 }
 </style>

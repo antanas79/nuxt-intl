@@ -5,7 +5,9 @@ const contentful = require('contentful')
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   // alias: [],
+  // mode: 'spa',
   target: 'static',
+  ssr: true,
   router: {
     base: '/nuxt-intl/',
     // extendRoutes(routes, resolve) {
@@ -18,6 +20,11 @@ export default {
     // }
   },
   loading: '~/components/LoadingBar.vue',
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-intl',
@@ -155,34 +162,25 @@ export default {
   generate: {
     routes: () => {
       const client = contentful.createClient({
-        space: process.env.CTF_SPACE_ID,
-        accessToken: process.env.CTF_CD_ACCESS_TOKEN,
-      })
-
-      return client
-        .getEntries({
-          content_type: 'steps',
-        })
-        .then((response) => {
-          // return response.items.map(entry => {
-          //     return {
-          //         route: '/steps/' + entry.fields.id,
-          //         payload: entry.fields
-          //     };
-          // });
-          let routes = []
+          space:  process.env.CTF_SPACE_ID,
+          accessToken: process.env.CTF_CD_ACCESS_TOKEN
+      });
+   
+      return client.getEntries({
+          content_type: 'steps'
+      }).then((response) => {
+          let routes = [];
           let locales = ['', '/de', '/fr']
           if (response) {
-            for (let i = 0; i < response.items.length; i++) {
-              for (let j = 0; j < locales.length; j++) {
-                routes.push({
-                  route: locales[j] + '/steps/' + response.items[i].fields.link,
-                  payload: response.items[i].fields,
-                })
-              }
+            for (let i =0; i< response.items.length; i++) {
+                for (let j=0; j< locales.length; j++) {
+                  routes.push({
+                    route: locales[j] + '/steps/' + response.items[i].fields.link,
+                    // payload: response.items[i].fields
+                  })
+                }
             }
-            console.log(routes)
-            return routes
+            return routes;
           }
         })
     },
