@@ -103,7 +103,6 @@
 <script>
 import SvgRender from '~/components/SvgRender.vue'
 export default {
-  components: { SvgRender },
   async asyncData({ context, store, params, payload }) {
     this.payloadData = payload
     this.contextData = context
@@ -211,5 +210,8 @@ html {
 .md-drawer {
   width: 230px;
   max-width: calc(100vw - 125px);
+}
+.no-uppercase {
+  text-transform: none !important;
 }
 </style>

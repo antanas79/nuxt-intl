@@ -7,7 +7,8 @@ export const state = () => ({
     previousStepLink: '',
     nextStepLink: '',
     currentSteps: [],
-    currentStepMaxCards: null
+    currentStepMaxCards: null,
+    currentStepMinCards: null
 })
 
 export const mutations = {
@@ -18,13 +19,16 @@ export const mutations = {
         state.currentStep = payload
     },
     setCurrentStepNumber(state, payload) {
-        state.currentStepNumber = payload
+        state.currentStepNumber = payload;
     },
     setCurrentSteps(state, payload) {
         state.currentSteps = payload;
     },
     setCurrentStepMaxCards(state, payload) {
         state.currentStepMaxCards = payload;
+    },
+    setCurrentStepMinCards(state, payload) {
+        state.currentStepMinCards = payload;
     },
     setPreviousStepLink(state, payload) {
         state.previousStepLink = payload
@@ -35,26 +39,26 @@ export const mutations = {
 }
 
 export const actions = {
-    async getSteps({commit}) {
+    async getSteps({ commit }) {
         try {
             const response = await client.getEntries({
-                  content_type: 'steps'
+                content_type: 'steps'
             });
 
             if (response.items.length > 0) {
-                commit('setSteps', response.items.map(el=> el.fields));
+                commit('setSteps', response.items.map(el => el.fields));
             }
-          } catch (error) {
+        } catch (error) {
             // you could redirect to custom error page for instance
             console.error(error);
-          }
+        }
     },
 }
 
 export const getters = {
-   getStepsList() {
-       return this.state.steps
-   }
+    getStepsList() {
+        return this.state.steps
+    }
 }
 
 
