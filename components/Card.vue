@@ -16,11 +16,10 @@
           <v-card-actions class="d-flex flex-column justify-center align-end">
             <v-card-text class="text-subtitle-1 pt-3 pb-0">
               <div class="d-flex">
-                <div class="current-price red--text text-h4 col-5 pa-0 text-left">
-                  $39.95
-                  <!-- <div class="current-price-cents red--text text-h6 flex align-start">95</div> -->
+                <div class="current-price red--text col-5 pa-0 text-left">
+                  <span class="cents text-h4 vertical-align-top"> $39</span>
+                  <span class="cents text-h6">95</span>
                 </div>
-
                 <div class="current-price black--text text-caption col-7 pa-0 d-flex">
                   <v-divider vertical></v-divider>
                   <div>
@@ -32,16 +31,16 @@
                         <span class="old-price text-underlined red--text">$13</span>
                       </template>
                       <template v-slot:numberOfPayments>
-                        <span class="old-price text-underlined blue--text">
+                        <a class="old-price no-text-decoration blue--text" href="" target="_blank">
                           {{ $t('X_NUMBER_OF_PAYMENTS', { numberOfPayments: 3 }) }}
-                        </span>
+                        </a>
                       </template>
                     </i18n>
                   </div>
                 </div>
               </div>
 
-              <i18n tag="div" path="OLD_PRICE" class="text-caption text-left w-100">
+              <i18n tag="div" path="OLD_PRICE" class="text-caption text-left w-100 mt-2">
                 <template v-slot:oldPrice>
                   <span class="old-price text-underlined">$49.95</span>
                 </template>

@@ -139,4 +139,10 @@ html {
 .no-pointer-events {
   pointer-events: none;
 }
+.vertical-align-top {
+  vertical-align: top;
+}
+.no-text-decoration {
+  text-decoration: none;
+}
 </style>
