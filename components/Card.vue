@@ -2,69 +2,8 @@
   <v-col :cols="cols" :sm="colsSm" :md="colsMd" class="pa-0">
     <v-hover>
       <template #default="{ hover }">
-        <v-card :class="`elevation-${hover ? 24 : 6} ${cardClass}`" :max-width="maxWidth">
-          <Dialog :maxWidth="600" :cols="12" :class="dialogClass">
-            <v-card-title class="mb-6 d-flex justify-start" v-if="card.title" :class="titleClass">
-              {{ $t(card.title) }} <v-icon :color="iconColor" v-if="iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
-            </v-card-title>
-            <v-card-subtitle v-if="card.subtitle" class="text-subtitle-1 pt-3 pb-0"> 1 year Free upgrade and support included </v-card-subtitle>
-            <v-card-subtitle v-else class="text-subtitle-1 pt-3 pb-0"> 1 year Free upgrade and support included </v-card-subtitle>
-            <slot />
-          </Dialog>
-
-          <v-divider></v-divider>
-          <v-card-actions class="d-flex flex-column justify-center align-end">
-            <v-card-text class="text-subtitle-1 pt-3 pb-0">
-              <div class="d-flex">
-                <div class="current-price red--text col-5 pa-0 text-left">
-                  <span class="cents text-h4 vertical-align-top"> $39</span>
-                  <span class="cents text-h6">95</span>
-                </div>
-                <div class="current-price black--text text-caption col-7 pa-0 d-flex">
-                  <v-divider vertical></v-divider>
-                  <div>
-                    <i18n tag="div" path="OR_PAY_LATER" class="text-caption text-left pl-2">
-                      <template v-slot:br>
-                        <br />
-                      </template>
-                      <template v-slot:paymentAmount>
-                        <span class="old-price text-underlined red--text">$13</span>
-                      </template>
-                      <template v-slot:numberOfPayments>
-                        <a class="old-price no-text-decoration blue--text" href="" target="_blank">
-                          {{ $t('X_NUMBER_OF_PAYMENTS', { numberOfPayments: 3 }) }}
-                        </a>
-                      </template>
-                    </i18n>
-                  </div>
-                </div>
-              </div>
-
-              <i18n tag="div" path="OLD_PRICE" class="text-caption text-left w-100 mt-2">
-                <template v-slot:oldPrice>
-                  <span class="old-price text-underlined">$49.95</span>
-                </template>
-                <template v-slot:percentageDiscount>
-                  <span class="old-price-percentage-discount">20</span>
-                </template>
-              </i18n>
-            </v-card-text>
-            <v-card-text class="text-subtitle-1 pt-3 pb-0">
-              <Button
-                :hasButton="hasButton"
-                :isDisabled="card.isPreSelected"
-                color="primary"
-                :isOutlined="true"
-                :isText="true"
-                :buttonClassName="`${buttonClassName}`"
-                :buttonText="buttonText"
-                eventName="card-button-clicked"
-                :payload="payload"
-                @card-button-clicked="onCardButtonClicked"
-              >
-              </Button
-            ></v-card-text>
-          </v-card-actions>
+        <v-card :class="`${hover && isPricingCard ? 'border-blue' : 'border-white'} ${cardClass}`" :max-width="maxWidth">
+          <slot />
         </v-card>
       </template>
     </v-hover>
@@ -75,23 +14,6 @@ import { mapState } from 'vuex'
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    card: {
-      type: Object,
-      required: true,
-    },
-    titleClass: {
-      type: String,
-      required: false,
-    },
-    dialogClass: {
-      type: String,
-      required: false,
-    },
-    showTitle: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
     maxWidth: {
       type: Number,
       required: false,
@@ -110,56 +32,28 @@ export default Vue.extend({
       type: Number,
       required: false,
     },
-    payload: {
-      type: Object,
-      required: false,
-    },
-    eventName: {
-      type: String,
-      required: true,
-    },
-    buttonClassName: {
-      type: String,
-      required: false,
-    },
-    buttonText: {
-      type: String,
-      required: false,
-    },
-    isSelected: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    hasButton: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    iconName: {
-      type: String,
-      required: false,
-    },
-    iconColor: {
-      type: String,
-      required: false,
-    },
-    iconClass: {
-      type: String,
-      required: false,
-    },
     cardClass: {
       type: String,
       required: false,
     },
+    isPricingCard: {
+      type: Boolean,
+      required: false,
+    },
   },
   methods: {
-    onCardButtonClicked: function (event) {
-      this.$emit(this.eventName, event)
-    },
+    // onCardButtonClicked: function (event) {
+    //   this.$emit(event)
+    // },
   },
 })
 </script>
 
 <style lang="scss" scoped>
+.border-blue {
+  border: 2px solid #7aaad6;
+}
+.border-white {
+  border: 2px solid transparent;
+}
 </style>

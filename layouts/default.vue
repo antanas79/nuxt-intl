@@ -145,4 +145,10 @@ html {
 .no-text-decoration {
   text-decoration: none;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
+.hidden {
+  visibility: hidden;
+}
 </style>

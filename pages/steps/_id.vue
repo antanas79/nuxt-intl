@@ -2,22 +2,19 @@
   <div class="steps-container">
     <div class="container pa-0" v-if="isLoaded">
       <div class="mb-3 upper d-flex flex-column">
-        <h1 class="font-weight-bold my-3">
-          {{ $t(currentSteps[currentStepNumber].h1) }}
-        </h1>
-        <div class="text-subtitle-1 mb-3">
-          {{ $t(currentSteps[currentStepNumber].paragraph) }}
-        </div>
+        <h1 class="font-weight-bold my-3" v-html="$t(currentSteps[currentStepNumber].h1)"></h1>
+        <div class="text-subtitle-1 mb-0" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
       </div>
       <div class="cards">
         <v-container class="lighten-5 pa-0">
           <v-row no-gutters>
-            <Card
+            <PricingCard
               :colsSm="6"
               :colsMd="4"
+              :cols="12"
               @pricing-card-toggled="onCardToggled"
               :card="card"
-              cardClass="mx-auto d-flex flex-column transition-swing mb-3"
+              cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
               :hasButton="true"
               iconName="information"
               iconColor="blue"
@@ -36,7 +33,7 @@
               v-for="card in currentStepCards"
               :key="card.cardId"
             >
-            </Card>
+            </PricingCard>
           </v-row>
         </v-container>
       </div>
@@ -175,10 +172,10 @@ export default {
   min-height: 560px;
 }
 
-.row.no-gutters {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
+// .row.no-gutters {
+//   padding-top: 30px;
+//   padding-bottom: 30px;
+// }
 
 .container {
   margin: 0 auto;

@@ -1,4 +1,4 @@
-export default  {
+export default {
     "message": "Hello!",
     "about": "about",
     "contact": "contact",
