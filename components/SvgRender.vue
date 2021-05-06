@@ -1,5 +1,5 @@
 <template>
-  <div v-if="name" :class="{ 'payment-cards': payment, 'current-flag': flag }" v-html="src"></div>
+  <div v-if="name" :class="{ 'payment-cards': payment, 'current-flag': flag, 'small-icon': smallIcon }" v-html="src"></div>
 </template>
 <script>
 export default {
@@ -8,8 +8,18 @@ export default {
       type: String,
       required: true,
     },
-    payment: Boolean,
-    flag: Boolean,
+    payment: {
+      type: Boolean,
+      required: false,
+    },
+    flag: {
+      type: Boolean,
+      required: false,
+    },
+    smallIcon: {
+      type: Boolean,
+      required: false,
+    },
   },
   computed: {
     src() {
@@ -31,5 +41,9 @@ export default {
 .current-flag {
   height: 35px;
   width: 35px;
+}
+.small-icon {
+  width: 15px;
+  height: 15px;
 }
 </style>

@@ -57,7 +57,10 @@
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
 
-        <v-system-bar color="grey" height="40"></v-system-bar>
+        <v-system-bar color="grey" height="40">
+          <p class="text-caption"></p>
+          <SvgRender name="pay-later" smallIcon />
+        </v-system-bar>
 
         <v-navigation-drawer v-model="drawer" absolute temporary right>
           <v-list nav dense>
@@ -88,9 +91,6 @@
 </template>
 
 <script>
-import Selector from '~/components/Selector.vue'
-import SvgRender from '~/components/SvgRender.vue'
-
 export default {
   async asyncData({ context, store, params, payload }) {
     this.payloadData = payload
@@ -114,6 +114,7 @@ export default {
   }),
   methods: {
     changeSelection(event) {
+      console.log(event)
       this.selectedCurrency = JSON.parse(JSON.stringify(event))
     },
   },
@@ -130,10 +131,6 @@ export default {
   /*   updated() {
     console.log(this.selectedCurrency)
   }, */
-  components: {
-    SvgRender,
-    Selector,
-  },
 }
 </script>
 <style lang="scss">

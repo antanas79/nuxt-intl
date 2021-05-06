@@ -1,4 +1,5 @@
 export default {
+  BOTTOM_BAR: '<b>Pay Later</b>. Pay in 3 interest-free payments of $10.32 due every 2 weeks, starting today.',
   message: 'Hello!',
   about: 'about',
   contact: 'contact',
