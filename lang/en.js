@@ -1,4 +1,3 @@
-import FOOTER from './footer'
 export default {
   message: 'Hello!',
   about: 'about',
@@ -32,13 +31,19 @@ export default {
   SELECT_UPGRADE_OR_LIFETIME: 'Select Upgrade or Lifetime',
   BACK: 'Back',
   NEXT: 'Next',
-  PAYMENT: {
-    TOP_CAPTION: 'No commitment. Privacy Policy and System Requirements. Software you can trust. Licensing (EULA)',
-    MAIN_TEXT_HEADING: 'Money Back Guarantee',
-    MAIN_TEXT:
-      '* We are eager to make sure that you will be really happy with purchase. {br} We will refund ** your money if our technicians are not able to make our software work on your computer during 14-day money back performance guarantee period after purchase.',
-    MAIN_TEXT_REFUND: '** Product Bundles are not refundable',
-    MAIN_TEXT_BOTTOM: 'Refund policy',
-  },
-  FOOTER,
+  FOOTER_BUTTONS_COUNT: '3',
+  FOOTER_BUTTON_NAME_1: 'About Us',
+  FOOTER_BUTTON_NAME_2: 'Privacy',
+  FOOTER_BUTTON_NAME_3: 'Terms',
+  FOOTER_INPUT_LABEL: 'Keep me posted on the latest news',
+  FOOTER_INPUT_PLACEHOLDER: 'Type your Email address here',
+  FOOTER_BOTTOM_COPYRIGHT: '4Team Corporation All rights reserved',
+  FOOTER_BOTTOM_MAIN_TEXT:
+    'Microsoft and the Office logo are registered trademarks of Microsoft Corporation in the United States and/or other countries. Apple and the iPhone, iCloud, iTunes logos are registered trademarks of Apple Inc. In the United States and/or other countries. Google and the Google Calendar, Google Contacts, Google Tasks logos are registered trademarks of Google LLC. In the United States and/or other countries.',
+  PAYMENT_TOP_CAPTION: 'No commitment. Privacy Policy and System Requirements. Software you can trust. Licensing (EULA)',
+  PAYMENT_MAIN_TEXT_HEADING: 'Money Back Guarantee',
+  PAYMENT_MAIN_TEXT:
+    '* We are eager to make sure that you will be really happy with purchase. {br} We will refund ** your money if our technicians are not able to make our software work on your computer during 14-day money back performance guarantee period after purchase.',
+  PAYMENT_MAIN_TEXT_REFUND: '** Product Bundles are not refundable',
+  PAYMENT_MAIN_TEXT_BOTTOM: 'Refund policy',
 }

@@ -8,21 +8,8 @@
             <Logo />
           </NuxtLink>
 
-          <!--           <v-select
-            v-validate="'required'"
-            :items="countryData"
-            item-text="name"
-            item-value="id"
-            v-model="country"
-            :error-messages="errors.collect('country')"
-            label="Country"
-            data-vv-name="country"
-            prepend-icon="mdi-flag"
-            required
-          ></v-select> -->
-
           <v-spacer></v-spacer>
-          <v-select
+          <!--           <v-select
             v-model="selectedCurrency"
             :items="currencies"
             item-text="currency"
@@ -33,7 +20,6 @@
             :key="selectedCurrency.id"
             return-object
             single-line
-            @input="itemChanged"
             class="currency-selection"
           >
             <template v-slot:selection="{ item }">
@@ -41,8 +27,16 @@
               {{ item.currency }}
             </template>
             <template v-slot:item="{ item }"> <SvgRender flag payment :name="item.path" />{{ item.currency }} </template>
-          </v-select>
-
+          </v-select> -->
+          <Selector
+            @changeSelection="changeSelection"
+            :selectorData="currencies"
+            :selectedValue="selectedCurrency"
+            :isKey="selectedCurrency.id"
+            itemText="currency"
+            flag
+            currencyClass
+          />
           <v-menu bottom left>
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon v-bind="attrs" v-on="on">
@@ -51,12 +45,8 @@
             </template>
 
             <v-list>
-              <v-list-item v-for="(locale, i) in availableLocales" :key="i">
-                <v-list-item-title>
-                  <NuxtLink :to="switchLocalePath(locale.code)">
-                    {{ locale.name }}
-                  </NuxtLink>
-                </v-list-item-title>
+              <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
+                {{ locale.name }}
               </v-list-item>
             </v-list>
           </v-menu>
@@ -90,10 +80,7 @@
         </v-card-text>
         <v-divider></v-divider>
         <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
-        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
-        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
-        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
-        <Payment />
+        <PaymentSection />
         <Footer />
       </v-card>
     </v-main>
@@ -101,7 +88,9 @@
 </template>
 
 <script>
+import Selector from '~/components/Selector.vue'
 import SvgRender from '~/components/SvgRender.vue'
+
 export default {
   async asyncData({ context, store, params, payload }) {
     this.payloadData = payload
@@ -124,8 +113,8 @@ export default {
     ],
   }),
   methods: {
-    itemChanged(item) {
-      console.log(item.name, item.currency, item.path)
+    changeSelection(event) {
+      this.selectedCurrency = JSON.parse(JSON.stringify(event))
     },
   },
   computed: {
@@ -143,6 +132,7 @@ export default {
   }, */
   components: {
     SvgRender,
+    Selector,
   },
 }
 </script>

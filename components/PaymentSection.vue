@@ -9,54 +9,27 @@
           class=""
         /> -->
         <v-col class="pb-0" xl="7" lg="7" md="8" sm="12" cols="12">
-          <p class="mb-0 text-caption">{{ $t('PAYMENT.TOP_CAPTION') }}</p>
+          <p class="mb-0 text-caption">{{ $t(paymentSectionData.topCaption) }}</p>
         </v-col>
-        <v-col
-          xl="7"
-          lg="7"
-          md="8"
-          sm="12"
-          cols="12"
-          order="3"
-          order-xl="2"
-          order-lg="2"
-          order-md="2"
-          order-sm="3"
-        >
+        <v-col xl="7" lg="7" md="8" sm="12" cols="12" order="3" order-xl="2" order-lg="2" order-md="2" order-sm="3">
           <div class="d-flex align-center">
             <svg class="svg-money-back">
-              <use
-                xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back"
-              ></use>
+              <use xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back"></use>
             </svg>
             <p class="mb-0 text-h6">
-              {{ $t('PAYMENT.MAIN_TEXT_HEADING') }}
+              {{ $t(paymentSectionData.mainTextHeading) }}
             </p>
           </div>
-          <i18n tag="p" path="PAYMENT.MAIN_TEXT" class="mb-1 text-caption">
+          <i18n tag="p" path="PAYMENT_MAIN_TEXT" class="mb-1 text-caption">
             <template v-slot:br> <br /> </template
           ></i18n>
           <p class="mb-0 text-caption font-weight-bold">
-            {{ $t('PAYMENT.MAIN_TEXT_REFUND') }}
+            {{ $t(paymentSectionData.mainTextRefund) }}
           </p>
 
-          <NuxtLink to="/" class="text-caption blue--text">{{
-            $t('PAYMENT.MAIN_TEXT_BOTTOM')
-          }}</NuxtLink>
+          <NuxtLink to="/" class="text-caption blue--text">{{ $t(paymentSectionData.mainTextBottom) }}</NuxtLink>
         </v-col>
-        <v-col
-          xl="7"
-          lg="7"
-          md="12"
-          sm="12"
-          cols="12"
-          order="4"
-          order-xl="4"
-          order-lg="4"
-          order-md="4"
-          order-sm="4"
-          class="pt-0"
-        >
+        <v-col xl="7" lg="7" md="12" sm="12" cols="12" order="4" order-xl="4" order-lg="4" order-md="4" order-sm="4" class="pt-0">
           <div class="svg-card-container d-flex">
             <!--      <div>
               <svg
@@ -81,50 +54,20 @@
               </svg>
             </div> -->
             <div class="d-flex mt-3">
-              <SvgRender
-                v-for="(svg, index) in images.filter(
-                  (item, index) => index < images.length / 2
-                )"
-                :key="index"
-                :name="`payment/` + svg"
-                payment
-              />
+              <SvgRender v-for="(svg, index) in images.filter((item, index) => index < images.length / 2)" :key="index" :name="`payment/` + svg" payment />
             </div>
             <div class="d-flex mt-3">
-              <SvgRender
-                v-for="(svg, index) in images.filter(
-                  (item, index) => index >= images.length / 2
-                )"
-                :key="index"
-                :name="`payment/` + svg"
-                payment
-              />
+              <SvgRender v-for="(svg, index) in images.filter((item, index) => index >= images.length / 2)" :key="index" :name="`payment/` + svg" payment />
             </div>
           </div>
         </v-col>
-        <v-col
-          xl="5"
-          lg="5"
-          md="4"
-          sm="12"
-          cols="12"
-          order="2"
-          order-xl="3"
-          order-lg="3"
-          order-md="3"
-          order-sm="2"
-          class="col-microsoft-container"
-        >
+        <v-col xl="5" lg="5" md="4" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="3" order-sm="2" class="col-microsoft-container">
           <div class="d-flex align-center justify-md-end">
             <svg class="microsoft-svg">
-              <use
-                xlink:href="~assets/sprite/svg/sprite-icons.svg#microsoft-gold"
-              ></use>
+              <use xlink:href="~assets/sprite/svg/sprite-icons.svg#microsoft-gold"></use>
             </svg>
             <svg class="money-back-svg ml-10">
-              <use
-                xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back-guarantee"
-              ></use>
+              <use xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back-guarantee"></use>
             </svg>
           </div>
         </v-col>
@@ -141,7 +84,6 @@
 </template>
 
 <script>
-import SvgRender from '../components/SvgRender'
 export default {
   data() {
     return {
@@ -151,17 +93,24 @@ export default {
         'master-card',
         'discover-network',
         'wire-transfer',
-        'p.o',
+        'purchase-order',
         'money-order',
         'check',
         'pay-pal',
         'pay-later',
       ],
-      test: ['team', 'team-logo'],
     }
   },
-  components: {
-    SvgRender,
+  props: {
+    paymentSectionData: {
+      type: Object,
+      default: () => ({
+        topCaption: 'PAYMENT_TOP_CAPTION',
+        mainTextHeading: 'PAYMENT_MAIN_TEXT_HEADING',
+        mainTextRefund: 'PAYMENT_MAIN_TEXT_REFUND',
+        mainTextBottom: 'PAYMENT_MAIN_TEXT_BOTTOM',
+      }),
+    },
   },
   methods: {
     /*     half(half) {
