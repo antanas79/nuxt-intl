@@ -1,14 +1,17 @@
 <template>
   <div class="stepper-container">
-    <v-container class="pa-0" v-if="currentSteps">
+    <v-container class="pa-0 my-3" v-if="currentSteps">
       <v-row no-gutters>
-        <v-col sm="2" md="2" class="align-center justify-center justify-sm-end d-none d-sm-flex px-1">
+        <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
           <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
         </v-col>
-        <v-col cols="12" sm="8" md="8">
+        <v-col cols="2" sm="6" md="8" class="">
           <v-stepper alt-labels>
             <v-expand-transition>
-              <v-stepper-header class="py-0" :class="currentSteps.length == 3 ? 'col-sm-10' : currentSteps.length == 2 ? 'col-sm-6' : 'col-12'">
+              <v-stepper-header
+                class="pa-0 d-flex justify-center align-items-center"
+                :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-7' : 'col-10'"
+              >
                 <template v-for="(step, index) in currentSteps">
                   <v-stepper-step
                     :key="step.Id"
@@ -31,10 +34,10 @@
             </v-expand-transition>
           </v-stepper>
         </v-col>
-        <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1">
+        <!-- <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1">
           <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
-        </v-col>
-        <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
+        </v-col> -->
+        <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
           <Button
             :isNuxtLink="isLastStep ? false : true"
             :isAnchor="isLastStep ? true : false"
@@ -119,6 +122,10 @@ export default {
   margin: 0 auto;
 }
 
+.v-stepper__step {
+  flex-basis: 170px !important;
+}
+
 .stepper-container {
   a {
     text-decoration: none;
@@ -139,9 +146,34 @@ export default {
     background: #0d47a1 !important;
     background-color: #0d47a1 !important;
   }
-  @media all and (min-width: 320px) and (max-width: 600px) {
+  @media all and (max-width: 599px) {
     .v-stepper__step {
-      flex-basis: 160px !important;
+      flex-basis: 0px !important;
+      padding: 2px;
+      span {
+        width: 6px;
+        height: 6px;
+        min-width: 6px;
+        min-height: 6px;
+      }
+    }
+    hr.v-divider.theme--light {
+      display: none;
+    }
+  }
+  @media all and (min-width: 600px) and (max-width: 800px) {
+    .v-stepper__step {
+      flex-basis: 0px !important;
+      padding: 2px;
+      span {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        min-height: 8px;
+      }
+    }
+    hr.v-divider.theme--light {
+      display: none;
     }
   }
 }

@@ -2,7 +2,7 @@
   <v-col :cols="cols" :sm="colsSm" :md="colsMd" class="pa-0">
     <v-hover>
       <template #default="{ hover }">
-        <v-card :class="`${hover && isPricingCard ? 'border-blue' : 'border-white'} ${cardClass}`" :max-width="maxWidth">
+        <v-card :class="`elevation-${hover ? 24 : 6} ${cardClass}`" :max-width="maxWidth">
           <slot />
         </v-card>
       </template>
@@ -50,10 +50,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.border-blue {
-  border: 2px solid #7aaad6;
-}
-.border-white {
-  border: 2px solid transparent;
-}
+// .border-blue {
+//   border: 2px solid #7aaad6;
+// }
+// .border-white {
+//   border: 2px solid transparent;
+// }
 </style>
