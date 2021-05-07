@@ -4,38 +4,11 @@
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
 
-        <v-app-bar color="white accent-4">
-          <NuxtLink class="d-flex align-center" :to="localePath('/')">
-            <Logo />
-          </NuxtLink>
-
-          <v-spacer></v-spacer>
-          <v-btn icon>
-            <v-icon>mdi-web</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        </v-app-bar>
-
-        <v-system-bar color="grey" height="40"></v-system-bar>
-
-        <v-navigation-drawer v-model="drawer" absolute temporary right>
-          <v-list nav dense>
-            <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <NuxtLink to="/loading">Loading</NuxtLink>
-                </v-list-item-title>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-navigation-drawer>
+        <NavBar />
+        <v-system-bar color="gray" height="40" class="justify-center">
+          <SvgRender name="pay-later" smallIcon />
+          <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
+        </v-system-bar>
 
         <v-card-text>
           <v-scroll-x-transition :hide-on-leave="true">
@@ -43,6 +16,7 @@
           </v-scroll-x-transition>
         </v-card-text>
         <v-divider></v-divider>
+        <PaymentSection />
         <Footer />
       </v-card>
     </v-main>
@@ -55,16 +29,12 @@ export default {
     this.payloadData = payload
     this.contextData = context
     this.storeData = store
-    // await store.dispatch('steps/getSteps')
   },
   data: () => ({
     payloadData: null,
     contextData: null,
     storeData: null,
-    drawer: false,
-    group: null,
   }),
-
   watch: {
     group() {
       this.drawer = false
@@ -122,7 +92,12 @@ html {
 }
 
 //style overrides
-
+#app .currency-selection {
+  max-width: 160px;
+}
+#app .currency-selection .v-input__slot {
+  padding-left: 0;
+}
 .md-app {
   min-height: 350px;
   border: 1px solid rgba(#000, 0.12);

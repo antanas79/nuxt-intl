@@ -1,6 +1,6 @@
-import i18n from './config/i18n';
-require('dotenv').config();
-const contentful = require('contentful');
+import i18n from './config/i18n'
+require('dotenv').config()
+const contentful = require('contentful')
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -23,7 +23,7 @@ export default {
   loadingIndicator: {
     name: 'circle',
     color: '#3B8070',
-    background: 'white'
+    background: 'white',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -40,15 +40,15 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@mdi/font/css/materialdesignicons.min.css'
-  ],
+  css: ['@mdi/font/css/materialdesignicons.min.css', '~/assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{
-    src: '~/plugins/vuex-persist',
-    mode: 'client'
-  }],
+  plugins: [
+    {
+      src: '~/plugins/vuex-persist',
+      mode: 'client',
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -58,12 +58,12 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
-    "@nuxt/http",
+    '@nuxt/http',
     [
       'nuxt-i18n',
       {
         detectBrowserLanguage: {
-          onlyOnRoot: true,  // recommended
+          onlyOnRoot: true, // recommended
         },
         strategy: 'prefix_except_default',
         defaultLocale: 'en',
@@ -73,76 +73,114 @@ export default {
             code: 'fr',
             name: 'Français',
             iso: 'fr-FR',
-            file: 'fr.js'
-          },
-          {
-            code: 'en',
-            name: 'English',
-            iso: 'en-US',
-            file: 'en.js'
+            file: 'fr.js',
           },
           {
             code: 'de',
             name: 'Deutsch',
             iso: 'de-de',
-            file: 'de.js'
+            file: 'de.js',
+          },
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en-US',
+            file: 'en.js',
           },
         ],
         lazy: true,
         vueI18n: i18n,
-        langDir: 'lang/'
+        langDir: 'lang/',
       },
     ],
   ],
 
   vuetify: {
     defaultAssets: false,
-    treeShake: true
+    treeShake: true,
+    icons: {
+      iconfont: 'mdi',
+    },
+    theme: {
+      themes: {
+        dark: {
+          gray: {
+            base: '#EDEDED',
+            darken1: '#EFEFEF',
+          },
+          red: {
+            base: '#EC1C24',
+          },
+          blue: {
+            base: '#337DC1',
+          },
+          primary: '#fff',
+          'my-custom-color': '#fff',
+          'next-custom-color': '#fff',
+        },
+        light: {
+          gray: {
+            base: '#EDEDED',
+            darken1: '#EFEFEF',
+          },
+          red: {
+            base: '#EC1C24',
+          },
+          blue: {
+            base: '#337DC1',
+          },
+          'my-custom-color': {
+            base: '#7ed525',
+          },
+        },
+      },
+      // ...
+    },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/dotenv',
-  ],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg'],
   markdownit: {
-    injected: true
+    injected: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-      /*
-        ** Run ESLint on save
-        */
-        extend (config, { isDev, isClient }) {
-          config.node = {
-              fs: 'empty'
-          }
+    /*
+     ** Run ESLint on save
+     */
+    extend(config, { isDev, isClient }) {
+      config.node = {
+        fs: 'empty',
       }
+    },
   },
   generate: {
     routes: () => {
       const client = contentful.createClient({
-          space:  process.env.CTF_SPACE_ID,
-          accessToken: process.env.CTF_CD_ACCESS_TOKEN
-      });
-   
-      return client.getEntries({
-          content_type: 'steps'
-      }).then((response) => {
-          let routes = [];
+        space: process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CD_ACCESS_TOKEN,
+      })
+
+      return client
+        .getEntries({
+          content_type: 'steps',
+        })
+        .then((response) => {
+          let routes = []
           let locales = ['', '/de', '/fr']
           if (response) {
-            for (let i =0; i< response.items.length; i++) {
-                for (let j=0; j< locales.length; j++) {
-                  routes.push({
-                    route: locales[j] + '/steps/' + response.items[i].fields.link,
-                    // payload: response.items[i].fields
-                  })
-                }
+            for (let i = 0; i < response.items.length; i++) {
+              for (let j = 0; j < locales.length; j++) {
+                routes.push({
+                  route: locales[j] + '/steps/' + response.items[i].fields.link,
+                  // payload: response.items[i].fields
+                })
+              }
             }
-            return routes;
+            return routes
           }
-      });
-    }
-  }
+        })
+    },
+  },
 }

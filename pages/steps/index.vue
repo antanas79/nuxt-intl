@@ -11,6 +11,9 @@
       :to="switchLocalePath(locale.code)"
       >{{ locale.name }}LOCALE
     </NuxtLink> -->
+    <!--     <v-btn color="primary"> Button </v-btn>
+    <v-btn color="my-custom-color"> My custom color </v-btn>
+    <v-btn color="next-custom-color" @click="swap"> Swap</v-btn> -->
   </div>
 </template>
 <script>
@@ -22,7 +25,23 @@ export default {
     step: null,
     show: false,
   }),
+  methods: {
+    touchAll() {
+      const value = this.$vuetify.theme.themes[this.theme]
+      this.$vuetify.theme.themes[this.theme] = {}
+      this.$vuetify.theme.themes[this.theme] = value
+      console.log(value)
+    },
+    swap() {
+      this.$vuetify.theme.isDark = !this.$vuetify.theme.isDark
+      // necessary to reset colors after changing the theme, perhaps a Vuetify.js bug
+      this.touchAll(1)
+    },
+  },
   computed: {
+    theme() {
+      return this.$vuetify.theme.isDark ? 'dark' : 'light'
+    },
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
