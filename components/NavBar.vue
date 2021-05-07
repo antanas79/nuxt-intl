@@ -37,7 +37,7 @@
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary right>
       <v-list nav dense>
-        <template v-for="n in navBarData">
+        <template v-for="n in navBarData.links">
           <v-list-item v-if="!n.isExpandable" :key="n.id" nuxt :to="n.link">
             <v-list-item-icon>
               <v-icon>{{ n.iconName }}</v-icon>
@@ -52,7 +52,7 @@
                 <v-list-item-title>{{ n.name }}</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="child in n.nestedLinks" :key="child.id" nuxt :to="child.link">
+            <v-list-item v-for="child in n.nestedLinks" :key="child.id" nuxt link :to="child.link">
               <v-list-item-icon>
                 <v-icon>{{ child.iconName }}</v-icon>
               </v-list-item-icon>
@@ -74,64 +74,67 @@ export default {
       drawer: false,
       group: null,
       selected: false,
-      selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-      currencies: [
-        { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-        { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
-        { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-        { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
-      ],
+      selectedCurrency: this.navBarData.selectedCurrency,
+      currencies: this.navBarData.currencies,
     }
   },
   props: {
     navBarData: {
-      type: Array,
-      default: () => [
-        { id: 1, isExpandable: false, isExternal: false, iconName: 'mdi-ticket', link: '/', name: 'SIGN_UP', title: 'Hover => click here', prefetch: '?' },
-        {
-          id: 2,
-          isExpandable: false,
-          isExternal: true,
-          iconName: 'mdi-ticket',
-          link: '/',
-          name: 'REGISTER',
-          title: 'REGISTER',
-          prefetch: '?',
-        },
-        {
-          id: 3,
-          isExpandable: true,
-          isExternal: false,
-          iconName: 'mdi-school',
-          link: 'wwww.sync2.com',
-          name: 'PRICING',
-          title: 'PRICING',
-          prefetch: '?',
-          nestedLinks: [
-            { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
-            { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
-          ],
-        },
-        {
-          id: 4,
-          isExpandable: true,
-          isExternal: false,
-          iconName: 'mdi-tag',
-          link: '/',
-          name: 'PARENT',
-          title: '',
-          prefetch: '?',
-          nestedLinks: [
-            { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
-            { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
-          ],
-        },
-      ],
+      type: Object,
+      default: () => ({
+        links: [
+          { id: 1, isExpandable: false, isExternal: false, iconName: 'mdi-ticket', link: '/', name: 'SIGN_UP', title: 'Hover => click here', prefetch: '?' },
+          {
+            id: 2,
+            isExpandable: false,
+            isExternal: true,
+            iconName: 'mdi-ticket',
+            link: '/',
+            name: 'REGISTER',
+            title: 'REGISTER',
+            prefetch: '?',
+          },
+          {
+            id: 3,
+            isExpandable: true,
+            isExternal: false,
+            iconName: 'mdi-school',
+            link: 'wwww.sync2.com',
+            name: 'PRICING',
+            title: 'PRICING',
+            prefetch: '?',
+            nestedLinks: [
+              { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+              { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+            ],
+          },
+          {
+            id: 4,
+            isExpandable: true,
+            isExternal: false,
+            iconName: 'mdi-tag',
+            link: '/',
+            name: 'PARENT',
+            title: '',
+            prefetch: '?',
+            nestedLinks: [
+              { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+              { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+            ],
+          },
+        ],
+        selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+        currencies: [
+          { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+          { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
+          { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
+          { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
+        ],
+      }),
     },
   },
   methods: {
     changeSelection(event) {
-      console.log(event)
       this.selectedCurrency = JSON.parse(JSON.stringify(event))
     },
   },
