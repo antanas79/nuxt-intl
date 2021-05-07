@@ -11,7 +11,7 @@
             <PricingCard
               @pricing-card-toggled="onCardToggled"
               :card="card"
-              cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+              cardClass="mx-auto mx-sm-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
               iconName="information"
               iconColor="blue"
               iconClass="ml-3"
@@ -214,7 +214,7 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 600px) {
   .row.no-gutters {
     flex-wrap: nowrap;
     width: 100%;
