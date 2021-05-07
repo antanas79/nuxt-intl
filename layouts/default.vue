@@ -3,11 +3,13 @@
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
+
         <NavBar />
         <v-system-bar color="gray" height="40" class="justify-center">
           <SvgRender name="pay-later" smallIcon />
           <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
         </v-system-bar>
+
         <v-card-text>
           <v-scroll-x-transition :hide-on-leave="true">
             <Nuxt />
@@ -107,5 +109,21 @@ html {
 }
 .no-uppercase {
   text-transform: none !important;
+}
+
+.no-pointer-events {
+  pointer-events: none;
+}
+.vertical-align-top {
+  vertical-align: top;
+}
+.no-text-decoration {
+  text-decoration: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.hidden {
+  visibility: hidden;
 }
 </style>

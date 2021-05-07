@@ -2,26 +2,8 @@
   <v-col :cols="cols" :sm="colsSm" :md="colsMd" class="pa-0">
     <v-hover>
       <template #default="{ hover }">
-        <v-card :class="`elevation-${hover ? 24 : 6}`" class="mx-auto d-flex flex-column transition-swing" :max-width="maxWidth">
-          <v-card-title class="mb-6 d-flex justify-start blue darken-4" v-if="card.title">
-            {{ $t(card.title) }}
-          </v-card-title>
+        <v-card :class="`elevation-${hover ? 24 : 6} ${cardClass}`" :max-width="maxWidth">
           <slot />
-          <v-card-actions class="d-flex justify-center align-end">
-            <Button
-              :hasButton="hasButton"
-              :isDisabled="card.isPreSelected"
-              color="primary"
-              :isOutlined="true"
-              :isText="true"
-              :buttonClassName="buttonClassName"
-              :buttonText="buttonText"
-              eventName="card-button-clicked"
-              :payload="payload"
-              @card-button-clicked="onCardButtonClicked"
-            >
-            </Button>
-          </v-card-actions>
         </v-card>
       </template>
     </v-hover>
@@ -32,10 +14,6 @@ import { mapState } from 'vuex'
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    card: {
-      type: Object,
-      required: true,
-    },
     maxWidth: {
       type: Number,
       required: false,
@@ -54,40 +32,28 @@ export default Vue.extend({
       type: Number,
       required: false,
     },
-    payload: {
-      type: Object,
-      required: false,
-    },
-    eventName: {
-      type: String,
-      required: true,
-    },
-    buttonClassName: {
+    cardClass: {
       type: String,
       required: false,
     },
-    buttonText: {
-      type: String,
-      required: false,
-    },
-    isSelected: {
+    isPricingCard: {
       type: Boolean,
       required: false,
-      default: false,
-    },
-    hasButton: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
   },
   methods: {
-    onCardButtonClicked: function (event) {
-      this.$emit(this.eventName, event)
-    },
+    // onCardButtonClicked: function (event) {
+    //   this.$emit(event)
+    // },
   },
 })
 </script>
 
 <style lang="scss" scoped>
+// .border-blue {
+//   border: 2px solid #7aaad6;
+// }
+// .border-white {
+//   border: 2px solid transparent;
+// }
 </style>

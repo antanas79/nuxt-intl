@@ -2,22 +2,19 @@
   <div class="steps-container">
     <div class="container pa-0" v-if="isLoaded">
       <div class="mb-3 upper d-flex flex-column">
-        <h1 class="font-weight-bold my-3">
-          {{ $t(currentSteps[currentStepNumber].h1) }}
-        </h1>
-        <div class="text-subtitle-1 mb-3">
-          {{ $t(currentSteps[currentStepNumber].paragraph) }}
-        </div>
+        <h1 class="font-weight-bold my-3" v-html="$t(currentSteps[currentStepNumber].h1)"></h1>
+        <div class="text-subtitle-1 mb-0" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
       </div>
       <div class="cards">
         <v-container class="lighten-5 pa-0">
           <v-row no-gutters>
-            <Card
-              :colsSm="6"
-              :colsMd="4"
+            <PricingCard
               @pricing-card-toggled="onCardToggled"
               :card="card"
-              :hasButton="true"
+              cardClass="mx-auto mx-sm-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+              iconName="information"
+              iconColor="blue"
+              iconClass="ml-3"
               :payload="{
                 cardId: card.cardId,
                 currentStep: currentStep,
@@ -32,26 +29,7 @@
               v-for="card in currentStepCards"
               :key="card.cardId"
             >
-              <Dialog :maxWidth="600" :cols="12">
-                <v-card-subtitle class="text-subtitle-1 pt-3 pb-0"> 1 year Free upgrade and support included </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0">
-                  <span class="font-weight-black"> Note: </span>
-                  1 license can be used when moving data between 2 PCs.
-                </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
-                  <span class="font-weight-black"> $39.95</span>
-                  $49.95
-                </v-card-subtitle>
-
-                <v-card-subtitle class="text-subtitle-1 py-0 mb-6">
-                  or
-                  <span class="font-weight-black"> Pay Later</span>
-                  <span class="font-weight-black" color="primary"> 13.32 x 3 Payments </span>
-                </v-card-subtitle>
-              </Dialog>
-            </Card>
+            </PricingCard>
           </v-row>
         </v-container>
       </div>
@@ -190,9 +168,10 @@ export default {
   min-height: 560px;
 }
 
-.row.no-gutters {
-  padding-bottom: 30px;
-}
+// .row.no-gutters {
+//   padding-top: 30px;
+//   padding-bottom: 30px;
+// }
 
 .container {
   margin: 0 auto;
@@ -235,7 +214,7 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 600px) {
   .row.no-gutters {
     flex-wrap: nowrap;
     width: 100%;

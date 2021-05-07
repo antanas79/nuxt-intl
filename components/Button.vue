@@ -18,7 +18,7 @@
     :rounded="isRounded"
     :small="isSmall"
     :class="buttonClassName"
-    @click="$emit(eventName, payload)"
+    @click="eventName ? $emit(eventName, payload) : ''"
     v-else-if="isButton"
     >{{ $t(buttonText) }} <slot />
   </v-btn>
