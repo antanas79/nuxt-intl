@@ -23,7 +23,7 @@ export default {
   loadingIndicator: {
     name: 'circle',
     color: '#3B8070',
-    background: 'white'
+    background: 'white',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -137,10 +137,6 @@ export default {
       // ...
     },
   },
-  svgSprite: {
-    input: '~/assets/sprite/svg',
-    output: '~/assets/sprite/gen',
-  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/dotenv', '@nuxtjs/svg'],
@@ -162,25 +158,27 @@ export default {
   generate: {
     routes: () => {
       const client = contentful.createClient({
-          space:  process.env.CTF_SPACE_ID,
-          accessToken: process.env.CTF_CD_ACCESS_TOKEN
-      });
-   
-      return client.getEntries({
-          content_type: 'steps'
-      }).then((response) => {
-          let routes = [];
+        space: process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CD_ACCESS_TOKEN,
+      })
+
+      return client
+        .getEntries({
+          content_type: 'steps',
+        })
+        .then((response) => {
+          let routes = []
           let locales = ['', '/de', '/fr']
           if (response) {
-            for (let i =0; i< response.items.length; i++) {
-                for (let j=0; j< locales.length; j++) {
-                  routes.push({
-                    route: locales[j] + '/steps/' + response.items[i].fields.link,
-                    // payload: response.items[i].fields
-                  })
-                }
+            for (let i = 0; i < response.items.length; i++) {
+              for (let j = 0; j < locales.length; j++) {
+                routes.push({
+                  route: locales[j] + '/steps/' + response.items[i].fields.link,
+                  // payload: response.items[i].fields
+                })
+              }
             }
-            return routes;
+            return routes
           }
         })
     },

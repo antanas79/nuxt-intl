@@ -13,9 +13,8 @@
             <use xlink:href="#i-team-logo"></use>
           </svg>
           <svg-icon name="#team-logo" class="svg-image" /> -->
-          <svg class="team-logo">
-            <use xlink:href="~assets/sprite/svg/sprite-icons.svg#team-logo"></use>
-          </svg>
+
+          <SvgRender name="team-logo" teamLogo />
           <div class="pl-3">
             <!--             <i18n
               v-for="item in parseInt(
@@ -73,70 +72,26 @@
         >
 
         <div class="text-center"></div>
-        <FooterBottom />
+        <v-col class="pt-5 footer-bottom">
+          <p class="">
+            Copyright {{ date() }}
+            {{ $t(footerData.footerBottomTopText) }}
+          </p>
+          <p>
+            {{ $t(footerData.footerBottomMainText) }}
+          </p>
+        </v-col>
       </v-row>
     </Layout>
   </div>
 </template>
 
 <script>
-const corporationInformation = ['4Team Corporation', '5645 Coral Ridge Dr #211', 'Coral Springs', 'FL 33076, USA']
-const buttons = [
-  {
-    id: 1,
-    name: 'FOOTER_BUTTON_NAME_1',
-    innerLink: '/about',
-  },
-  {
-    id: 2,
-    name: 'FOOTER_BUTTON_NAME_2',
-    innerLink: '/privacy',
-  },
-  {
-    id: 3,
-    name: 'FOOTER_BUTTON_NAME_3',
-    innerLink: '/terms',
-  },
-]
-const contacts = [
-  {
-    id: 1,
-    name: 'USA',
-    number: '+1 (954) 796-8161',
-  },
-  {
-    id: 2,
-    name: 'UK',
-    number: '+44 20 3371 8464',
-  },
-  {
-    id: 3,
-    name: 'Canada',
-    number: '+1 647 477-3340',
-  },
-  {
-    id: 4,
-    name: 'France',
-    number: '+33 1 86 26 42',
-  },
-  {
-    id: 5,
-    name: 'Skype',
-    number: 'teamcorporation',
-  },
-  {
-    id: 6,
-    name: 'Fax',
-    number: '+1 (954) 780-3795',
-  },
-]
 export default {
   data() {
     return {
-      corporationInformation,
-      buttons,
-      contacts,
       email: '',
+      date: () => new Date().getFullYear(),
     }
   },
   props: {
@@ -193,6 +148,8 @@ export default {
             number: '+1 (954) 780-3795',
           },
         ],
+        footerBottomTopText: 'FOOTER_BOTTOM_COPYRIGHT',
+        footerBottomMainText: 'FOOTER_BOTTOM_MAIN_TEXT',
       }),
     },
   },
@@ -205,12 +162,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.col-logo-container {
-  .team-logo {
-    width: 100px;
-    height: 120px;
-  }
-}
 .input-arrow {
   width: 100%;
 }
@@ -228,6 +179,10 @@ a {
 }
 p {
   margin: 0;
+}
+.footer-bottom {
+  max-width: 70%;
+  font-size: 0.7rem;
 }
 @media (max-width: 960px) {
   .col-numbers {
@@ -250,6 +205,9 @@ p {
   }
   .buttons-block {
     justify-content: flex-start;
+  }
+  .footer-bottom {
+    max-width: 100%;
   }
 }
 </style>

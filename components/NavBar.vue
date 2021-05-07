@@ -1,58 +1,96 @@
 <template>
-  <v-app-bar color="white accent-4">
-    <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
-      <Logo />
-    </NuxtLink>
+  <div>
+    <v-app-bar color="white accent-4">
+      <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
+        <Logo />
+      </NuxtLink>
+      <v-spacer></v-spacer>
+      <Selector
+        @changeSelection="changeSelection"
+        :selectorData="currencies"
+        :selectedValue="selectedCurrency"
+        :isKey="selectedCurrency.id"
+        itemText="currency"
+        flag
+        currencyClass
+      />
+      <v-menu bottom left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon v-bind="attrs" v-on="on">
+            <v-icon>mdi-web</v-icon>
+          </v-btn>
+        </template>
 
-    <v-spacer></v-spacer>
-    <!--           <v-select
-            v-model="selectedCurrency"
-            :items="currencies"
-            item-text="currency"
-            label="select currency"
-            hide-details
-            flat
-            solo
-            :key="selectedCurrency.id"
-            return-object
-            single-line
-            class="currency-selection"
-          >
-            <template v-slot:selection="{ item }">
-              <SvgRender flag payment :name="item.path" />
-              {{ item.currency }}
+        <v-list>
+          <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
+            {{ locale.name }}
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute temporary right>
+      <v-list nav dense>
+        <!--         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+          <v-list-item>
+            <v-icon> mdi-cloud-upload </v-icon>
+            <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>
+              <NuxtLink to="/loading">Loading</NuxtLink>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list-item-group> -->
+        <!--         <v-list-group v-for="item in navBarData" :key="item.id" :prepend-icon="item.iconName" no-action sub-group>
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.name"></v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item v-for="child in item.nestedLinks" :key="child.id" nuxt :to="child.link">
+            <v-list-item-icon>
+              <v-icon v-text="child.iconName"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="child.name"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group> -->
+        <template v-for="n in navBarData">
+          <v-list-item v-if="!n.isExpandable" :key="n.id" nuxt :to="n.link">
+            <v-list-item-icon>
+              <v-icon>{{ n.iconName }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ n.name }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-group v-else :key="n.id" :prepend-icon="n.iconName" no-action>
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>{{ n.name }}</v-list-item-title>
+              </v-list-item-content>
             </template>
-            <template v-slot:item="{ item }"> <SvgRender flag payment :name="item.path" />{{ item.currency }} </template>
-          </v-select> -->
-    <Selector
-      @changeSelection="changeSelection"
-      :selectorData="currencies"
-      :selectedValue="selectedCurrency"
-      :isKey="selectedCurrency.id"
-      itemText="currency"
-      flag
-      currencyClass
-    />
-    <v-menu bottom left>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>mdi-web</v-icon>
-        </v-btn>
-      </template>
-
-      <v-list>
-        <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
-          {{ locale.name }}
-        </v-list-item>
+            <v-list-item v-for="child in n.nestedLinks" :key="child.id" nuxt :to="child.link">
+              <v-list-item-icon>
+                <v-icon>{{ child.iconName }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ child.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+        </template>
       </v-list>
-    </v-menu>
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-
-    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    <!--   <v-icon> mdi-cloud-upload </v-icon> -->
-  </v-app-bar>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script>
@@ -61,6 +99,7 @@ export default {
     return {
       drawer: false,
       group: null,
+      selected: false,
       selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
       currencies: [
         { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
@@ -71,33 +110,50 @@ export default {
     }
   },
   props: {
-    NavArray: [
-      { isExternal: false, iconName: 'path/name', link: '/home', name: 'SIGN_UP', title: 'Hover => click here', prefetch: '?' },
-      { isExternal: true, iconName: 'mdi-name', link: '', name: '', title: 'REGISTER', title: 'REGISTER' },
-      { isExternal: false, iconName: '', link: 'wwww.sync2.com', name: 'sync2', title: '' },
-      {
-        isExpandable: false,
-        isExternal: false,
-        iconName: '',
-        link: '',
-        name: '',
-        title: '',
-        prefetch: '?',
-        nestedLinks: [
-          { isExternal: false, iconName: '', link: '', name: '', title: '', prefetch: '?' },
-          { isExternal: false, iconName: '', link: '', name: '', title: '', prefetch: '?' },
-        ],
-      },
-      {
-        isExternal: false,
-        iconName: '',
-        link: '',
-        name: '',
-        title: '',
-        prefetch: '',
-        nestedLinks: [{ isExternal: false, iconName: '', link: '', name: '', title: '', prefetch: '?' }],
-      },
-    ],
+    navBarData: {
+      type: Array,
+      default: () => [
+        { id: 1, isExpandable: false, isExternal: false, iconName: 'mdi-ticket', link: '/', name: 'SIGN_UP', title: 'Hover => click here', prefetch: '?' },
+        {
+          id: 2,
+          isExpandable: false,
+          isExternal: true,
+          iconName: 'mdi-ticket',
+          link: '/',
+          name: 'REGISTER',
+          title: 'REGISTER',
+          prefetch: '?',
+        },
+        {
+          id: 3,
+          isExpandable: true,
+          isExternal: false,
+          iconName: 'mdi-school',
+          link: 'wwww.sync2.com',
+          name: 'PRICING',
+          title: 'PRICING',
+          prefetch: '?',
+          nestedLinks: [
+            { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+            { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+          ],
+        },
+        {
+          id: 4,
+          isExpandable: true,
+          isExternal: false,
+          iconName: 'mdi-tag',
+          link: '/',
+          name: 'PARENT',
+          title: '',
+          prefetch: '?',
+          nestedLinks: [
+            { id: 1, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+            { id: 2, isExternal: false, iconName: 'mdi-tag', link: '/', name: 'CHILD', title: 'CHILD', prefetch: '?' },
+          ],
+        },
+      ],
+    },
   },
   methods: {
     changeSelection(event) {

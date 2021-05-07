@@ -13,9 +13,7 @@
         </v-col>
         <v-col xl="7" lg="7" md="8" sm="12" cols="12" order="3" order-xl="2" order-lg="2" order-md="2" order-sm="3">
           <div class="d-flex align-center">
-            <svg class="svg-money-back">
-              <use xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back"></use>
-            </svg>
+            <SvgRender name="payment/money-back" moneyBack />
             <p class="mb-0 text-h6">
               {{ $t(paymentSectionData.mainTextHeading) }}
             </p>
@@ -61,14 +59,16 @@
             </div>
           </div>
         </v-col>
-        <v-col xl="5" lg="5" md="4" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="3" order-sm="2" class="col-microsoft-container">
+        <v-col xl="5" lg="5" md="4" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="3" order-sm="2">
           <div class="d-flex align-center justify-md-end">
-            <svg class="microsoft-svg">
+            <!--             <svg class="microsoft-svg">
               <use xlink:href="~assets/sprite/svg/sprite-icons.svg#microsoft-gold"></use>
             </svg>
             <svg class="money-back-svg ml-10">
               <use xlink:href="~assets/sprite/svg/sprite-icons.svg#money-back-guarantee"></use>
-            </svg>
+            </svg> -->
+            <SvgRender name="payment/microsoft-gold" moneyBackGuarantee />
+            <SvgRender name="payment/money-back-guarantee" microsoftGold />
           </div>
         </v-col>
       </v-row>
@@ -131,23 +131,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.svg-money-back {
-  width: 30px;
-  height: 40px;
-}
 .svg-image {
   width: 100px;
   height: 100px;
 }
 
-.microsoft-svg {
+/* .microsoft-svg {
   height: 90px;
   width: 150px;
 }
 .money-back-svg {
   height: 110px;
   width: 134px;
-}
+} */
 @media (max-width: 700px) {
   .svg-card-container {
     flex-direction: column;

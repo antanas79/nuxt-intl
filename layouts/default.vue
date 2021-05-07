@@ -3,86 +3,17 @@
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red"></v-system-bar>
-        <v-app-bar color="white accent-4">
-          <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
-            <Logo />
-          </NuxtLink>
-
-          <v-spacer></v-spacer>
-          <!--           <v-select
-            v-model="selectedCurrency"
-            :items="currencies"
-            item-text="currency"
-            label="select currency"
-            hide-details
-            flat
-            solo
-            :key="selectedCurrency.id"
-            return-object
-            single-line
-            class="currency-selection"
-          >
-            <template v-slot:selection="{ item }">
-              <SvgRender flag payment :name="item.path" />
-              {{ item.currency }}
-            </template>
-            <template v-slot:item="{ item }"> <SvgRender flag payment :name="item.path" />{{ item.currency }} </template>
-          </v-select> -->
-          <Selector
-            @changeSelection="changeSelection"
-            :selectorData="currencies"
-            :selectedValue="selectedCurrency"
-            :isKey="selectedCurrency.id"
-            itemText="currency"
-            flag
-            currencyClass
-          />
-          <v-menu bottom left>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on">
-                <v-icon>mdi-web</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
-                {{ locale.name }}
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        </v-app-bar>
-
-        <v-system-bar color="grey" height="40">
-          <p class="text-caption"></p>
+        <NavBar />
+        <v-system-bar color="gray" height="40" class="justify-center">
           <SvgRender name="pay-later" smallIcon />
+          <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
         </v-system-bar>
-
-        <v-navigation-drawer v-model="drawer" absolute temporary right>
-          <v-list nav dense>
-            <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-              <v-list-item>
-                <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>
-                  <NuxtLink to="/loading">Loading</NuxtLink>
-                </v-list-item-title>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-navigation-drawer>
         <v-card-text>
           <v-scroll-x-transition :hide-on-leave="true">
             <Nuxt />
           </v-scroll-x-transition>
         </v-card-text>
         <v-divider></v-divider>
-        <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
         <PaymentSection />
         <Footer />
       </v-card>
@@ -102,27 +33,7 @@ export default {
     payloadData: null,
     contextData: null,
     storeData: null,
-    drawer: false,
-    group: null,
-    selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-    currencies: [
-      { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-      { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
-      { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-      { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
-    ],
   }),
-  methods: {
-    changeSelection(event) {
-      console.log(event)
-      this.selectedCurrency = JSON.parse(JSON.stringify(event))
-    },
-  },
-  computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    },
-  },
   watch: {
     group() {
       this.drawer = false
