@@ -1,7 +1,8 @@
 <template>
   <div>
     <v-app-bar color="white accent-4">
-      <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
+      <!-- TODO change to normal link -->
+      <NuxtLink class="d-flex align-center" to="localePath('/steps')">
         <Logo />
       </NuxtLink>
       <v-spacer></v-spacer>
@@ -13,6 +14,7 @@
         itemText="currency"
         flag
         currencyClass
+        class="d-none d-sm-flex"
       />
       <v-menu bottom left>
         <template v-slot:activator="{ on, attrs }">
@@ -22,7 +24,7 @@
         </template>
 
         <v-list>
-          <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
+          <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </v-list-item>
         </v-list>
@@ -32,8 +34,8 @@
       </v-btn>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p>
+      <!-- 
+      <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p> -->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary right>
       <v-list nav dense>

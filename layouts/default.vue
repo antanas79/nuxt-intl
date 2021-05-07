@@ -5,7 +5,8 @@
         <v-system-bar color="red"></v-system-bar>
 
         <NavBar />
-        <v-system-bar color="gray" height="40" class="justify-center">
+        <!-- TODO unhide this on mobile -->
+        <v-system-bar color="gray" height="40" class="justify-center d-none d-md-flex">
           <SvgRender name="pay-later" smallIcon />
           <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
         </v-system-bar>

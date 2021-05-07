@@ -38,7 +38,7 @@
             Copyright {{ date() }}
             {{ $t(footerData.footerBottomTopText) }}
           </p>
-          <p>
+          <p class="pb-3">
             {{ $t(footerData.footerBottomMainText) }}
           </p>
         </v-col>

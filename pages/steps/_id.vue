@@ -146,9 +146,9 @@ export default {
           this.$store.commit('steps/setCurrentSteps', this.steps)
         }
         this.$store.commit('cards/setCurrentStepCards', this.currentStep)
-        console.log(this.currentSteps.findIndex((el) => el.link == this.currentStep))
-        console.log(this.currentStep)
-        console.log(this.currentSteps)
+        // console.log(this.currentSteps.findIndex((el) => el.link == this.currentStep))
+        // console.log(this.currentStep)
+        // console.log(this.currentSteps)
         this.$store.commit(
           'steps/setCurrentStepNumber',
           this.currentSteps.findIndex((el) => el.link == this.currentStep)

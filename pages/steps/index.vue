@@ -1,19 +1,14 @@
 <template>
   <div>
-    <!-- <ul v-for="step in steps" :key="step.fields.id">
-      <NuxtLink :to="localePath({ path: `steps/${step.fields.id}` })">
-        <li>{{ step.fields.title }}</li>
+    <!-- <ul v-for="step in steps" :key="step.id">
+      <NuxtLink :to="localePath({ path: `steps/${step.id}` })">
+        <li>{{ step.title }}</li>
       </NuxtLink>
-    </ul>
-    <NuxtLink
-      v-for="locale in availableLocales"
-      :key="locale.code"
-      :to="switchLocalePath(locale.code)"
-      >{{ locale.name }}LOCALE
-    </NuxtLink> -->
-    <!--     <v-btn color="primary"> Button </v-btn>
+    </ul> -->
+    <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">{{ locale.name }}LOCALE </NuxtLink>
+    <v-btn color="primary"> Button </v-btn>
     <v-btn color="my-custom-color"> My custom color </v-btn>
-    <v-btn color="next-custom-color" @click="swap"> Swap</v-btn> -->
+    <v-btn color="next-custom-color" @click="swap"> Swap</v-btn>
   </div>
 </template>
 <script>
