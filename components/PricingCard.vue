@@ -20,7 +20,7 @@
                   <div v-html="$t(card.title)"></div>
                   <v-icon :color="iconColor" v-if="card.iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
                 </div>
-                <div class="d-flex align-self-start min-height-32px">
+                <div class="d-none d-sm-flex align-self-start min-height-32px">
                   <div v-html="$t(card.titleLine2)"></div>
                 </div>
               </div>
@@ -207,12 +207,20 @@ export default Vue.extend({
   min-height: 32px;
 }
 
-.v-card {
-  min-width: 280px;
+@media all and (max-width: 599px) {
+  .v-card {
+    max-width: 353px;
+    min-width: 290px;
+  }
 }
 @media all and (min-width: 600px) {
   .v-card {
     min-width: 344px;
+  }
+}
+@media all and (min-width: 800px) {
+  .v-card {
+    min-height: 344px;
   }
 }
 </style>

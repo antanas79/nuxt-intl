@@ -1,9 +1,4 @@
 export default {
-    "message": "Hello!",
-    "about": "about",
-    "contact": "contact",
-    "steps_title": "Choose Sync2 License",
-    "steps_subtitle": "Every user account (on each workstation) needs an individual license",
     "SELECT": "Select",
     "SELECTED": "Selected",
     "REMOVE": "Remove",
@@ -21,7 +16,7 @@ export default {
     "UPGRADE_AND_SUPPORT": "Upgrade and support",
     "LIFETIME": "<b>LIFETIME</b>",
     "ALL_PRODUCTS_SUBSCRIPTION": "All products subscription",
-    "SYNC2_PLUS_4BUNDLE": "Sync2 + Bundle",
+    "SYNC2_PLUS_4BUNDLE": "<b>Sync2</b> + Bundle",
     "OUTLOOK_PERFORMANCE_TUNE_UP": "Outlook performance tune up",
     "SYNC2_4BUNDLE_LIFETIME(2)": "Sync2 bundle lifetime",
     "SYNC2_4BUNDLE_LIFETIME": "Sync2 bundle lifetime",

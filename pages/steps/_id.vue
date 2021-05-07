@@ -214,7 +214,7 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 800px) {
   .row.no-gutters {
     flex-wrap: nowrap;
     width: 100%;
