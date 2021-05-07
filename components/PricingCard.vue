@@ -213,12 +213,8 @@ export default Vue.extend({
 }
 @media all and (min-width: 600px) {
   .v-card {
-    min-width: 344px;
-  }
-}
-@media all and (min-width: 800px) {
-  .v-card {
-    min-height: 344px;
+    min-width: 308px;
+    min-height: 362px;
   }
 }
 </style>
