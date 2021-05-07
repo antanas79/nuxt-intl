@@ -27,7 +27,6 @@ export default {
     this.payloadData = payload
     this.contextData = context
     this.storeData = store
-    // await store.dispatch('steps/getSteps')
   },
   data: () => ({
     payloadData: null,
@@ -39,9 +38,6 @@ export default {
       this.drawer = false
     },
   },
-  /*   updated() {
-    console.log(this.selectedCurrency)
-  }, */
 }
 </script>
 <style lang="scss">

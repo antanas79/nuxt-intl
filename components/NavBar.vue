@@ -37,32 +37,6 @@
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary right>
       <v-list nav dense>
-        <!--         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-          <v-list-item>
-            <v-icon> mdi-cloud-upload </v-icon>
-            <NuxtLink class="col-12 px-0" :to="localePath('/steps')">Step1</NuxtLink>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title>
-              <NuxtLink to="/loading">Loading</NuxtLink>
-            </v-list-item-title>
-          </v-list-item>
-        </v-list-item-group> -->
-        <!--         <v-list-group v-for="item in navBarData" :key="item.id" :prepend-icon="item.iconName" no-action sub-group>
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.name"></v-list-item-title>
-            </v-list-item-content>
-          </template>
-          <v-list-item v-for="child in item.nestedLinks" :key="child.id" nuxt :to="child.link">
-            <v-list-item-icon>
-              <v-icon v-text="child.iconName"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="child.name"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group> -->
         <template v-for="n in navBarData">
           <v-list-item v-if="!n.isExpandable" :key="n.id" nuxt :to="n.link">
             <v-list-item-icon>
