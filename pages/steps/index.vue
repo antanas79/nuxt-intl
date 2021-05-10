@@ -50,8 +50,8 @@ export default {
       return this.$store.state.steps.isLoading
     },
   },
-  watch: {
-    '$route.query': '$fetch',
-  },
+  // watch: {
+  //   '$route.query': '$fetch',
+  // },
 }
 </script>
