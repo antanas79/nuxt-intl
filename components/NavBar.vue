@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-app-bar color="white accent-4">
-      <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
+      <!--       <NuxtLink class="d-flex align-center" :to="switchLocalePath('/')">
         <Logo />
-      </NuxtLink>
+      </NuxtLink> -->
       <v-spacer></v-spacer>
       <Selector
         @changeSelection="changeSelection"
@@ -11,6 +11,7 @@
         :selectedValue="selectedCurrency"
         :isKey="selectedCurrency.id"
         itemText="currency"
+        isLabel="Select currency"
         flag
         currencyClass
       />
@@ -22,7 +23,7 @@
         </template>
 
         <v-list>
-          <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)" isLabel="Select currency" newValue>
+          <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)">
             {{ locale.name }}
           </v-list-item>
         </v-list>
