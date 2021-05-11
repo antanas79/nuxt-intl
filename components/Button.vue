@@ -1,6 +1,7 @@
 <template>
   <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
-    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
+    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
+      <v-icon>{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </NuxtLink>
@@ -20,6 +21,8 @@
     :class="buttonClassName"
     @click="eventName ? $emit(eventName, payload) : ''"
     v-else-if="isButton"
+  >
+    <v-icon>{{ iconName }}</v-icon
     >{{ $t(buttonText) }} <slot />
   </v-btn>
 </template>
@@ -99,6 +102,10 @@ export default {
     },
     payload: {
       type: Object,
+      required: false,
+    },
+    iconName: {
+      type: String,
       required: false,
     },
   },

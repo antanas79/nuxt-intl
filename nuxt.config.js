@@ -48,6 +48,7 @@ export default {
       src: '~/plugins/vuex-persist',
       mode: 'client',
     },
+    { src: '~/plugins/vuetify' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -98,6 +99,7 @@ export default {
   vuetify: {
     defaultAssets: false,
     treeShake: true,
+    customVariables: ['~/assets/scss/variables.scss'],
     icons: {
       iconfont: 'mdi',
     },

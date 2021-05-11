@@ -14,11 +14,10 @@
           <NuxtLink to="steps">{{ $t('PAY_LATER_BAR_LINK') }}</NuxtLink>
         </v-system-bar>
 
-        <v-card-text>
-          <v-scroll-x-transition :hide-on-leave="true">
-            <Nuxt />
-          </v-scroll-x-transition>
-        </v-card-text>
+        <v-scroll-x-transition :hide-on-leave="true">
+          <Nuxt />
+        </v-scroll-x-transition>
+
         <v-divider></v-divider>
         <PaymentSection />
         <Footer />
@@ -129,5 +128,11 @@ html {
 }
 .hidden {
   visibility: hidden;
+}
+
+.background-grey {
+  //TODO change this to something normal
+  background-color: #f8f8f8 !important;
+  background: #f8f8f8 !important;
 }
 </style>
