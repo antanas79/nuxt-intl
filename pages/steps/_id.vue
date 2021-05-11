@@ -1,39 +1,45 @@
 <template>
   <div class="steps-container">
-    <div class="container pa-0" v-if="isLoaded">
-      <div class="mb-3 upper d-flex flex-column">
-        <h1 class="font-weight-bold my-3" v-html="$t(currentSteps[currentStepNumber].h1)"></h1>
-        <div class="text-subtitle-1 mb-0" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
+    <div class="pa-0" v-if="isLoaded">
+      <div class="background-grey">
+        <div class="container pt-0">
+          <div class="mb-3 upper d-flex flex-column align-items-center">
+            <h1 class="font-weight-bold my-3" v-html="$t(currentSteps[currentStepNumber].h1)"></h1>
+            <div class="text-subtitle-1 mb-0" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
+          </div>
+          <div class="cards">
+            <v-container class="lighten-5 pa-0">
+              <v-row no-gutters>
+                <PricingCard
+                  @pricing-card-toggled="onCardToggled"
+                  :card="card"
+                  cardClass="mx-auto mx-sm-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+                  iconName="information"
+                  iconColor="blue"
+                  iconClass="ml-3"
+                  :payload="{
+                    cardId: card.cardId,
+                    currentStep: currentStep,
+                    maxCards: currentStepMaxCards,
+                    minCards: currentStepMinCards,
+                  }"
+                  :maxWidth="344"
+                  :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
+                  :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
+                  eventName="pricing-card-toggled"
+                  :isSelected="isSelected(card.cardId)"
+                  v-for="card in currentStepCards"
+                  :key="card.cardId"
+                >
+                </PricingCard>
+              </v-row>
+            </v-container>
+          </div>
+        </div>
       </div>
-      <div class="cards">
-        <v-container class="lighten-5 pa-0">
-          <v-row no-gutters>
-            <PricingCard
-              @pricing-card-toggled="onCardToggled"
-              :card="card"
-              cardClass="mx-auto mx-sm-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
-              iconName="information"
-              iconColor="blue"
-              iconClass="ml-3"
-              :payload="{
-                cardId: card.cardId,
-                currentStep: currentStep,
-                maxCards: currentStepMaxCards,
-                minCards: currentStepMinCards,
-              }"
-              :maxWidth="344"
-              :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
-              :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
-              eventName="pricing-card-toggled"
-              :isSelected="isSelected(card.cardId)"
-              v-for="card in currentStepCards"
-              :key="card.cardId"
-            >
-            </PricingCard>
-          </v-row>
-        </v-container>
-      </div>
+
       <div class="steps">
+        <v-divider></v-divider>
         <Stepper
           :currentStep="currentStep"
           :currentStepNumber="currentStepNumber"
@@ -146,9 +152,6 @@ export default {
           this.$store.commit('steps/setCurrentSteps', this.steps)
         }
         this.$store.commit('cards/setCurrentStepCards', this.currentStep)
-        // console.log(this.currentSteps.findIndex((el) => el.link == this.currentStep))
-        // console.log(this.currentStep)
-        // console.log(this.currentSteps)
         this.$store.commit(
           'steps/setCurrentStepNumber',
           this.currentSteps.findIndex((el) => el.link == this.currentStep)
@@ -168,14 +171,9 @@ export default {
   min-height: 560px;
 }
 
-// .row.no-gutters {
-//   padding-top: 30px;
-//   padding-bottom: 30px;
-// }
-
 .container {
   margin: 0 auto;
-  display: flex;
+
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -184,7 +182,6 @@ export default {
     width: 100%;
     div {
       display: flex;
-      // justify-content: space-evenly;
     }
   }
   > div.upper {
@@ -214,7 +211,7 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 768px) {
   .row.no-gutters {
     flex-wrap: nowrap;
     width: 100%;

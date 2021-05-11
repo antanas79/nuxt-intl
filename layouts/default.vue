@@ -6,16 +6,15 @@
 
         <NavBar />
         <!-- TODO unhide this on mobile -->
-        <v-system-bar color="gray" height="40" class="justify-center d-none d-md-flex">
+        <v-system-bar color="gray" height="40" class="justify-center">
           <SvgRender name="pay-later" smallIcon />
           <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
         </v-system-bar>
 
-        <v-card-text>
-          <v-scroll-x-transition :hide-on-leave="true">
-            <Nuxt />
-          </v-scroll-x-transition>
-        </v-card-text>
+        <v-scroll-x-transition :hide-on-leave="true">
+          <Nuxt />
+        </v-scroll-x-transition>
+
         <v-divider></v-divider>
         <PaymentSection />
         <Footer />
@@ -126,5 +125,11 @@ html {
 }
 .hidden {
   visibility: hidden;
+}
+
+.background-grey {
+  //TODO change this to something normal
+  background-color: #f8f8f8 !important;
+  background: #f8f8f8 !important;
 }
 </style>

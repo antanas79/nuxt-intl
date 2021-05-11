@@ -1,11 +1,11 @@
 <template>
-  <div class="stepper-container">
-    <v-container class="pa-0 my-3" v-if="currentSteps">
+  <div class="stepper-container container py-3">
+    <div class="pa-0" v-if="currentSteps">
       <v-row no-gutters>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
           <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
         </v-col>
-        <v-col cols="2" sm="6" md="8" class="">
+        <v-col cols="2" sm="6" md="8" class="d-flex flex-column justify-center">
           <v-stepper alt-labels>
             <v-expand-transition>
               <v-stepper-header
@@ -41,7 +41,7 @@
           <Button
             :isNuxtLink="isLastStep ? false : true"
             :isAnchor="isLastStep ? true : false"
-            :anchorClassName="isStepperNextButtonEnabled ? 'white--text ' : 'black--text disabled'"
+            :anchorClassName="isStepperNextButtonEnabled ? 'white--text' : 'black--text disabled'"
             :isDisabled="isStepperNextButtonEnabled ? false : true"
             :nuxtLinkClassName="isStepperNextButtonEnabled ? '' : 'disabled'"
             :link="isLastStep ? 'https://www.4team.biz' : `/steps/${nextStepLink}`"
@@ -52,7 +52,7 @@
           </Button>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
   </div>
 </template>
 
