@@ -19,13 +19,13 @@
                 <div v-html="$t(card.title)"></div>
                 <v-icon :color="iconColor" v-if="card.iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
               </div>
-              <div class="d-none d-sm-flex align-self-start min-height-32px">
+              <div class="d-none d-md-flex align-self-start min-height-32px">
                 <div v-html="$t(card.titleLine2)"></div>
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-sm-flex" v-html="$t(card.paragraph1)"></v-card-subtitle>
-          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-sm-flex" v-html="$t(card.paragraph2)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-md-flex" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-md-flex" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
         <v-card-actions
@@ -44,14 +44,14 @@
                 color="primary"
                 :isOutlined="true"
                 :isText="true"
-                :buttonClassName="`${buttonClassName} d-sm-none d-flex align-self-end ml-auto text-caption`"
+                :buttonClassName="`${buttonClassName} d-md-none d-flex align-self-end ml-auto text-caption`"
                 :buttonText="buttonText"
               >
               </Button>
               <div class="current-price black--text text-caption col-7 pa-0 d-flex" v-if="card.payLater && card.payLaterNumberOfPayments">
-                <v-divider vertical class="d-none d-sm-block"></v-divider>
+                <v-divider vertical class="d-none d-md-block"></v-divider>
                 <div>
-                  <i18n tag="div" :path="card.payLater" class="text-caption text-left pl-3 d-none d-sm-block">
+                  <i18n tag="div" :path="card.payLater" class="text-caption text-left pl-3 d-none d-md-block">
                     <template v-slot:br>
                       <br />
                     </template>
@@ -78,7 +78,7 @@
               </i18n>
             </div>
           </v-card-text>
-          <v-card-text class="text-subtitle-1 pt-3 pb-0 d-none d-sm-flex justify-center">
+          <v-card-text class="text-subtitle-1 pt-3 pb-0 d-none d-md-flex justify-center">
             <Button
               :isDisabled="card.isPreSelected"
               color="primary"
@@ -205,13 +205,13 @@ export default Vue.extend({
   min-height: 32px;
 }
 
-@media all and (max-width: 599px) {
+@media all and (max-width: 767px) {
   .v-card {
     max-width: 353px;
     min-width: 290px;
   }
 }
-@media all and (min-width: 600px) {
+@media all and (min-width: 768px) {
   .v-card {
     min-width: 308px;
     min-height: 362px;
