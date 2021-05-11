@@ -6,3 +6,16 @@
   text-decoration: none;
   box-sizing: border-box;
 }
+
+.link-underline:hover {
+  text-decoration: underline;
+}
+.gray {
+  fill: #8c8c8c;
+}
+.light-gray {
+  fill: #f6f6f6;
+}
+.dark-gray {
+  fill: #4f4f4f;
+}

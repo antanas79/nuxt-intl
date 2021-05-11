@@ -3,7 +3,7 @@
     <Layout>
       <v-row class="footer-content">
         <v-col xl="4" lg="4" md="4" sm="6" cols="12" class="col-logo-container d-flex">
-          <SvgRender name="team-logo" teamLogo />
+          <SvgRender name="team-logo" teamLogo :title="$t(footerData.teamLogoTitle)" />
           <div class="pl-3">
             <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
           </div>
@@ -12,14 +12,14 @@
           <div>
             <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2">
               <span class="font-weight-bold">{{ item.name }}</span>
-              {{ item.number }}
+              <a :href="`tel:` + item.number" class="link-underline">{{ item.number }}</a>
             </p>
           </div>
         </v-col>
         <v-col xl="4" lg="4" md="5" sm="12" cols="12" class="input-arrow-container d-flex justify-space-between flex-md-column align-md-end">
           <div class="input-arrow">
-            <p class="label font-weight-bold mb-2">Keep me posted on the latest news</p>
-            <v-text-field placeholder="Type your Email address here" v-model="email" rounded filled flat solo>
+            <p class="label mb-2" v-html="$t(footerData.footerInputLabel)"></p>
+            <v-text-field :placeholder="$t(footerData.footerInputPlaceholder)" v-model="email" rounded filled flat solo>
               <template slot="append">
                 <v-icon class="arrow-btn">mdi-arrow-right</v-icon>
               </template></v-text-field
@@ -27,18 +27,16 @@
           </div>
           <div class="buttons-block d-flex justify-md-end align-center pb-0 pb-md-10">
             <v-btn v-for="(item, index) in footerData.buttons" :key="'B' + index" :class="`${index === 1 && 'mx-2'}`" text elevation rounded
-              ><NuxtLink :to="item.innerLink" class="black--text">{{ $t(item.name) }}</NuxtLink></v-btn
+              ><NuxtLink :to="item.innerLink" :title="$t(item.title)" class="black--text">{{ $t(item.name) }}</NuxtLink></v-btn
             >
           </div></v-col
         >
-
-        <div class="text-center"></div>
-        <v-col class="pt-5 footer-bottom">
-          <p class="">
+        <v-col class="pb-5 footer-bottom">
+          <p class="pb-3">
             Copyright {{ date() }}
             {{ $t(footerData.footerBottomTopText) }}
           </p>
-          <p class="pb-3">
+          <p>
             {{ $t(footerData.footerBottomMainText) }}
           </p>
         </v-col>
@@ -65,16 +63,19 @@ export default {
             id: 1,
             name: 'FOOTER_BUTTON_NAME_1',
             innerLink: '/about',
+            title: 'FOOTER_BUTTON_TITLE_1',
           },
           {
             id: 2,
             name: 'FOOTER_BUTTON_NAME_2',
             innerLink: '/privacy',
+            title: 'FOOTER_BUTTON_TITLE_2',
           },
           {
             id: 3,
             name: 'FOOTER_BUTTON_NAME_3',
             innerLink: '/terms',
+            title: 'FOOTER_BUTTON_TITLE_3',
           },
         ],
         contacts: [
@@ -111,6 +112,9 @@ export default {
         ],
         footerBottomTopText: 'FOOTER_BOTTOM_COPYRIGHT',
         footerBottomMainText: 'FOOTER_BOTTOM_MAIN_TEXT',
+        footerInputLabel: 'FOOTER_INPUT_LABEL',
+        footerInputPlaceholder: 'FOOTER_INPUT_PLACEHOLDER',
+        teamLogoTitle: 'TEAM_LOGO_ICON_TITLE',
       }),
     },
   },

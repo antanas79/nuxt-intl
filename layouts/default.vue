@@ -2,13 +2,16 @@
   <v-app>
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
-        <v-system-bar color="red"></v-system-bar>
+        <v-system-bar color="red white--text text-center" class="justify-center">
+          <span class="text-uppercase mb-0" v-html="$t('TOP_BANNER')"></span>
+        </v-system-bar>
 
         <NavBar />
         <!-- TODO unhide this on mobile -->
         <v-system-bar color="gray" height="40" class="justify-center">
-          <SvgRender name="pay-later" smallIcon />
-          <span class="text-caption" v-html="$t('BOTTOM_BAR')"></span>
+          <span><SvgRender name="pay-later" smallIcon /></span>
+          <p class="text-caption mb-0" v-html="$t('PAY_LATER_BAR')"></p>
+          <NuxtLink to="steps">{{ $t('PAY_LATER_BAR_LINK') }}</NuxtLink>
         </v-system-bar>
 
         <v-scroll-x-transition :hide-on-leave="true">
