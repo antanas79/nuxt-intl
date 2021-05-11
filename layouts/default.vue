@@ -135,4 +135,7 @@ html {
   background-color: #f8f8f8 !important;
   background: #f8f8f8 !important;
 }
+b {
+  display: inline;
+}
 </style>

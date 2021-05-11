@@ -1,9 +1,9 @@
 <template>
   <v-hover>
     <template #default="{ hover }">
-      <v-card :class="`${hover ? 'border-blue' : 'border-white'} ${cardClass} `" :max-width="maxWidth">
+      <v-card :class="`${hover ? 'border-blue' : 'border-white'} ${cardClass} `">
         <Dialog :maxWidth="600" :cols="12" :class="dialogClass">
-          <v-card-title class="mb-0 d-flex flex-column" v-if="card.title" :class="titleClass">
+          <v-card-title class="mb-0 pa-1 d-flex flex-column" v-if="card.title" :class="titleClass">
             <v-system-bar
               :color="card.isLimitedTimeOffer ? 'red' : card.isRecommended ? 'green' : ''"
               :class="`d-flex align-self-end ${card.isRecommended || card.isLimitedTimeOffer ? '' : 'hidden'}`"
@@ -14,7 +14,8 @@
                 </template>
               </i18n>
             </v-system-bar>
-            <div class="d-flex flex-column align-self-start">
+
+            <div class="d-flex flex-column px-3 align-self-start">
               <div class="d-flex align-self-start">
                 <div v-html="$t(card.title)"></div>
                 <v-icon :color="iconColor" v-if="card.iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
@@ -24,8 +25,8 @@
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-md-flex" v-html="$t(card.paragraph1)"></v-card-subtitle>
-          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-md-flex" v-html="$t(card.paragraph2)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
         <v-card-actions
@@ -205,16 +206,24 @@ export default Vue.extend({
   min-height: 32px;
 }
 
-@media all and (max-width: 767px) {
+@media all and (min-width: 0px) and (max-width: 400px) {
   .v-card {
-    max-width: 353px;
-    min-width: 290px;
+    height: 176px;
+    width: 290px;
+  }
+}
+
+@media all and (min-width: 400px) and (max-width: 767px) {
+  .v-card {
+    height: 176px;
+    width: 353px;
   }
 }
 @media all and (min-width: 768px) {
   .v-card {
-    min-width: 308px;
-    min-height: 362px;
+    width: 308px;
+    max-width: 308px;
+    height: 362px;
   }
 }
 </style>

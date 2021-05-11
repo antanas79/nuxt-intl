@@ -9,11 +9,11 @@
           </div>
           <div class="cards">
             <v-container class="lighten-5 pa-0">
-              <v-row no-gutters>
+              <v-row no-gutters class="d-flex flex-column flex-md-row">
                 <PricingCard
                   @pricing-card-toggled="onCardToggled"
                   :card="card"
-                  cardClass="mx-auto mx-sm-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+                  cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
                   iconName="information"
                   iconColor="blue"
                   iconClass="ml-3"
@@ -23,7 +23,6 @@
                     maxCards: currentStepMaxCards,
                     minCards: currentStepMinCards,
                   }"
-                  :maxWidth="344"
                   :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
                   :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
                   eventName="pricing-card-toggled"
