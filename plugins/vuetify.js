@@ -9,6 +9,7 @@ export default new Vuetify({
       md: 768,
       lg: 992,
       xl: 1200
-    }
+    },
+    scrollBarWidth: 24,
   },
 })
