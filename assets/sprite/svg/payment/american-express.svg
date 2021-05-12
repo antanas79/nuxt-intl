@@ -12,7 +12,7 @@
                         <clipPath id="SVGID_2_">
                             <use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
                         </clipPath>
-                        <path style="clip-path:url(#SVGID_2_);fill:#595959;" d="M0,8.5C0,3.8,3.7,0,8.3,0h121c4.6,0,8.3,3.8,8.3,8.5v69.1
+                        <path class="svg-dark-gray blue" d="M0,8.5C0,3.8,3.7,0,8.3,0h121c4.6,0,8.3,3.8,8.3,8.5v69.1
                             c0,4.6-3.7,8.5-8.3,8.5H8.3C3.7,86,0,82.2,0,77.6V8.5z"/>
                     </g>
                 </g>
@@ -42,7 +42,7 @@
                     <clipPath id="SVGID_4_">
                         <use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
                     </clipPath>
-                    <rect x="23" y="41.1" style="clip-path:url(#SVGID_4_);fill:#FFFFFF;" width="118.5" height="33.3"/>
+                    <rect class="svg-white"x="23" y="41.1" style="clip-path:url(#SVGID_4_);" width="118.5" height="33.3"/>
                 </g>
             </g>
         </g>
@@ -67,11 +67,12 @@
                         <clipPath id="SVGID_6_">
                             <use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
                         </clipPath>
-                        <rect x="-3.8" y="13.5" style="clip-path:url(#SVGID_6_);fill:#FFFFFF;" width="138.9" height="33.3"/>
+                        <rect class="svg-white" x="-3.8" y="13.5" style="clip-path:url(#SVGID_6_);" width="138.9" height="33.3"/>
                     </g>
                 </g>
             </g>
-            <rect x="77.8" y="22.1" style="fill:#595959;" width="3.9" height="16"/>
+            <rect class="svg-dark-gray blue" x="77.8" y="22.1" width="3.9" height="16"/>
         </g>
     </g>
     </svg>
+    
