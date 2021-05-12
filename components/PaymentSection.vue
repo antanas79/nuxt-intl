@@ -5,7 +5,7 @@
         <v-col class="pb-0" xl="7" lg="7" md="8" sm="12" cols="12">
           <p class="mb-0 text-caption">{{ $t(paymentSectionData.topCaption) }}</p>
         </v-col>
-        <v-col xl="7" lg="7" md="8" sm="12" cols="12" order="3" order-xl="2" order-lg="2" order-md="2" order-sm="3">
+        <v-col xl="7" lg="7" md="12" sm="12" cols="12" order="3" order-xl="2" order-lg="2" order-md="3" order-sm="3">
           <div class="d-flex align-center">
             <SvgRender :name="paymentSectionData.moneyBackIcon.name" moneyBack :title="paymentSectionData.moneyBackIcon.title" />
             <p class="mb-0 text-h6">
@@ -41,8 +41,8 @@
             </div>
           </div>
         </v-col>
-        <v-col xl="5" lg="5" md="4" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="3" order-sm="2">
-          <div class="d-flex align-center justify-md-end">
+        <v-col xl="5" lg="5" md="12" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="2" order-sm="2">
+          <div class="d-flex align-center justify-lg-end">
             <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" moneyBackGuarantee :title="paymentSectionData.microsoftGoldIcon.title" />
             <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" microsoftGold :title="paymentSectionData.moneyBacGuaranteekIcon.title" />
           </div>

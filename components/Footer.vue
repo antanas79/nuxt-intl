@@ -2,13 +2,13 @@
   <div class="pt-10 gray">
     <Layout>
       <v-row class="footer-content">
-        <v-col xl="4" lg="4" md="4" sm="6" cols="12" class="col-logo-container d-flex">
+        <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="col-logo-container d-flex">
           <SvgRender name="team-logo" teamLogo :title="$t(footerData.teamLogoTitle)" />
           <div class="pl-3">
             <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
           </div>
         </v-col>
-        <v-col xl="4" lg="4" md="3" sm="6" cols="12" class="col-numbers d-flex justify-md-start">
+        <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="d-flex justify-lg-start justify-md-end pt-3 pt-md-0">
           <div>
             <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2">
               <span class="font-weight-bold">{{ item.name }}</span>
@@ -16,16 +16,37 @@
             </p>
           </div>
         </v-col>
-        <v-col xl="4" lg="4" md="5" sm="12" cols="12" class="input-arrow-container d-flex justify-space-between flex-md-column align-md-end">
+        <v-col xl="4" lg="4" md="12" sm="12" cols="12" class="d-flex flex-lg-column flex-md-row flex-column justify-space-between">
           <div class="input-arrow">
-            <p class="label mb-2" v-html="$t(footerData.footerInputLabel)"></p>
-            <v-text-field :placeholder="$t(footerData.footerInputPlaceholder)" v-model="email" rounded filled flat solo>
-              <template slot="append">
-                <v-icon class="arrow-btn">mdi-arrow-right</v-icon>
-              </template></v-text-field
-            >
+            <p class="label mb-2 text-no-wrap" v-html="$t(footerData.footerInputLabel)"></p>
+            <v-form v-model="isFormValid" class="email-form">
+              <v-text-field
+                :placeholder="$t(footerData.footerInputPlaceholder)"
+                v-model="email"
+                rounded
+                filled
+                flat
+                solo
+                outlined
+                :success="!!email"
+                :rules="[rules.required, rules.email]"
+              >
+                <template v-if="!isFormValid && !!email" slot="append">
+                  <v-icon class="red--text">mdi-alert-circle </v-icon>
+                </template>
+                <template v-if="isFormValid && !!email" slot="append">
+                  <v-icon class="green--text">mdi-check-circle</v-icon>
+                </template>
+                <template slot="append">
+                  <!--   <v-icon class="arrow-btn">mdi-arrow-right</v-icon> -->
+                  <v-btn icon color="arrow-btn">
+                    <v-icon>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </template>
+              </v-text-field>
+            </v-form>
           </div>
-          <div class="buttons-block d-flex justify-md-end align-center pb-0 pb-md-10">
+          <div class="d-flex justify-md-end justify-start align-center pb-0 pb-lg-10">
             <v-btn v-for="(item, index) in footerData.buttons" :key="'B' + index" :class="`${index === 1 && 'mx-2'}`" text elevation rounded
               ><NuxtLink :to="item.innerLink" :title="$t(item.title)" class="black--text">{{ $t(item.name) }}</NuxtLink></v-btn
             >
@@ -49,8 +70,16 @@
 export default {
   data() {
     return {
+      isFormValid: false,
       email: '',
       date: () => new Date().getFullYear(),
+      rules: {
+        required: (value) => !!value || 'Required.',
+        email: (value) => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      },
     }
   },
   props: {
@@ -127,11 +156,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input-arrow {
+.input-arrow ::v-deep {
   width: 100%;
-}
-.flexItems {
-  display: flex;
+  max-width: 380px;
+  .v-text-field__details {
+    padding-left: 24px;
+  }
 }
 .label {
   padding-left: 24px;
@@ -149,28 +179,8 @@ p {
   max-width: 70%;
   font-size: 0.7rem;
 }
-@media (max-width: 960px) {
-  .col-numbers {
-    justify-content: flex-end;
-  }
-}
+
 @media (max-width: 768px) {
-  .label {
-    padding-left: 0;
-  }
-  .footer-content {
-    display: flex;
-    flex-direction: column;
-  }
-  .col-numbers {
-    justify-content: start;
-  }
-  .input-arrow-container {
-    flex-direction: column;
-  }
-  .buttons-block {
-    justify-content: flex-start;
-  }
   .footer-bottom {
     max-width: 100%;
   }

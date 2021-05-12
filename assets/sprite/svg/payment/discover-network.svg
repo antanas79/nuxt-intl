@@ -1,11 +1,11 @@
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="discover-network" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 137.6 86" style="enable-background:new 0 0 137.6 86;" xml:space="preserve">
 <g id="Page-1_4_">
 	<g id="DISCOVER_2_">
-		<path id="Rectangle-1_6_" style="fill-rule:evenodd;clip-rule:evenodd;fill:#F4F4F4;" d="M127.2,0.1c-6.9,0-79.6,0-120.2,0
+		<path id="Rectangle-1_6_" class="svg-light-gray" d="M127.2,0.1c-6.9,0-79.6,0-120.2,0
 			C3.6,0.1,0.2,3.5,0.2,7v68.7C0.2,82.6,3.6,86,10.5,86c38.3,0,109.9,0,116.7,0c6.8,0,10.3-3.4,10.3-10.3V10.4
 			C137.5,3.5,134,0.1,127.2,0.1z"/>
-		<path id="Rectangle-1-copy_2_" style="fill-rule:evenodd;clip-rule:evenodd;fill:#8C8C8C;" d="M42.7,85.9c36.9,0,79.3,0,84.5,0
+		<path id="Rectangle-1-copy_2_" class="svg-gray orange" d="M42.7,85.9c36.9,0,79.3,0,84.5,0
 			c6.9,0,10.3-3.4,10.3-10.3V34.8C137.5,34.8,117,70.8,42.7,85.9z"/>
 		<path id="NETWORK_2_" style="fill-rule:evenodd;clip-rule:evenodd;" d="M44.8,42.1H46l3.8,5.7l0,0v-5.7h0.9V49h-1.2l-3.9-5.7l0,0
 			V49h-0.9v-6.9H44.8z M52.6,42.1h4.5V43h-3.5v2h3.3v0.9h-3.3v2.2h3.7V49h-4.7V42.1z M60,43h-2.2v-0.9h5.4V43H61v6h-1V43z
@@ -42,7 +42,7 @@
 			c0,1.2-0.3,2.2-1,3s-1.6,1.3-2.8,1.5l4.4,7.3h-3.5l-3.8-7h-2.1v7h-2.9V20.6H114.4z M119.6,27.5c0.4,0,0.8,0,1.3-0.1
 			c0.4,0,0.8-0.1,1.1-0.3c0.3-0.1,0.6-0.4,0.8-0.7s0.3-0.7,0.3-1.3c0-0.5-0.1-0.9-0.3-1.2c-0.2-0.3-0.5-0.5-0.8-0.7
 			c-0.3-0.1-0.7-0.2-1.1-0.3c-0.4,0-0.8-0.1-1.1-0.1h-2.5v4.4h2.3V27.5z"/>
-		<circle id="Oval-1_2_" style="fill-rule:evenodd;clip-rule:evenodd;fill:#8C8C8C;" cx="74" cy="28.8" r="8.6"/>
+		<circle id="Oval-1_2_" class="svg-gray orange" style="fill-rule:evenodd;clip-rule:evenodd;" cx="74" cy="28.8" r="8.6"/>
 	</g>
 </g>
 </svg>
