@@ -1,41 +1,42 @@
 <template>
   <div>
     <v-app-bar color="white accent-4">
-      <div class="container d-flex px-0 px-md-1">
-        <!-- TODO change to normal link -->
-        <NuxtLink class="d-flex align-center" to="localePath('/steps')">
-          <Logo />
-        </NuxtLink>
-        <v-spacer></v-spacer>
-        <Selector
-          @changeSelection="changeSelection"
-          :selectorData="currencies"
-          :selectedValue="selectedCurrency"
-          :isKey="selectedCurrency.id"
-          itemText="currency"
-          flag
-          currencyClass
-          class="d-none d-sm-flex"
-        />
-        <v-menu bottom left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon>mdi-web</v-icon>
-            </v-btn>
-          </template>
+      <Layout>
+        <div class="col-12 pa-0 d-flex">
+          <a class="d-flex align-center" :href="navBarData.project.link">
+            <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-block" />
+            <div :class="`d-sm-none font-weight-bold text-h5 text-${navBarData.project.nameColor}`">{{ navBarData.project.name }}</div>
+          </a>
+          <v-spacer></v-spacer>
+          <Selector
+            @changeSelection="changeSelection"
+            :selectorData="currencies"
+            :selectedValue="selectedCurrency"
+            :isKey="selectedCurrency.id"
+            itemText="currency"
+            flag
+            currencyClass
+          />
+          <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-web</v-icon>
+              </v-btn>
+            </template>
 
-          <v-list>
-            <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)">
-              {{ locale.name }}
-            </v-list-item>
-          </v-list>
-        </v-menu>
-        <v-btn icon class="d-none">
+            <v-list>
+              <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)">
+                {{ locale.name }}
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <!-- <v-btn icon class="d-none">
           <v-icon>mdi-magnify</v-icon>
-        </v-btn>
+        </v-btn> -->
 
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      </div>
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        </div>
+      </Layout>
 
       <!-- 
       <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p> -->
@@ -87,6 +88,12 @@ export default {
     navBarData: {
       type: Object,
       default: () => ({
+        project: {
+          logoName: 'sync2',
+          name: 'Sync2',
+          nameColor: 'green',
+          link: 'https://www.sync2.com',
+        },
         links: [
           { id: 1, isExpandable: false, isExternal: false, iconName: 'mdi-ticket', link: '/', name: 'SIGN_UP', title: 'Hover => click here', prefetch: '?' },
           {
@@ -128,12 +135,19 @@ export default {
             ],
           },
         ],
-        selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+        // selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+        // currencies: [
+        //   { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
+        //   { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
+        //   { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
+        //   { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
+        // ],
+        selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
         currencies: [
-          { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-          { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
+          { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
+          { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
           { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-          { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
+          { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
         ],
       }),
     },
@@ -151,4 +165,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

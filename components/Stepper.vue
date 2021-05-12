@@ -1,5 +1,5 @@
 <template>
-  <div class="stepper-container container py-3">
+  <div class="stepper-container container py-3 py-md-0">
     <div class="pa-0" v-if="currentSteps">
       <v-row no-gutters>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
@@ -10,7 +10,7 @@
             <v-expand-transition>
               <v-stepper-header
                 class="pa-0 d-flex justify-center align-items-center"
-                :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-7' : 'col-10'"
+                :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-6' : 'col-10'"
               >
                 <template v-for="(step, index) in currentSteps">
                   <v-stepper-step
@@ -34,11 +34,9 @@
             </v-expand-transition>
           </v-stepper>
         </v-col>
-        <!-- <v-col cols="6" sm="2" md="2" class="d-flex align-center justify-center justify-sm-start d-sm-none px-1">
-          <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
-        </v-col> -->
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
           <Button
+            :color="isStepperNextButtonEnabled ? 'primary' : ''"
             :isNuxtLink="isLastStep ? false : true"
             :isAnchor="isLastStep ? true : false"
             :anchorClassName="isStepperNextButtonEnabled ? 'white--text' : 'black--text disabled'"
@@ -94,6 +92,10 @@ export default {
       type: String,
       required: false,
     },
+    nextStepLink: {
+      type: String,
+      required: false,
+    },
     backButton: {
       type: String,
       required: false,
@@ -102,24 +104,22 @@ export default {
       type: String,
       required: true,
     },
-    nextStepLink: {
-      type: String,
-      required: false,
-    },
   },
-  computed: {
-    // a computed getter
-    // lastStepName: function () {
-    //   // `this` points to the vm instance
-    //   return this.currentSteps[this.currentSteps.length - 1].link
-    // },
-  },
+  computed: {},
 }
 </script>
 
 <style lang="scss">
 .v-stepper__header {
   margin: 0 auto;
+}
+
+.v-stepper__label {
+  font-size: 0.75rem !important;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.0333333333em !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .v-stepper__step {
@@ -146,7 +146,7 @@ export default {
     background: #0d47a1 !important;
     background-color: #0d47a1 !important;
   }
-  @media all and (max-width: 599px) {
+  @media all and (max-width: 767px) {
     .v-stepper__step {
       flex-basis: 0px !important;
       padding: 2px;
@@ -155,21 +155,6 @@ export default {
         height: 6px;
         min-width: 6px;
         min-height: 6px;
-      }
-    }
-    hr.v-divider.theme--light {
-      display: none;
-    }
-  }
-  @media all and (min-width: 600px) and (max-width: 800px) {
-    .v-stepper__step {
-      flex-basis: 0px !important;
-      padding: 2px;
-      span {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        min-height: 8px;
       }
     }
     hr.v-divider.theme--light {

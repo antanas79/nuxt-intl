@@ -1,12 +1,13 @@
 <template>
   <v-hover>
     <template #default="{ hover }">
-      <v-card :class="`${hover ? 'border-blue' : 'border-white'} ${cardClass} `">
+      <v-card :class="`${!card.isPreSelected && (hover || isSelected) ? 'border-blue' : 'border-white'} ${cardClass} `">
         <Dialog :maxWidth="600" :cols="12" :class="dialogClass">
           <v-card-title class="mb-0 pa-1 d-flex flex-column" v-if="card.title" :class="titleClass">
             <v-system-bar
               :color="card.isLimitedTimeOffer ? 'red' : card.isRecommended ? 'green' : ''"
               :class="`d-flex align-self-end ${card.isRecommended || card.isLimitedTimeOffer ? '' : 'hidden'}`"
+              height="21"
             >
               <i18n tag="span" :path="card.disclaimer" class="white--text text-caption text-uppercase" v-if="card.isLimitedTimeOffer || card.isRecommended">
                 <template v-slot:disclaimerDiscount v-if="card.isLimitedTimeOffer">
@@ -17,7 +18,7 @@
 
             <div class="d-flex flex-column px-3 align-self-start">
               <div class="d-flex align-self-start">
-                <div v-html="$t(card.title)"></div>
+                <div class="text-no-wrap" :title="$t(card.title)" v-html="$t(card.title)"></div>
                 <v-icon :color="iconColor" v-if="card.iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
               </div>
               <div class="d-none d-md-flex align-self-start min-height-32px">
@@ -47,6 +48,7 @@
                 :isText="true"
                 :buttonClassName="`${buttonClassName} d-md-none d-flex align-self-end ml-auto text-caption`"
                 :buttonText="buttonText"
+                :iconName="card.isPreSelected ? 'lock' : ''"
               >
               </Button>
               <div class="current-price black--text text-caption col-7 pa-0 d-flex" v-if="card.payLater && card.payLaterNumberOfPayments">
@@ -68,8 +70,8 @@
                 </div>
               </div>
             </div>
-            <div class="min-height-32px">
-              <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100 mt-2" v-if="card.oldPriceText">
+            <div class="min-height-28px">
+              <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100" v-if="card.oldPriceText">
                 <template v-slot:oldPrice>
                   <span class="old-price text-underlined">$49.95</span>
                 </template>
@@ -87,6 +89,7 @@
               :isText="true"
               :buttonClassName="`${buttonClassName}`"
               :buttonText="buttonText"
+              :iconName="card.isPreSelected ? 'lock' : ''"
             >
             </Button
           ></v-card-text>
@@ -180,12 +183,12 @@ export default Vue.extend({
       required: false,
     },
   },
-  data() {
-    return {}
-  },
-  mounted() {},
-  created() {},
-  computed: {},
+  // data() {
+  //   return {}
+  // },
+  // mounted() {},
+  // created() {},
+  // computed: {},
   methods: {
     onPricingCardToggled(event) {
       this.$emit('pricing-card-toggled', this.payload)
@@ -204,6 +207,9 @@ export default Vue.extend({
 }
 .min-height-32px {
   min-height: 32px;
+}
+.min-height-28px {
+  min-height: 28px;
 }
 
 @media all and (min-width: 0px) and (max-width: 400px) {

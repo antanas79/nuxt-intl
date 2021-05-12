@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <v-container :class="`container-big mx-auto ${small ? 'container-small' : ''} mx-0`">
-      <slot />
-    </v-container>
-  </div>
+  <v-container :class="`container-big mx-auto ${small ? 'container-small' : ''} mx-0`">
+    <slot />
+  </v-container>
 </template>
 
 <script>

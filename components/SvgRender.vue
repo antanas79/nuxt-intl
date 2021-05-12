@@ -140,4 +140,9 @@ export default {
   width: 15px;
   height: 15px;
 }
+
+.company-logo {
+  width: 130px;
+  height: 50px;
+}
 </style>

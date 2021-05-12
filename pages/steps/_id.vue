@@ -1,57 +1,63 @@
 <template>
-  <div class="steps-container">
-    <div class="pa-0" v-if="isLoaded">
-      <div class="background-grey">
-        <div class="container pt-0">
-          <div class="mb-3 upper d-flex flex-column align-items-center">
-            <h1 class="font-weight-bold my-3" v-html="$t(currentSteps[currentStepNumber].h1)"></h1>
-            <div class="text-subtitle-1 mb-0" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
-          </div>
-          <div class="cards">
-            <v-container class="lighten-5 pa-0">
-              <v-row no-gutters class="d-flex flex-column flex-md-row">
-                <PricingCard
-                  @pricing-card-toggled="onCardToggled"
-                  :card="card"
-                  cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
-                  iconName="information"
-                  iconColor="blue"
-                  iconClass="ml-3"
-                  :payload="{
-                    cardId: card.cardId,
-                    currentStep: currentStep,
-                    maxCards: currentStepMaxCards,
-                    minCards: currentStepMinCards,
-                  }"
-                  :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
-                  :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
-                  eventName="pricing-card-toggled"
-                  :isSelected="isSelected(card.cardId)"
-                  v-for="card in currentStepCards"
-                  :key="card.cardId"
-                >
-                </PricingCard>
-              </v-row>
-            </v-container>
-          </div>
+  <div class="lighten-5 col-12 pa-0">
+    <div class="steps-cards-container">
+      <div v-if="isLoaded">
+        <div class="background-grey">
+          <Layout small>
+            <div class="d-flex flex-column justify-center pa-0">
+              <div class="mb-3 upper d-flex flex-column align-items-center">
+                <div class="font-weight-bold my-3 text-h4" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
+                <div class="text-subtitle-1 mb-0 d-none d-md-block text-body-1" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
+              </div>
+              <div class="cards">
+                <div class="pa-0 d-flex flex-column">
+                  <div class="d-flex flex-column flex-md-row">
+                    <PricingCard
+                      @pricing-card-toggled="onCardToggled"
+                      :card="card"
+                      cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+                      iconName="information"
+                      iconColor="blue"
+                      iconClass="ml-3"
+                      :payload="{
+                        cardId: card.cardId,
+                        currentStep: currentStep,
+                        maxCards: currentStepMaxCards,
+                        minCards: currentStepMinCards,
+                      }"
+                      :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
+                      :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
+                      eventName="pricing-card-toggled"
+                      :isSelected="isSelected(card.cardId)"
+                      v-for="card in currentStepCards"
+                      :key="card.cardId"
+                    >
+                    </PricingCard>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Layout>
         </div>
-      </div>
 
-      <div class="steps">
-        <v-divider></v-divider>
-        <Stepper
-          :currentStep="currentStep"
-          :currentStepNumber="currentStepNumber"
-          :currentStepMinCards="currentStepMinCards"
-          :currentStepSelectedCards="currentStepSelectedCards"
-          :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
-          :previousStepLink="previousStepLink"
-          :nextStepLink="nextStepLink"
-          :currentSteps="currentSteps"
-          :isLastStep="isLastStep()"
-          :backButton="'BACK'"
-          :nextButton="'NEXT'"
-        />
+        <div class="steps">
+          <template>
+            <v-divider></v-divider>
+            <Stepper
+              :currentStep="currentStep"
+              :currentStepNumber="currentStepNumber"
+              :currentStepMinCards="currentStepMinCards"
+              :currentStepSelectedCards="currentStepSelectedCards"
+              :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
+              :previousStepLink="previousStepLink"
+              :nextStepLink="nextStepLink"
+              :currentSteps="currentSteps"
+              :isLastStep="isLastStep()"
+              :backButton="'BACK'"
+              :nextButton="'NEXT'"
+            />
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -82,6 +88,12 @@ export default {
     onCardToggled(event) {
       this.toggleCard(event)
       this.setNextPreviousLinks()
+      //redirect to another page if only one card can be selected
+      if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
+        setTimeout(() => {
+          this.$router.push(this.nextStepLink)
+        }, 500)
+      }
     },
     toggleCard(payload) {
       if (this.selectedCards.includes(payload.cardId) && !payload.fromQueryParams) {
@@ -166,8 +178,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.steps-container {
-  min-height: 560px;
+.steps-cards-container {
+  min-height: 360px;
 }
 
 .container {
@@ -210,11 +222,25 @@ export default {
   padding-top: 15px;
 }
 
+@media all and (max-width: 767px) {
+  // .steps {
+  //   position: fixed;
+  //   min-height: 61px;
+  //   z-index: 100;
+  //   bottom: 0;
+  //   width: 100%;
+  //   background: white;
+  // }
+}
+
 @media all and (min-width: 768px) {
   .row.no-gutters {
     flex-wrap: nowrap;
     width: 100%;
     overflow-x: auto;
+  }
+  .steps-cards-container {
+    min-height: 560px;
   }
 }
 </style>

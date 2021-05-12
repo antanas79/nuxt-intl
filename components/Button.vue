@@ -1,13 +1,14 @@
 <template>
   <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
-      <v-icon>{{ iconName }}</v-icon
+      <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </NuxtLink>
 
   <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
+      ><v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </a>
@@ -22,7 +23,7 @@
     @click="eventName ? $emit(eventName, payload) : ''"
     v-else-if="isButton"
   >
-    <v-icon>{{ iconName }}</v-icon
+    <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
     >{{ $t(buttonText) }} <slot />
   </v-btn>
 </template>
@@ -113,9 +114,15 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.disabled {
+<style lang="scss" scoped>
+::v-deep a.disabled,
+button.disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+button ::v-deep .v-icon {
+  font-size: 16px;
+  padding: 5px;
 }
 </style>

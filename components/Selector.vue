@@ -14,10 +14,10 @@
     :class="[{ 'currency-selection': currencyClass }, 'default']"
   >
     <template v-slot:selection="{ item }">
-      <SvgRender :flag="flag" payment :name="item.path" />
+      <SvgRender :flag="flag" payment :name="item.path" class="d-none d-sm-block" />
       {{ item.currency }}
     </template>
-    <template v-slot:item="{ item }"> <SvgRender :flag="flag" payment :name="item.path" />{{ item.currency }} </template>
+    <template v-slot:item="{ item }"> <SvgRender :flag="flag" payment :name="item.path" class="d-none d-sm-block" />{{ item.currency }} </template>
   </v-select>
 </template>
 
@@ -59,10 +59,15 @@ export default {
 <style lang="scss" scoped>
 #app {
   .currency-selection {
-    max-width: 160px;
+    max-width: 110px;
   }
   .currency-selection .v-input__slot {
     padding-left: 0;
+  }
+  @media all and (min-width: 320px) and (max-width: 575px) {
+    .currency-selection {
+      max-width: 70px;
+    }
   }
 }
 </style>
