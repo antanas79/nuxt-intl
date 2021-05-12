@@ -61,12 +61,10 @@ export default {
   .currency-selection {
     max-width: 110px;
   }
-  .currency-selection .v-input__slot {
-    padding-left: 0;
-  }
+
   @media all and (min-width: 320px) and (max-width: 575px) {
     .currency-selection {
-      max-width: 70px;
+      max-width: 60px;
     }
   }
 }

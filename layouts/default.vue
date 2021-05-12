@@ -99,7 +99,7 @@ html {
   max-width: 160px;
 }
 #app .currency-selection .v-input__slot {
-  padding-left: 0;
+  padding: 0;
 }
 .md-app {
   min-height: 350px;

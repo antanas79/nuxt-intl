@@ -4,7 +4,7 @@
       <Layout>
         <div class="col-12 pa-0 d-flex">
           <a class="d-flex align-center" :href="navBarData.project.link">
-            <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-block" />
+            <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-flex align-self-center" />
             <div :class="`d-sm-none font-weight-bold text-h5 text-${navBarData.project.nameColor}`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
@@ -166,4 +166,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .v-toolbar__content {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
 </style>
