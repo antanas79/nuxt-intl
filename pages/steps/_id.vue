@@ -6,7 +6,8 @@
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
               <div class="mb-3 upper d-flex flex-column align-items-center">
-                <div class="font-weight-bold my-3 text-h4" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
+                <div class="font-weight-bold my-3 text-h4 d-none d-sm-block" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
+                <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].shortH1)"></div>
                 <div class="text-subtitle-1 mb-0 d-none d-md-block text-body-1" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
               </div>
               <div class="cards">

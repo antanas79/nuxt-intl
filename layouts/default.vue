@@ -3,15 +3,24 @@
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
         <v-system-bar color="red white--text text-center" class="justify-center">
-          <span class="text-uppercase mb-0" v-html="$t('TOP_BANNER')"></span>
+          <span class="text-uppercase mb-0" v-html="$t(bannersData.topBannerText)"></span>
         </v-system-bar>
-
         <NavBar />
-        <!-- TODO unhide this on mobile -->
-        <v-system-bar color="gray" height="40" class="justify-center">
-          <span><SvgRender name="pay-later" smallIcon /></span>
-          <p class="text-caption mb-0" v-html="$t('PAY_LATER_BAR')"></p>
-          <NuxtLink to="steps">{{ $t('PAY_LATER_BAR_LINK') }}</NuxtLink>
+        <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0">
+          <span class="text-caption mb-0">
+            <SvgRender :name="bannersData.payLaterIconName" smallIcon />
+            <span class="font-weight-bold">{{ $t(bannersData.payLaterBoldedText) }}</span>
+            {{
+              $t(bannersData.payLaterMainText, {
+                interestPaymentCount: bannersData.interestPaymentCount,
+                currency: bannersData.currency,
+                amount: bannersData.amount,
+                weeksCount: bannersData.weeksCount,
+              })
+            }}
+            <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span>
+            <v-icon>mdi-arrow-right</v-icon>
+          </span>
         </v-system-bar>
 
         <v-scroll-x-transition :hide-on-leave="true">
@@ -29,18 +38,33 @@
 <script>
 export default {
   async asyncData({ context, store, params, payload }) {
-    this.payloadData = payload
-    this.contextData = context
-    this.storeData = store
+    // this.payloadData = payload
+    // this.contextData = context
+    // this.storeData = store
   },
   data: () => ({
-    payloadData: null,
-    contextData: null,
-    storeData: null,
+    // payloadData: null,
+    // contextData: null,
+    // storeData: null,
   }),
   watch: {
     group() {
       this.drawer = false
+    },
+  },
+  props: {
+    bannersData: {
+      default: () => ({
+        topBannerText: 'TOP_BANNER',
+        payLaterBoldedText: 'PAY_LATER_BOLDED_TEXT',
+        payLaterMainText: 'PAY_LATER_MAIN_TEXT',
+        payLaterBlueText: 'PAY_LATER_BLUE_TEXT',
+        payLaterIconName: 'pay-later',
+        interestPaymentCount: 3,
+        currency: '$',
+        amount: 10.32,
+        weeksCount: 2,
+      }),
     },
   },
 }

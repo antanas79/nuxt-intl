@@ -136,9 +136,15 @@ export default {
   height: 35px;
   width: 35px;
 }
-.small-icon {
-  width: 15px;
-  height: 15px;
+.small-icon ::v-deep {
+  display: flex;
+  align-self: center;
+  svg {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    min-height: 15px;
+  }
 }
 
 .company-logo {

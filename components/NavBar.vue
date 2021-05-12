@@ -5,7 +5,7 @@
         <div class="col-12 pa-0 d-flex">
           <a class="d-flex align-center" :href="navBarData.project.link">
             <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-flex align-self-center" />
-            <div :class="`d-sm-none font-weight-bold text-h5 text-${navBarData.project.nameColor}`">{{ navBarData.project.name }}</div>
+            <div :class="`d-sm-none font-weight-bold text-h5 ${navBarData.project.nameColor}--text`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
           <Selector
@@ -91,7 +91,7 @@ export default {
         project: {
           logoName: 'sync2',
           name: 'Sync2',
-          nameColor: 'green',
+          nameColor: 'blue',
           link: 'https://www.sync2.com',
         },
         links: [
