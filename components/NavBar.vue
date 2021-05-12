@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="white accent-4">
+    <v-app-bar color="white accent-4 px-0">
       <Layout>
         <div class="col-12 pa-0 d-flex">
           <a class="d-flex align-center" :href="navBarData.project.link">
