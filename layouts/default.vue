@@ -7,19 +7,20 @@
         </v-system-bar>
         <NavBar />
         <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0">
-          <span class="text-caption mb-0">
+          <span class="text-caption mb-0 d-flex">
             <SvgRender :name="bannersData.payLaterIconName" smallIcon />
-            <span class="font-weight-bold">{{ $t(bannersData.payLaterBoldedText) }}</span>
-            {{
-              $t(bannersData.payLaterMainText, {
-                interestPaymentCount: bannersData.interestPaymentCount,
-                currency: bannersData.currency,
-                amount: bannersData.amount,
-                weeksCount: bannersData.weeksCount,
-              })
-            }}
-            <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span>
-            <v-icon>mdi-arrow-right</v-icon>
+            <span class="font-weight-bold"
+              >{{ $t(bannersData.payLaterBoldedText) }}
+              {{
+                $t(bannersData.payLaterMainText, {
+                  interestPaymentCount: bannersData.interestPaymentCount,
+                  currency: bannersData.currency,
+                  amount: bannersData.amount,
+                  weeksCount: bannersData.weeksCount,
+                })
+              }}
+              <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
+            >
           </span>
         </v-system-bar>
 

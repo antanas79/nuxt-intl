@@ -91,7 +91,7 @@ export default {
         project: {
           logoName: 'sync2',
           name: 'Sync2',
-          nameColor: 'blue',
+          nameColor: 'primary',
           link: 'https://www.sync2.com',
         },
         links: [

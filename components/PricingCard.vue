@@ -183,12 +183,6 @@ export default Vue.extend({
       required: false,
     },
   },
-  // data() {
-  //   return {}
-  // },
-  // mounted() {},
-  // created() {},
-  // computed: {},
   methods: {
     onPricingCardToggled(event) {
       this.$emit('pricing-card-toggled', this.payload)
