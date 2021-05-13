@@ -92,7 +92,10 @@ export default {
       //redirect to another page if only one card can be selected
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
-          this.$router.push(this.nextStepLink)
+          if (this.currentStepSelectedCards.length === 1) {
+            //prevent redirecting if fastly unselected card
+            this.$router.push(this.nextStepLink)
+          }
         }, 500)
       }
     },

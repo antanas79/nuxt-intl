@@ -2,23 +2,27 @@
   <v-app>
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
-        <v-system-bar color="red white--text text-center" class="justify-center">
-          <span class="text-uppercase mb-0" v-html="$t(bannersData.topBannerText)"></span>
+        <v-system-bar color="red" class="justify-center text-caption white--text text-center py-8 py-sm-6 py-md-0 cursor-pointer">
+          <span class="mb-0" v-html="$t(bannersData.topBannerText, { currency: bannersData.topBannerTextCurrency, amount: bannersData.topBannerTextAmount })">
+          </span>
         </v-system-bar>
         <NavBar />
-        <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0">
+        <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
           <span class="text-caption mb-0 d-flex">
             <SvgRender :name="bannersData.payLaterIconName" smallIcon />
             <span class="font-weight-bold"
               >{{ $t(bannersData.payLaterBoldedText) }}
-              {{
-                $t(bannersData.payLaterMainText, {
-                  interestPaymentCount: bannersData.interestPaymentCount,
-                  currency: bannersData.currency,
-                  amount: bannersData.amount,
-                  weeksCount: bannersData.weeksCount,
-                })
-              }}
+              <span class="font-weight-regular">
+                {{
+                  $t(bannersData.payLaterMainText, {
+                    interestPaymentCount: bannersData.interestPaymentCount,
+                    currency: bannersData.currency,
+                    amount: bannersData.amount,
+                    weeksCount: bannersData.weeksCount,
+                  })
+                }}
+              </span>
+
               <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
             >
           </span>
@@ -57,6 +61,9 @@ export default {
     bannersData: {
       default: () => ({
         topBannerText: 'TOP_BANNER',
+        // topBannerTextDescription: 'TOP_BANNER_DESCRIPTION',
+        topBannerTextCurrency: '$',
+        topBannerTextAmount: 30,
         payLaterBoldedText: 'PAY_LATER_BOLDED_TEXT',
         payLaterMainText: 'PAY_LATER_MAIN_TEXT',
         payLaterBlueText: 'PAY_LATER_BLUE_TEXT',
@@ -161,6 +168,10 @@ html {
   background: #f8f8f8 !important;
 }
 b {
+  display: inline;
+}
+
+::v-deep .small-icon {
   display: inline;
 }
 </style>

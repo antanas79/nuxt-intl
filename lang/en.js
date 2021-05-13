@@ -1,5 +1,6 @@
 export default {
-  TOP_BANNER: '<b>click here and save $30</b>',
+  TOP_BANNER: '<b>CLICK HERE AND SAVE {currency}{amount}</b>. Top Banner Description can be longer and cant be same style like CTA.',
+
   PAY_LATER_BAR: '<b>Pay Later</b>. Pay in 3 interest-free payments of $10.32 due every 2 weeks, starting today.',
   PAY_LATER_BAR_LINK: 'See how Pay Later works',
   SELECT: 'Select',

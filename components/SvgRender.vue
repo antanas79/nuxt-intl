@@ -138,8 +138,9 @@ export default {
 }
 .small-icon ::v-deep {
   display: flex;
-  align-self: center;
+
   svg {
+    margin-top: 2px;
     width: 15px;
     height: 15px;
     min-width: 15px;
