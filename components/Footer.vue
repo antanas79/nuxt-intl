@@ -3,12 +3,20 @@
     <Layout>
       <v-row class="footer-content">
         <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="col-logo-container d-flex">
-          <SvgRender name="team-logo" teamLogo :title="$t(footerData.teamLogoTitle)" />
+          <Link
+            :isExternal="footerData.teamLogo.isExternal"
+            :link="footerData.teamLogo.link"
+            :title="$t(footerData.teamLogo.title)"
+            className="align-self-start"
+          >
+            <SvgRender name="team-logo" class="team-logo" teamLogo />
+          </Link>
+
           <div class="pl-3">
             <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
           </div>
         </v-col>
-        <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="d-flex justify-lg-start justify-md-end pt-3 pt-md-0">
+        <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="d-flex justify-lg-start justify-md-end">
           <div>
             <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2">
               <span class="font-weight-bold">{{ item.name }}</span>
@@ -47,11 +55,23 @@
             </v-form>
           </div>
           <div class="d-flex justify-md-end justify-start align-center pb-0 pb-lg-10">
-            <v-btn v-for="(item, index) in footerData.buttons" :key="'B' + index" :class="`${index === 1 && 'mx-2'}`" text elevation rounded
-              ><NuxtLink :to="item.innerLink" :title="$t(item.title)" class="black--text">{{ $t(item.name) }}</NuxtLink></v-btn
+            <!-- <v-btn v-for="(item, index) in footerData.buttons" :key="'B' + index" :class="`${index === 1 && 'mx-2'}`" text elevation rounded
+              ><NuxtLink :to="item.innerLink" :title="$t(item.title)" class="black--text">{{ $t(item.name) }}</NuxtLink>
+            </v-btn> -->
+            <Button
+              v-for="(item, index) in footerData.buttons"
+              :key="'B' + index"
+              :class="`${index === 1 && 'mx-2'}`"
+              isText
+              isRounded
+              :isNuxtLink="!item.isExternal"
+              :link="item.innerLink"
+              :title="$t(item.title)"
+              :buttonText="item.name"
             >
-          </div></v-col
-        >
+            </Button>
+          </div>
+        </v-col>
         <v-col class="pb-5 footer-bottom">
           <p class="pb-3">
             Copyright {{ date() }}
@@ -62,11 +82,13 @@
           </p>
         </v-col>
       </v-row>
+      <DynamicIcon icon="team-logo" />
     </Layout>
   </div>
 </template>
 
 <script>
+import DynamicIcon from './DynamicIcon '
 export default {
   data() {
     return {
@@ -74,13 +96,27 @@ export default {
       email: '',
       date: () => new Date().getFullYear(),
       rules: {
-        required: (value) => !!value || 'Required.',
+        required: (value) => !!value || this.$t(this.footerData.validation.required),
         email: (value) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
+          return pattern.test(value) || this.$t(this.footerData.validation.emailInvalid)
         },
       },
+      /*       computed: {
+        rules() {
+          return {
+            required: (value) => !!value || 'this.$t(this.footerData.validation.required)',
+            email: (value) => {
+              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              return pattern.test(value) || 'this.$t(this.footerData.validation.emailInvalid)'
+            },
+          }
+        },
+      }, */
     }
+  },
+  components: {
+    DynamicIcon,
   },
   props: {
     footerData: {
@@ -90,52 +126,55 @@ export default {
         buttons: [
           {
             id: 1,
+            isExternal: false,
             name: 'FOOTER_BUTTON_NAME_1',
-            innerLink: '/about',
+            link: '/about',
             title: 'FOOTER_BUTTON_TITLE_1',
           },
           {
             id: 2,
+            isExternal: false,
             name: 'FOOTER_BUTTON_NAME_2',
-            innerLink: '/privacy',
+            link: '/privacy',
             title: 'FOOTER_BUTTON_TITLE_2',
           },
           {
             id: 3,
+            isExternal: false,
             name: 'FOOTER_BUTTON_NAME_3',
-            innerLink: '/terms',
+            link: '/terms',
             title: 'FOOTER_BUTTON_TITLE_3',
           },
         ],
         contacts: [
           {
             id: 1,
-            name: 'USA',
+            name: 'USA:',
             number: '+1 (954) 796-8161',
           },
           {
             id: 2,
-            name: 'UK',
+            name: 'UK:',
             number: '+44 20 3371 8464',
           },
           {
             id: 3,
-            name: 'Canada',
+            name: 'Canada:',
             number: '+1 647 477-3340',
           },
           {
             id: 4,
-            name: 'France',
+            name: 'France:',
             number: '+33 1 86 26 42',
           },
           {
             id: 5,
-            name: 'Skype',
+            name: 'Skype:',
             number: 'teamcorporation',
           },
           {
             id: 6,
-            name: 'Fax',
+            name: 'Fax:',
             number: '+1 (954) 780-3795',
           },
         ],
@@ -143,7 +182,15 @@ export default {
         footerBottomMainText: 'FOOTER_BOTTOM_MAIN_TEXT',
         footerInputLabel: 'FOOTER_INPUT_LABEL',
         footerInputPlaceholder: 'FOOTER_INPUT_PLACEHOLDER',
-        teamLogoTitle: 'TEAM_LOGO_ICON_TITLE',
+        teamLogo: {
+          title: 'TEAM_LOGO_ICON_TITLE',
+          isExternal: true,
+          link: 'http://www.4team.biz',
+        },
+        validation: {
+          required: 'VALIDATION_REQUIRED',
+          emailInvalid: 'VALIDATION_EMAIL_INVALID',
+        },
       }),
     },
   },
@@ -180,9 +227,12 @@ p {
   font-size: 0.7rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .footer-bottom {
     max-width: 100%;
+  }
+  .label {
+    padding-left: 0;
   }
 }
 </style>

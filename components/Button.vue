@@ -1,6 +1,15 @@
 <template>
   <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
-    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
+    <v-btn
+      :disabled="isDisabled"
+      :text="isText"
+      :outlined="isOutlined"
+      :title="title"
+      :color="color"
+      :rounded="isRounded"
+      :small="isSmall"
+      :class="buttonClassName"
+    >
       <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
@@ -27,7 +36,6 @@
     >{{ $t(buttonText) }} <slot />
   </v-btn>
 </template>
-
 
 <script lang="ts">
 export default {
@@ -97,6 +105,10 @@ export default {
       required: false,
       default: true,
     },
+    elevation: {
+      type: Number,
+      required: false,
+    },
     eventName: {
       type: String,
       required: false,
@@ -106,6 +118,10 @@ export default {
       required: false,
     },
     iconName: {
+      type: String,
+      required: false,
+    },
+    title: {
       type: String,
       required: false,
     },

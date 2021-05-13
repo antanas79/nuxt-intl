@@ -62,4 +62,6 @@ export default {
   PAYMENT_MAIN_TEXT_REFUND: '** Produktbündel sind nicht erstattungsfähig',
   PAYMENT_MAIN_TEXT_BOTTOM: 'Rückerstattungsrichtlinie',
   BOTTOM_BAR: '<b>Später bezahlen</b>. Zahlen Sie in 3 zinslosen Raten von $10,32, die alle 2 Wochen fällig werden, beginnend heute.',
+  VALIDATION_REQUIRED: 'Erforderlich',
+  VALIDATION_EMAIL_INVALID: 'Ungültige e-mail.',
 }

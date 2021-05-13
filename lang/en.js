@@ -63,4 +63,6 @@ export default {
     '* We are eager to make sure that you will be really happy with purchase. <br> We will refund ** your money if our technicians are not able to make our software work on your computer during 14-day money back performance guarantee period after purchase.',
   PAYMENT_MAIN_TEXT_REFUND: '** Product Bundles are not refundable',
   PAYMENT_MAIN_TEXT_BOTTOM: 'Refund policy',
+  VALIDATION_REQUIRED: 'Required',
+  VALIDATION_EMAIL_INVALID: 'Invalid e-mail.',
 }
