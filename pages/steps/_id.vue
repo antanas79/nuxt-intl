@@ -76,9 +76,6 @@ export default {
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
           if (this.currentStepSelectedCards.length === 1) {
-            //prevent redirecting if fastly unselected card
-            console.log(this.$route)
-            // this.$router.push('../steps/' + this.nextStepLink)
             this.$router.push({ path: '/steps/' + this.nextStepLink })
           }
         }, 500)
@@ -117,9 +114,6 @@ export default {
     isLastStep() {
       return this.currentStep == this.currentSteps[this.currentSteps.length - 1].link
     },
-    // isStepperNextButtonEnabled() {
-    //   return this.currentStepSelectedCards.length >= this.currentStepMinCards
-    // },
   },
   mounted() {
     if (process.browser) {
