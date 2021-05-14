@@ -1,6 +1,6 @@
 <template>
   <div class="stepper-container container py-3 py-md-0">
-    <div class="pa-0" v-if="currentSteps">
+    <div class="pa-0" v-if="currentSteps && currentStep">
       <v-row no-gutters>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
           <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>

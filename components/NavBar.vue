@@ -5,14 +5,16 @@
         <div class="col-12 pa-0 d-flex">
           <a class="d-flex align-center" :href="navBarData.project.link">
             <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-flex align-self-center" />
-            <div :class="`d-sm-none font-weight-bold text-h5 text-${navBarData.project.nameColor}`">{{ navBarData.project.name }}</div>
+            <div :class="`d-sm-none font-weight-bold text-h5 ${navBarData.project.nameColor}--text`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
+
           <Selector
+            v-if="isPricingPage"
             @changeSelection="changeSelection"
-            :selectorData="currencies"
-            :selectedValue="selectedCurrency"
-            :isKey="selectedCurrency.id"
+            :selectorData="navBarData.currencies"
+            :selectedValue="$store.state.currencies.selectedCurrency"
+            :isKey="$store.state.currencies.selectedCurrency.id"
             itemText="currency"
             flag
             currencyClass
@@ -71,24 +73,33 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       drawer: false,
       group: null,
       selected: false,
-      selectedCurrency: this.navBarData.selectedCurrency,
-      currencies: this.navBarData.currencies,
+      // selectedCurrency: this.navBarData.selectedCurrency,
+      // currencies: this.navBarData.currencies,
     }
   },
+  computed: mapState({
+    currencies: (state) => state.currencies.currencies,
+    selectedCurrency: (state) => state.currencies.selectedCurrency,
+  }),
   props: {
+    isPricingPage: {
+      type: Boolean,
+      required: true,
+    },
     navBarData: {
       type: Object,
       default: () => ({
         project: {
           logoName: 'sync2',
           name: 'Sync2',
-          nameColor: 'green',
+          nameColor: 'primary',
           link: 'https://www.sync2.com',
         },
         links: [
@@ -132,14 +143,6 @@ export default {
             ],
           },
         ],
-        // selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-        // currencies: [
-        //   { id: 1, name: 'en-Us', currency: 'USD - $', path: 'flags/usd' },
-        //   { id: 2, name: 'en-GB', currency: 'GBP - £', path: 'flags/gbp' },
-        //   { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-        //   { id: 4, name: 'en-AU', currency: 'AUD - AU $', path: 'flags/aud' },
-        // ],
-        selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
         currencies: [
           { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
           { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
@@ -151,7 +154,7 @@ export default {
   },
   methods: {
     changeSelection(event) {
-      this.selectedCurrency = JSON.parse(JSON.stringify(event))
+      this.$store.commit('currencies/setSelectedCurrency', JSON.parse(JSON.stringify(event)))
     },
   },
   computed: {

@@ -49,6 +49,7 @@ export default {
       mode: 'client',
     },
     { src: '~/plugins/vuetify' },
+    // { src: '~/plugins/components' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

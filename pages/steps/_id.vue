@@ -1,12 +1,13 @@
 <template>
   <div class="lighten-5 col-12 pa-0">
-    <div class="steps-cards-container">
+    <div class="cards-container">
       <div v-if="isLoaded">
         <div class="background-grey">
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
               <div class="mb-3 upper d-flex flex-column align-items-center">
-                <div class="font-weight-bold my-3 text-h4" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
+                <div class="font-weight-bold my-3 text-h4 d-none d-sm-block" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
+                <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].shortH1)"></div>
                 <div class="text-subtitle-1 mb-0 d-none d-md-block text-body-1" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
               </div>
               <div class="cards">
@@ -19,6 +20,7 @@
                       iconName="information"
                       iconColor="blue"
                       iconClass="ml-3"
+                      :selectedCurrency="selectedCurrency"
                       :payload="{
                         cardId: card.cardId,
                         currentStep: currentStep,
@@ -40,7 +42,7 @@
           </Layout>
         </div>
 
-        <div class="steps">
+        <!-- <div class="steps">
           <template>
             <v-divider></v-divider>
             <Stepper
@@ -57,7 +59,7 @@
               :nextButton="'NEXT'"
             />
           </template>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -83,6 +85,7 @@ export default {
     currentStepNumber: (state) => state.steps.currentStepNumber,
     currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
+    selectedCurrency: (state) => state.currencies.selectedCurrency,
   }),
   methods: {
     onCardToggled(event) {
@@ -91,7 +94,10 @@ export default {
       //redirect to another page if only one card can be selected
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
-          this.$router.push(this.nextStepLink)
+          if (this.currentStepSelectedCards.length === 1) {
+            //prevent redirecting if fastly unselected card
+            this.$router.push(this.nextStepLink)
+          }
         }, 500)
       }
     },
@@ -178,7 +184,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.steps-cards-container {
+.cards-container {
   min-height: 360px;
 }
 
@@ -239,8 +245,8 @@ export default {
     width: 100%;
     overflow-x: auto;
   }
-  .steps-cards-container {
-    min-height: 560px;
+  .cards-container {
+    min-height: 475px;
   }
 }
 </style>

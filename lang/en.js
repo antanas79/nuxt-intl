@@ -1,5 +1,6 @@
 export default {
-  TOP_BANNER: '<b>click here and save $30</b>',
+  TOP_BANNER: '<b>CLICK HERE AND SAVE {currency}{amount}</b>. Top Banner Description can be longer and cant be same style like CTA.',
+
   PAY_LATER_BAR: '<b>Pay Later</b>. Pay in 3 interest-free payments of $10.32 due every 2 weeks, starting today.',
   PAY_LATER_BAR_LINK: 'See how Pay Later works',
   SELECT: 'Select',
@@ -14,6 +15,7 @@ export default {
   UPGRADES: 'Upgrades',
   BUNDLES: 'Bundles',
   EXTRAS: 'Extras',
+  EXTRAS_SHORT: 'Extras',
   UPGRADE_AND_SUPPORT_1_YEAR: 'Upgrade and support 1 year',
   UPGRADE_AND_SUPPORT_2_YEARS: 'Upgrade and support 2 years',
   UPGRADE_AND_SUPPORT: 'Upgrade and support',
@@ -24,10 +26,13 @@ export default {
   'SYNC2_4BUNDLE_LIFETIME(2)': 'Sync2 bundle lifetime',
   SYNC2_4BUNDLE_LIFETIME: 'Sync2 bundle lifetime',
   CHOOSE_SYNC2_LICENSE: 'Choose Sync2 license',
+  CHOOSE_SYNC2_LICENSE_SHORT: 'Choose license',
   EVERY_USER_ACCOUNT_ON_EACH_WORKSTATION_NEEDS_AN_INDIVIDUAL_LICENSE: 'Every user account (on each workstation needs) an individual license',
   BUNDLE_AND_SAVE: 'Bundle and save',
+  BUNDLE_AND_SAVE_SHORT: 'Bundle',
   THIS_LIFETIME_THERE_IS_NO_NEED_FOR_YEARLY_UPDATES_SUPPORT_IS_FREE: 'This Lifetime there is no need for yearly updates, support is Free.',
   SELECT_UPGRADE_OR_LIFETIME: 'Select Upgrade or Lifetime',
+  SELECT_UPGRADE_OR_LIFETIME_SHORT: 'Select Upgrade',
   BACK: 'Back',
   NEXT: 'Next',
   INFO_TITLE: 'Info Title',
@@ -65,4 +70,7 @@ export default {
   PAYMENT_MAIN_TEXT_BOTTOM: 'Refund policy',
   VALIDATION_REQUIRED: 'Required',
   VALIDATION_EMAIL_INVALID: 'Invalid e-mail.',
+  PAY_LATER_BOLDED_TEXT: 'Pay Later',
+  PAY_LATER_MAIN_TEXT: 'Pay in {interestPaymentCount} interest-free payments of {currency}{amount} due every {weeksCount} week(s), starting today.',
+  PAY_LATER_BLUE_TEXT: 'How it works.'
 }
