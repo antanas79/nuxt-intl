@@ -17,7 +17,12 @@
             {{ $t(paymentSectionData.mainTextRefund) }}
           </p>
 
-          <NuxtLink to="/" class="text-caption link-underline">{{ $t(paymentSectionData.mainTextBottom) }}</NuxtLink>
+          <Link
+            :isExternal="!paymentSectionData.mainTextBottom.isExternal"
+            :link="paymentSectionData.mainTextBottom.link"
+            className="text-caption link-underline"
+            >{{ $t(paymentSectionData.mainTextBottom.name) }}</Link
+          >
         </v-col>
         <v-col xl="7" lg="7" md="12" sm="12" cols="12" order="4" order-xl="4" order-lg="4" order-md="4" order-sm="4" class="pt-0">
           <div class="svg-card-container d-flex">
@@ -43,8 +48,20 @@
         </v-col>
         <v-col xl="5" lg="5" md="12" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="2" order-sm="2">
           <div class="d-flex align-center justify-lg-end">
-            <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" moneyBackGuarantee :title="paymentSectionData.microsoftGoldIcon.title" />
-            <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" microsoftGold :title="paymentSectionData.moneyBacGuaranteekIcon.title" />
+            <Link
+              :isExternal="paymentSectionData.microsoftGoldIcon.isExternal"
+              :link="paymentSectionData.microsoftGoldIcon.link"
+              :title="$t(paymentSectionData.microsoftGoldIcon.title)"
+            >
+              <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" moneyBackGuarantee />
+            </Link>
+            <Link
+              :isExternal="paymentSectionData.moneyBacGuaranteekIcon.isExternal"
+              :link="paymentSectionData.moneyBacGuaranteekIcon.link"
+              :title="$t(paymentSectionData.moneyBacGuaranteekIcon.title)"
+            >
+              <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" microsoftGold />
+            </Link>
           </div>
         </v-col>
       </v-row>
@@ -61,7 +78,7 @@ export default {
         topCaption: 'PAYMENT_TOP_CAPTION',
         mainTextHeading: 'PAYMENT_MAIN_TEXT_HEADING',
         mainTextRefund: 'PAYMENT_MAIN_TEXT_REFUND',
-        mainTextBottom: 'PAYMENT_MAIN_TEXT_BOTTOM',
+        mainTextBottom: { isExternal: false, name: 'PAYMENT_MAIN_TEXT_BOTTOM', link: '/' },
         mainText: 'PAYMENT_MAIN_TEXT',
         cardsIcons: [
           { name: 'visa', title: 'title' },
@@ -75,8 +92,13 @@ export default {
           { name: 'pay-pal', title: 'title' },
           { name: 'pay-later', title: 'title' },
         ],
-        microsoftGoldIcon: { name: 'payment/microsoft-gold', title: 'title' },
-        moneyBacGuaranteekIcon: { name: 'payment/money-back-guarantee', title: 'title' },
+        microsoftGoldIcon: {
+          isExternal: true,
+          link: 'https://www.microsoft.com/en-US/solution-providers/home',
+          name: 'payment/microsoft-gold',
+          title: 'title',
+        },
+        moneyBacGuaranteekIcon: { isExternal: false, link: '/refund-policy', name: 'payment/money-back-guarantee', title: 'title' },
         moneyBackIcon: { name: 'payment/money-back', title: 'title' },
       }),
     },

@@ -62,4 +62,6 @@ export default {
   PAYMENT_MAIN_TEXT_REFUND: '** Les packs de produits ne sont pas remboursables',
   PAYMENT_MAIN_TEXT_BOTTOM: 'Politique de remboursement',
   BOTTOM_BAR: '<b>Payer plus tard</b>. Payez en 3 paiements sans intérêt de 10,32 $ toutes les 2 semaines, à partir d/"aujourd"hui.',
+  VALIDATION_REQUIRED: 'Obligatoire',
+  VALIDATION_EMAIL_INVALID: 'Email invalide.',
 }

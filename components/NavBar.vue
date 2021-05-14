@@ -32,9 +32,6 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <!-- <v-btn icon class="d-none">
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn> -->
 
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </div>

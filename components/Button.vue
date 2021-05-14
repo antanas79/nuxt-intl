@@ -1,12 +1,12 @@
 <template>
-  <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
+  <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink" :title="title">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
       <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </NuxtLink>
 
-  <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor">
+  <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor" :title="title">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
       ><v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
@@ -27,7 +27,6 @@
     >{{ $t(buttonText) }} <slot />
   </v-btn>
 </template>
-
 
 <script lang="ts">
 export default {
@@ -106,6 +105,10 @@ export default {
       required: false,
     },
     iconName: {
+      type: String,
+      required: false,
+    },
+    title: {
       type: String,
       required: false,
     },

@@ -5,7 +5,7 @@
         <div color="red lighten-2" class="flex flex-column" dark v-bind="attrs" v-on="on"><slot /></div>
       </template>
       <Card :cols="cols" :maxWidth="600">
-        <Notification></Notification>
+        <component :is="notificationName"></component>
       </Card>
     </v-dialog>
   </div>
@@ -27,6 +27,10 @@ export default {
       type: Number,
       required: true,
       default: 12,
+    },
+    notificationName: {
+      type: String,
+      required: true,
     },
   },
   methods: {

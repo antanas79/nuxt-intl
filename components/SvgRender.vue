@@ -152,4 +152,7 @@ export default {
   width: 130px;
   height: 50px;
 }
+::v-deep #pay-later-schema {
+  width: 220px;
+}
 </style>

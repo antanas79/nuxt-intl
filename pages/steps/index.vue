@@ -6,9 +6,9 @@
       </NuxtLink>
     </ul> -->
     <!-- <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">{{ locale.name }}LOCALE </NuxtLink> -->
-    <v-btn color="primary"> Button </v-btn>
+    <!--     <v-btn color="primary"> Button </v-btn>
     <v-btn color="my-custom-color"> My custom color </v-btn>
-    <v-btn color="next-custom-color" @click="swap"> Swap</v-btn>
+    <v-btn color="next-custom-color" @click="swap"> Swap</v-btn> -->
   </div>
 </template>
 <script>
