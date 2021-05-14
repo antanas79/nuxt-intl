@@ -13,8 +13,8 @@ export default {
   },
   computed: {
     dynamicIcon() {
-      console.log(this.icon)
-      return () => import(`./icons/${this.icon}.svg`)
+      const a = require(`~/assets/sprite/svg/${this.icon}.svg?raw`)
+      return a
     },
   },
 }

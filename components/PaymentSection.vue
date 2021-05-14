@@ -17,10 +17,12 @@
             {{ $t(paymentSectionData.mainTextRefund) }}
           </p>
 
-          <NuxtLink v-if="!paymentSectionData.mainTextBottom.isExternal" :to="paymentSectionData.mainTextBottom.link" class="text-caption link-underline">{{
-            $t(paymentSectionData.mainTextBottom.name)
-          }}</NuxtLink>
-          <a v-else :href="paymentSectionData.mainTextBottom.link" class="text-caption link-underline">{{ $t(paymentSectionData.mainTextBottom.name) }}</a>
+          <Link
+            :isExternal="!paymentSectionData.mainTextBottom.isExternal"
+            :link="paymentSectionData.mainTextBottom.link"
+            className="text-caption link-underline"
+            >{{ $t(paymentSectionData.mainTextBottom.name) }}</Link
+          >
         </v-col>
         <v-col xl="7" lg="7" md="12" sm="12" cols="12" order="4" order-xl="4" order-lg="4" order-md="4" order-sm="4" class="pt-0">
           <div class="svg-card-container d-flex">

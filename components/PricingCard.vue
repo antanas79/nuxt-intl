@@ -2,7 +2,7 @@
   <v-hover>
     <template #default="{ hover }">
       <v-card :class="`${!card.isPreSelected && (hover || isSelected) ? 'border-blue' : 'border-white'} ${cardClass} `">
-        <Dialog :maxWidth="600" :cols="12" :class="dialogClass">
+        <Dialog :maxWidth="600" :cols="12" :class="dialogClass" notificationName="Notification">
           <v-card-title class="mb-0 pa-1 d-flex flex-column" v-if="card.title" :class="titleClass">
             <v-system-bar
               :color="card.isLimitedTimeOffer ? 'red' : card.isRecommended ? 'green' : ''"

@@ -48,11 +48,13 @@ export default {
       src: '~/plugins/vuex-persist',
       mode: 'client',
     },
-    { src: '~/plugins/vuetify' }
+    { src: '~/plugins/vuetify' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    dirs: ['~/components', '~/components/notifications'],
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -105,6 +107,7 @@ export default {
     },
     theme: {
       themes: {
+        options: { customProperties: true },
         dark: {
           gray: {
             base: '#EDEDED',
@@ -124,12 +127,15 @@ export default {
           gray: {
             base: '#EDEDED',
             darken1: '#EFEFEF',
+            lighten5: 'F7F7F7',
           },
           red: {
+            background: '#EC1C24',
             base: '#EC1C24',
           },
           blue: {
             base: '#337DC1',
+            darken1: '#003086',
           },
           'my-custom-color': {
             base: '#7ed525',

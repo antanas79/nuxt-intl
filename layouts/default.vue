@@ -8,7 +8,21 @@
 
         <NavBar />
         <!-- TODO unhide this on mobile -->
-        <v-system-bar color="gray" height="40" class="justify-center">
+        <Dialog notificationName="PayLater" :cols="12" :maxWidth="300"
+          ><v-system-bar color="gray" height="40" class="justify-center">
+            <div class="d-flex align-start">
+              <div class="pay-later-icon pt-1">
+                <SvgRender name="pay-later" smallIcon />
+              </div>
+              <div>
+                <span class="text-caption mb-0 d-inline" v-html="$t('PAY_LATER_BAR')"></span>
+                <NuxtLink to="steps">{{ $t('PAY_LATER_BAR_LINK') }}</NuxtLink>
+              </div>
+            </div>
+          </v-system-bar>
+        </Dialog>
+
+        <!--         <v-system-bar color="gray" height="40" class="justify-center">
           <div class="d-flex align-start">
             <div class="pay-later-icon pt-1">
               <SvgRender name="pay-later" smallIcon />
@@ -18,7 +32,7 @@
               <NuxtLink to="steps">{{ $t('PAY_LATER_BAR_LINK') }}</NuxtLink>
             </div>
           </div>
-        </v-system-bar>
+        </v-system-bar> -->
 
         <v-scroll-x-transition :hide-on-leave="true">
           <Nuxt />

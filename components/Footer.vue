@@ -9,9 +9,8 @@
             :title="$t(footerData.teamLogo.title)"
             className="align-self-start"
           >
-            <SvgRender name="team-logo" class="team-logo" teamLogo />
-          </Link>
-
+            <SvgRender name="team-logo" class="team-logo" teamLogo
+          /></Link>
           <div class="pl-3">
             <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
           </div>
@@ -46,7 +45,6 @@
                   <v-icon class="green--text">mdi-check-circle</v-icon>
                 </template>
                 <template slot="append">
-                  <!--   <v-icon class="arrow-btn">mdi-arrow-right</v-icon> -->
                   <v-btn icon color="arrow-btn">
                     <v-icon>mdi-arrow-right</v-icon>
                   </v-btn>
@@ -63,7 +61,7 @@
               :key="'B' + index"
               :class="`${index === 1 && 'mx-2'}`"
               isText
-              isRounded
+              :isAnchor="item.isExternal"
               :isNuxtLink="!item.isExternal"
               :link="item.innerLink"
               :title="$t(item.title)"
@@ -82,13 +80,11 @@
           </p>
         </v-col>
       </v-row>
-      <DynamicIcon icon="team-logo" />
     </Layout>
   </div>
 </template>
 
 <script>
-import DynamicIcon from './DynamicIcon '
 export default {
   data() {
     return {
@@ -102,22 +98,9 @@ export default {
           return pattern.test(value) || this.$t(this.footerData.validation.emailInvalid)
         },
       },
-      /*       computed: {
-        rules() {
-          return {
-            required: (value) => !!value || 'this.$t(this.footerData.validation.required)',
-            email: (value) => {
-              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              return pattern.test(value) || 'this.$t(this.footerData.validation.emailInvalid)'
-            },
-          }
-        },
-      }, */
     }
   },
-  components: {
-    DynamicIcon,
-  },
+
   props: {
     footerData: {
       type: Object,

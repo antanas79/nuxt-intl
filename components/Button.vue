@@ -1,21 +1,12 @@
 <template>
-  <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink">
-    <v-btn
-      :disabled="isDisabled"
-      :text="isText"
-      :outlined="isOutlined"
-      :title="title"
-      :color="color"
-      :rounded="isRounded"
-      :small="isSmall"
-      :class="buttonClassName"
-    >
+  <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink" :title="title">
+    <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
       <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
     </v-btn>
   </NuxtLink>
 
-  <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor">
+  <a :class="anchorClassName" :disabled="isDisabled" :href="link" v-else-if="isAnchor" :title="title">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName"
       ><v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
@@ -104,10 +95,6 @@ export default {
       type: Boolean,
       required: false,
       default: true,
-    },
-    elevation: {
-      type: Number,
-      required: false,
     },
     eventName: {
       type: String,
