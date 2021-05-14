@@ -78,7 +78,8 @@ export default {
           if (this.currentStepSelectedCards.length === 1) {
             //prevent redirecting if fastly unselected card
             console.log(this.$route)
-            this.$router.push('../steps/' + this.nextStepLink)
+            // this.$router.push('../steps/' + this.nextStepLink)
+            this.$router.push({ path: '/steps/' + this.nextStepLink })
           }
         }, 500)
       }
