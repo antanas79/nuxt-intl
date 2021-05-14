@@ -7,26 +7,29 @@
           </span>
         </v-system-bar>
         <NavBar :isPricingPage="isPricingPage()" />
-        <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
-          <span class="text-caption mb-0 d-flex">
-            <SvgRender :name="bannersData.payLaterIconName" smallIcon />
-            <span class="font-weight-bold"
-              >{{ $t(bannersData.payLaterBoldedText) }}
-              <span class="font-weight-regular">
-                {{
-                  $t(bannersData.payLaterMainText, {
-                    interestPaymentCount: bannersData.interestPaymentCount,
-                    currency: bannersData.currency,
-                    amount: bannersData.amount,
-                    weeksCount: bannersData.weeksCount,
-                  })
-                }}
-              </span>
 
-              <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
-            >
-          </span>
-        </v-system-bar>
+        <Dialog notificationName="PayLater">
+          <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
+            <span class="text-caption mb-0 d-flex">
+              <SvgRender :name="bannersData.payLaterIconName" smallIcon />
+              <span class="font-weight-bold"
+                >{{ $t(bannersData.payLaterBoldedText) }}
+                <span class="font-weight-regular">
+                  {{
+                    $t(bannersData.payLaterMainText, {
+                      interestPaymentCount: bannersData.interestPaymentCount,
+                      currency: bannersData.currency,
+                      amount: bannersData.amount,
+                      weeksCount: bannersData.weeksCount,
+                    })
+                  }}
+                </span>
+
+                <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
+              >
+            </span>
+          </v-system-bar>
+        </Dialog>
 
         <v-scroll-x-transition :hide-on-leave="true">
           <Nuxt />
@@ -61,25 +64,18 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  async asyncData({ context, store, params, payload }) {
-    // this.payloadData = payload
-    // this.contextData = context
-    // this.storeData = store
+  async fetch() {
+    this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+    console.log(this.posts)
   },
   computed: mapState({
-    // cards: (state) => state.cards.cards,
-    // currentStepCards: (state) => state.cards.currentStepCards,
     currentStepSelectedCards: (state) => state.cards.currentStepSelectedCards,
-    // selectedCards: (state) => state.cards.selectedCards,
-    // steps: (state) => state.steps.steps,
     nextStepLink: (state) => state.steps.nextStepLink,
     previousStepLink: (state) => state.steps.previousStepLink,
     currentSteps: (state) => state.steps.currentSteps,
     currentStep: (state) => state.steps.currentStep,
     currentStepNumber: (state) => state.steps.currentStepNumber,
-    // currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
-    // selectedCurrency: (state) => state.currencies.selectedCurrency,
   }),
   data: function () {
     return {
