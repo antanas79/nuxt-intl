@@ -77,7 +77,8 @@ export default {
         setTimeout(() => {
           if (this.currentStepSelectedCards.length === 1) {
             //prevent redirecting if fastly unselected card
-            this.$router.push(this.nextStepLink)
+            console.log(this.$route)
+            this.$router.push('/steps/' + this.nextStepLink)
           }
         }, 500)
       }
