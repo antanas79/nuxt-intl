@@ -115,12 +115,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep a.disabled,
-button.disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
 button ::v-deep .v-icon {
   font-size: 16px;
   padding: 5px;

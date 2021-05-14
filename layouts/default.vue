@@ -246,6 +246,12 @@ b {
   display: inline;
 }
 
+a.disabled,
+button.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 @media all and (max-width: 767px) {
   .stepper {
     &--sticky {
