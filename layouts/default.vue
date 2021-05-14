@@ -6,7 +6,7 @@
           <span class="mb-0" v-html="$t(bannersData.topBannerText, { currency: bannersData.topBannerTextCurrency, amount: bannersData.topBannerTextAmount })">
           </span>
         </v-system-bar>
-        <NavBar />
+        <NavBar :isPricingPage="isPricingPage()" />
         <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
           <span class="text-caption mb-0 d-flex">
             <SvgRender :name="bannersData.payLaterIconName" smallIcon />
@@ -32,6 +32,24 @@
           <Nuxt />
         </v-scroll-x-transition>
 
+        <div ref="stepper" class="stepper" :class="{ 'stepper--sticky': isStepperSticky }">
+          <v-divider></v-divider>
+          <Stepper
+            v-if="isPricingPage() && isLoaded"
+            :currentStep="currentStep"
+            :currentStepNumber="currentStepNumber"
+            :currentStepMinCards="currentStepMinCards"
+            :currentStepSelectedCards="currentStepSelectedCards"
+            :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
+            :previousStepLink="previousStepLink"
+            :nextStepLink="nextStepLink"
+            :currentSteps="currentSteps"
+            :isLastStep="isLastStep()"
+            :backButton="'BACK'"
+            :nextButton="'NEXT'"
+          />
+        </div>
+
         <v-divider></v-divider>
         <PaymentSection />
         <Footer />
@@ -41,20 +59,57 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   async asyncData({ context, store, params, payload }) {
     // this.payloadData = payload
     // this.contextData = context
     // this.storeData = store
   },
-  data: () => ({
-    // payloadData: null,
-    // contextData: null,
-    // storeData: null,
+  computed: mapState({
+    // cards: (state) => state.cards.cards,
+    // currentStepCards: (state) => state.cards.currentStepCards,
+    currentStepSelectedCards: (state) => state.cards.currentStepSelectedCards,
+    // selectedCards: (state) => state.cards.selectedCards,
+    // steps: (state) => state.steps.steps,
+    nextStepLink: (state) => state.steps.nextStepLink,
+    previousStepLink: (state) => state.steps.previousStepLink,
+    currentSteps: (state) => state.steps.currentSteps,
+    currentStep: (state) => state.steps.currentStep,
+    currentStepNumber: (state) => state.steps.currentStepNumber,
+    // currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
+    currentStepMinCards: (state) => state.steps.currentStepMinCards,
+    // selectedCurrency: (state) => state.currencies.selectedCurrency,
   }),
+  data: function () {
+    return {
+      isLoaded: false,
+      scrollY: null,
+      headerBottom: 0,
+      isStepperSticky: true,
+    }
+  },
   watch: {
     group() {
       this.drawer = false
+    },
+    scrollY(newValue) {
+      if (newValue - 120 > this.stepperTop) {
+        this.isStepperSticky = false
+      } else {
+        this.isStepperSticky = true
+      }
+    },
+  },
+  methods: {
+    isPricingPage() {
+      return this.$route.path.includes('/steps/')
+    },
+    isLastStep() {
+      return this.currentStep == this.currentSteps[this.currentSteps.length - 1]?.link
+    },
+    isStepperNextButtonEnabled() {
+      return this.currentStepSelectedCards.length >= this.currentStepMinCards
     },
   },
   props: {
@@ -74,6 +129,22 @@ export default {
         weeksCount: 2,
       }),
     },
+  },
+  mounted() {
+    if (process.browser) {
+      window.addEventListener('load', () => {
+        window.addEventListener('scroll', () => {
+          this.scrollY = Math.round(window.scrollY)
+        })
+        this.stepperTop = this.$refs.stepper?.getBoundingClientRect().top
+
+        console.log(this.stepperTop)
+        console.log(this.scrollY)
+      })
+      setTimeout(() => {
+        this.isLoaded = true
+      }, 0)
+    }
   },
 }
 </script>
@@ -173,5 +244,17 @@ b {
 
 ::v-deep .small-icon {
   display: inline;
+}
+
+@media all and (max-width: 767px) {
+  .stepper {
+    &--sticky {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      z-index: 100;
+    }
+  }
 }
 </style>

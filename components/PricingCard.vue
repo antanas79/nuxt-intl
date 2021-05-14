@@ -38,8 +38,20 @@
           <v-card-text class="text-subtitle-1 pt-3 pb-0">
             <div class="d-flex flex-wrap">
               <div class="current-price red--text col-5 pa-0 text-left">
-                <span class="cents text-h4 vertical-align-top"> $39</span>
-                <span class="cents text-h6">95</span>
+                <i18n-n :value="39.95" format="currency" :locale="selectedCurrency.name">
+                  <template v-slot:currency="slotProps">
+                    <span class="text-h6 vertical-align-top">{{ slotProps.currency }}</span>
+                  </template>
+                  <template v-slot:integer="slotProps">
+                    <span class="text-h4">{{ slotProps.integer }}</span>
+                  </template>
+                  <template v-slot:group="slotProps">
+                    <span class="group">{{ slotProps.group }}</span>
+                  </template>
+                  <template v-slot:fraction="slotProps">
+                    <span class="text-h6 vertical-align-top">{{ slotProps.fraction }}</span>
+                  </template>
+                </i18n-n>
               </div>
               <Button
                 :isDisabled="card.isPreSelected"
@@ -59,7 +71,7 @@
                       <br />
                     </template>
                     <template v-slot:paymentAmount>
-                      <span class="old-price text-underlined red--text">$13</span>
+                      <span class="old-price text-underlined red--text">{{ $n(13, 'currency', selectedCurrency.name) }}</span>
                     </template>
                     <template v-slot:numberOfPayments>
                       <a class="old-price no-text-decoration blue--text" href="" target="_blank" v-on:click.stop="">
@@ -73,7 +85,7 @@
             <div class="min-height-28px">
               <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100" v-if="card.oldPriceText">
                 <template v-slot:oldPrice>
-                  <span class="old-price text-underlined">$49.95</span>
+                  <span class="old-price text-underlined">{{ $n(49.95, 'currency', selectedCurrency.name) }}</span>
                 </template>
                 <template v-slot:percentageDiscount>
                   <span class="old-price-percentage-discount">20</span>
@@ -182,7 +194,22 @@ export default Vue.extend({
       type: String,
       required: false,
     },
+    selectedCurrency: {
+      type: Object,
+      required: true,
+    },
+    slotProps: {
+      type: Object,
+      required: false,
+      default: () => ({
+        currency: 'EUR',
+        integer: 100,
+        group: 234,
+        fraction: '00',
+      }),
+    },
   },
+
   methods: {
     onPricingCardToggled(event) {
       this.$emit('pricing-card-toggled', this.payload)

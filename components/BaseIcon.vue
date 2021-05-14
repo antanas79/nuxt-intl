@@ -1,5 +1,5 @@
 <template>
-  <Component :is="require(`@/assets/sprite/svg/${name}.svg`).default" class="BaseIcon" v-bind="$attrs" @v-on="$listeners" />
+  <component v-if="name" :is="src" class="BaseIcon" v-bind="$attrs" @v-on="$listeners" />
 </template>
 
 <script>
@@ -14,6 +14,11 @@ export default {
     name: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    src() {
+      return require(`@/assets/sprite/svg/${this.name}.svg`)
     },
   },
 }

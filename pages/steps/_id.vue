@@ -1,6 +1,6 @@
 <template>
   <div class="lighten-5 col-12 pa-0">
-    <div class="steps-cards-container">
+    <div class="cards-container">
       <div v-if="isLoaded">
         <div class="background-grey">
           <Layout small>
@@ -20,6 +20,7 @@
                       iconName="information"
                       iconColor="blue"
                       iconClass="ml-3"
+                      :selectedCurrency="selectedCurrency"
                       :payload="{
                         cardId: card.cardId,
                         currentStep: currentStep,
@@ -41,7 +42,7 @@
           </Layout>
         </div>
 
-        <div class="steps">
+        <!-- <div class="steps">
           <template>
             <v-divider></v-divider>
             <Stepper
@@ -58,7 +59,7 @@
               :nextButton="'NEXT'"
             />
           </template>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -84,6 +85,7 @@ export default {
     currentStepNumber: (state) => state.steps.currentStepNumber,
     currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
+    selectedCurrency: (state) => state.currencies.selectedCurrency,
   }),
   methods: {
     onCardToggled(event) {
@@ -182,7 +184,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.steps-cards-container {
+.cards-container {
   min-height: 360px;
 }
 
@@ -243,8 +245,8 @@ export default {
     width: 100%;
     overflow-x: auto;
   }
-  .steps-cards-container {
-    min-height: 560px;
+  .cards-container {
+    min-height: 475px;
   }
 }
 </style>
