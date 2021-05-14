@@ -53,9 +53,6 @@
             </v-form>
           </div>
           <div class="d-flex justify-md-end justify-start align-center pb-0 pb-lg-10">
-            <!-- <v-btn v-for="(item, index) in footerData.buttons" :key="'B' + index" :class="`${index === 1 && 'mx-2'}`" text elevation rounded
-              ><NuxtLink :to="item.innerLink" :title="$t(item.title)" class="black--text">{{ $t(item.name) }}</NuxtLink>
-            </v-btn> -->
             <Button
               v-for="(item, index) in footerData.buttons"
               :key="'B' + index"
