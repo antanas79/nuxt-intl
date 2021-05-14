@@ -41,25 +41,6 @@
             </div>
           </Layout>
         </div>
-
-        <!-- <div class="steps">
-          <template>
-            <v-divider></v-divider>
-            <Stepper
-              :currentStep="currentStep"
-              :currentStepNumber="currentStepNumber"
-              :currentStepMinCards="currentStepMinCards"
-              :currentStepSelectedCards="currentStepSelectedCards"
-              :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
-              :previousStepLink="previousStepLink"
-              :nextStepLink="nextStepLink"
-              :currentSteps="currentSteps"
-              :isLastStep="isLastStep()"
-              :backButton="'BACK'"
-              :nextButton="'NEXT'"
-            />
-          </template>
-        </div> -->
       </div>
     </div>
   </div>
@@ -134,9 +115,9 @@ export default {
     isLastStep() {
       return this.currentStep == this.currentSteps[this.currentSteps.length - 1].link
     },
-    isStepperNextButtonEnabled() {
-      return this.currentStepSelectedCards.length >= this.currentStepMinCards
-    },
+    // isStepperNextButtonEnabled() {
+    //   return this.currentStepSelectedCards.length >= this.currentStepMinCards
+    // },
   },
   mounted() {
     if (process.browser) {
