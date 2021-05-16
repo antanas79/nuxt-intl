@@ -35,6 +35,7 @@
                       :key="card.cardId"
                     >
                     </PricingCard>
+                    payload is:{{ payload }}
                   </div>
                 </div>
               </div>
@@ -48,8 +49,13 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  async asyncData({ params, error, payload }) {
+    if (payload) return { payload: payload }
+    else return console.log('payload error')
+  },
   data: function () {
     return {
+      payload: null,
       isLoaded: false,
     }
   },

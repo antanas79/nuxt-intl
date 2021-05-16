@@ -183,7 +183,7 @@ export default {
               for (let j = 0; j < locales.length; j++) {
                 routes.push({
                   route: locales[j] + '/steps/' + response.items[i].fields.link,
-                  // payload: response.items[i].fields
+                  payload: response.items[i].fields
                 })
               }
             }
