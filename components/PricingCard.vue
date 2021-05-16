@@ -26,8 +26,8 @@
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
-          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
         <v-card-actions
@@ -35,7 +35,7 @@
           @click="onPricingCardToggled"
           :class="card.isPreSelected ? 'no-pointer-events' : ''"
         >
-          <v-card-text class="text-subtitle-1 pt-3 pb-0">
+          <v-card-text class="text-subtitle-1 pt-0 pt-md-3 pb-0">
             <div class="d-flex flex-wrap">
               <div class="current-price red--text col-5 pa-0 text-left">
                 <i18n-n :value="39.95" format="currency" :locale="selectedCurrency.name">
@@ -128,6 +128,7 @@ export default Vue.extend({
     dialogClass: {
       type: String,
       required: false,
+      default: 'upper-part',
     },
     showTitle: {
       type: Boolean,
@@ -235,22 +236,42 @@ export default Vue.extend({
 
 @media all and (min-width: 0px) and (max-width: 400px) {
   .v-card {
-    height: 176px;
     width: 290px;
   }
 }
 
 @media all and (min-width: 400px) and (max-width: 767px) {
   .v-card {
-    height: 176px;
     width: 353px;
+  }
+}
+@media all and (max-width: 767px) {
+  .v-card {
+    .v-card__title {
+      min-height: 84px;
+    }
+    .v-card__actions {
+      min-height: 88px;
+    }
   }
 }
 @media all and (min-width: 768px) {
   .v-card {
     width: 308px;
     max-width: 308px;
-    height: 362px;
+    min-height: 362px;
+    .upper-part {
+      min-height: calc(100% - 144px);
+    }
+    .paragraph-1 {
+      min-height: 64px;
+    }
+    .paragraph-2 {
+      min-height: 84px;
+    }
+    .v-card__actions {
+      min-height: 144px;
+    }
   }
 }
 </style>
