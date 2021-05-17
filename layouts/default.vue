@@ -32,7 +32,9 @@
         </Dialog>
 
         <v-scroll-x-transition :hide-on-leave="true">
-          <Nuxt />
+          <div class="main-content">
+            <Nuxt />
+          </div>
         </v-scroll-x-transition>
 
         <div ref="stepper" class="stepper" :class="{ 'stepper--sticky': isStepperSticky }">
@@ -112,7 +114,6 @@ export default {
     bannersData: {
       default: () => ({
         topBannerText: 'TOP_BANNER',
-        // topBannerTextDescription: 'TOP_BANNER_DESCRIPTION',
         topBannerTextCurrency: '$',
         topBannerTextAmount: 30,
         payLaterBoldedText: 'PAY_LATER_BOLDED_TEXT',
@@ -128,14 +129,15 @@ export default {
   },
   mounted() {
     if (process.browser) {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start()
+        setTimeout(() => this.$nuxt.$loading.finish(), 500)
+      })
       window.addEventListener('load', () => {
         window.addEventListener('scroll', () => {
           this.scrollY = Math.round(window.scrollY)
         })
         this.stepperTop = this.$refs.stepper?.getBoundingClientRect().top
-
-        console.log(this.stepperTop)
-        console.log(this.scrollY)
       })
       setTimeout(() => {
         this.isLoaded = true
@@ -249,6 +251,9 @@ button.disabled {
 }
 
 @media all and (max-width: 767px) {
+  .main-content {
+    min-height: 360px;
+  }
   .stepper {
     &--sticky {
       position: fixed;
@@ -257,6 +262,12 @@ button.disabled {
       background: white;
       z-index: 100;
     }
+  }
+}
+
+@media all and (min-width: 768px) {
+  .main-content {
+    min-height: 506px;
   }
 }
 </style>
