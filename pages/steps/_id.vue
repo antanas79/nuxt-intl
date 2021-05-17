@@ -37,7 +37,8 @@
                     >
                     </PricingCard>
                   </div>
-                  <div>
+                  <!-- <div>
+                    {{model}}
                     <v-sheet class="mx-auto" elevation="8" max-width="800">
                       <v-slide-group v-model="model" class="pa-4" multiple show-arrows>
                         <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
@@ -51,7 +52,7 @@
                         </v-slide-item>
                       </v-slide-group>
                     </v-sheet>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -73,7 +74,7 @@ export default {
     return {
       payload: null,
       isLoaded: false,
-      model: [],
+      // model: [],
     }
   },
   computed: mapState({
