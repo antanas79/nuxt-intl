@@ -51,6 +51,7 @@ import { mapState } from 'vuex'
 export default {
   async asyncData({ params, error, payload }) {
     if (payload) return { payload: payload }
+    //else make api call to get data from developing locally
     else return console.log('payload error')
   },
   data: function () {
@@ -211,17 +212,6 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (max-width: 767px) {
-  // .steps {
-  //   position: fixed;
-  //   min-height: 61px;
-  //   z-index: 100;
-  //   bottom: 0;
-  //   width: 100%;
-  //   background: white;
-  // }
-}
-
 @media all and (min-width: 768px) {
   .row.no-gutters {
     flex-wrap: nowrap;
@@ -229,7 +219,7 @@ export default {
     overflow-x: auto;
   }
   .cards-container {
-    min-height: 475px;
+    min-height: 485px;
   }
 }
 </style>
