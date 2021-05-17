@@ -93,7 +93,7 @@
               </i18n>
             </div>
           </v-card-text>
-          <v-card-text class="text-subtitle-1 pt-3 pb-0 d-none d-md-flex justify-center">
+          <v-card-text class="text-subtitle-1 py-3 d-none d-md-flex justify-center">
             <Button
               :isDisabled="card.isPreSelected"
               color="primary"
@@ -259,9 +259,9 @@ export default Vue.extend({
   .v-card {
     width: 308px;
     max-width: 308px;
-    min-height: 362px;
+    height: 362px;
     .upper-part {
-      min-height: calc(100% - 144px);
+      height: calc(100% - 144px);
     }
     .paragraph-1 {
       min-height: 64px;
