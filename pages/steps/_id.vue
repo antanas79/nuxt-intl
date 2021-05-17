@@ -1,8 +1,8 @@
 <template>
   <div class="lighten-5 col-12 pa-0">
-    <div class="cards-container">
+    <div class="cards-container background-grey">
       <div v-if="isLoaded">
-        <div class="background-grey">
+        <div>
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
               <div class="mb-3 upper d-flex flex-column align-items-center">
