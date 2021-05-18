@@ -259,5 +259,8 @@ export default {
   #microsoft-gold {
     width: 130px;
   }
+  .payment-margin .payment-card {
+    width: 54px;
+  }
 }
 </style>

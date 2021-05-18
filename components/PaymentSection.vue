@@ -47,7 +47,7 @@
           </div>
         </v-col>
         <v-col xl="5" lg="5" md="12" sm="12" cols="12" order="2" order-xl="3" order-lg="3" order-md="2" order-sm="2">
-          <div class="d-flex align-center justify-lg-end">
+          <div class="d-flex align-center justify-center justify-sm-start justify-lg-end">
             <Link
               :isExternal="paymentSectionData.microsoftGoldIcon.isExternal"
               :link="paymentSectionData.microsoftGoldIcon.link"

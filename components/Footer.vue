@@ -55,7 +55,6 @@
             <Button
               v-for="(item, index) in footerData.buttons"
               :key="'B' + index"
-              :class="`${index === 1 && 'mx-2'}`"
               isText
               :isAnchor="item.isExternal"
               :isNuxtLink="!item.isExternal"
