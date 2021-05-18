@@ -148,7 +148,14 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg'],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg', "@nuxtjs/sitemap"],
+  sitemap: {
+    hostname: "https://antanas79.github.io/nuxt-intl/",
+    // routes: routesData,
+    path: "/sitemap.xml",
+    gzip: true,
+    generate: false
+  },
   markdownit: {
     injected: true,
   },

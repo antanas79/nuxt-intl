@@ -19,6 +19,7 @@
     :color="color"
     :rounded="isRounded"
     :small="isSmall"
+    :title="title"
     :class="buttonClassName"
     @click="eventName ? $emit(eventName, payload) : ''"
     v-else-if="isButton"

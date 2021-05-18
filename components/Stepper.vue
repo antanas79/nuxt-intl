@@ -3,7 +3,14 @@
     <div class="pa-0" v-if="currentSteps && currentStep">
       <v-row no-gutters>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
-          <Button v-if="previousStepLink" :link="`/steps/${previousStepLink}`" :isNuxtLink="true" :buttonText="backButton" :isSmall="true"></Button>
+          <Button
+            :title="backButton"
+            v-if="previousStepLink"
+            :link="`/steps/${previousStepLink}`"
+            :isNuxtLink="true"
+            :buttonText="backButton"
+            :isSmall="true"
+          ></Button>
         </v-col>
         <v-col cols="2" sm="6" md="8" class="d-flex flex-column justify-center">
           <v-stepper alt-labels>
@@ -36,6 +43,7 @@
         </v-col>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
           <Button
+            :title="nextButton"
             :isNuxtLink="isLastStep ? false : true"
             :isAnchor="isLastStep ? true : false"
             :anchorClassName="isStepperNextButtonEnabled ? 'white--text' : 'black--text disabled'"

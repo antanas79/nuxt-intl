@@ -4,7 +4,7 @@
       <Layout>
         <div class="col-12 pa-0 d-flex">
           <a class="d-flex align-center" :href="navBarData.project.link">
-            <SvgRender :name="navBarData.project.logoName" class="d-none d-sm-flex align-self-center" />
+            <SvgRender :name="navBarData.project.logoSrc" class="d-none d-sm-flex align-self-center" />
             <div :class="`d-sm-none font-weight-bold text-h5 ${navBarData.project.nameColor}--text`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
@@ -105,7 +105,7 @@ export default {
       type: Object,
       default: () => ({
         project: {
-          logoName: 'sync2',
+          logoSrc: 'sync2',
           name: 'Sync2',
           nameColor: 'primary',
           link: 'https://www.sync2.com',
