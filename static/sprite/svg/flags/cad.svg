@@ -1,0 +1,17 @@
+<svg version="1.1" id="cad" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g>
+	<g>
+		<path style="fill:none;" d="M0,0h24v24H0V0z"/>
+	</g>
+	<g>
+		<circle style="fill:#F0F0F0;" cx="12" cy="12" r="8.3"/>
+		<g>
+			<path style="fill:#D80027;" d="M20.3,12c0-3.3-1.9-6.2-4.7-7.5v15C18.4,18.2,20.3,15.3,20.3,12z"/>
+			<path style="fill:#D80027;" d="M3.7,12c0,3.3,1.9,6.2,4.7,7.5v-15C5.6,5.8,3.7,8.7,3.7,12z"/>
+			<polygon style="fill:#D80027;" points="13.4,13.1 14.9,12.4 14.2,12 14.2,11.3 12.7,12 13.4,10.6 12.7,10.6 12,9.5 11.3,10.6 
+				10.6,10.6 11.3,12 9.8,11.3 9.8,12 9.1,12.4 10.6,13.1 10.2,13.8 11.6,13.8 11.6,14.9 12.4,14.9 12.4,13.8 13.8,13.8 			"/>
+		</g>
+	</g>
+</g>
+</svg>

@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     src() {
-      const src = require(`~/assets/sprite/svg/${this.name}.svg?raw`)
+      const src = require(`~/static/sprite/svg/${this.name}.svg?raw`)
       return src
     },
   },
