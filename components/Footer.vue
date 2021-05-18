@@ -3,13 +3,8 @@
     <Layout>
       <v-row class="footer-content">
         <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="col-logo-container d-flex">
-          <Link
-            :isExternal="footerData.teamLogo.isExternal"
-            :link="footerData.teamLogo.link"
-            :title="$t(footerData.teamLogo.title)"
-            className="align-self-start"
-          >
-            <SvgRender name="team-logo" class="team-logo" teamLogo
+          <Link :isExternal="footerData.teamLogo.isExternal" :link="footerData.teamLogo.link" :title="footerData.teamLogo.title" className="align-self-start">
+            <SvgRender name="team-logo" className="team-logo"
           /></Link>
           <div class="pl-3">
             <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
@@ -26,6 +21,7 @@
         <v-col xl="4" lg="4" md="12" sm="12" cols="12" class="d-flex flex-lg-column flex-md-row flex-column justify-space-between">
           <div class="input-arrow">
             <p class="label mb-2 text-no-wrap" v-html="$t(footerData.footerInputLabel)"></p>
+
             <v-form v-model="isFormValid" class="email-form">
               <v-text-field
                 :placeholder="$t(footerData.footerInputPlaceholder)"
@@ -36,8 +32,11 @@
                 solo
                 outlined
                 :success="!!email"
-                :rules="[rules.required, rules.email]"
+                :rules="rules"
               >
+                <template #message="{ message }">
+                  {{ $t(message) }}
+                </template>
                 <template v-if="!isFormValid && !!email" slot="append">
                   <v-icon class="red--text">mdi-alert-circle </v-icon>
                 </template>
@@ -52,7 +51,7 @@
               </v-text-field>
             </v-form>
           </div>
-          <div class="d-flex justify-md-end justify-start align-center pb-0 pb-lg-10">
+          <div class="d-flex justify-md-end justify-start align-center pb-0 pb-lg-10 flex-wrap">
             <Button
               v-for="(item, index) in footerData.buttons"
               :key="'B' + index"
@@ -88,16 +87,8 @@ export default {
       isFormValid: false,
       email: '',
       date: () => new Date().getFullYear(),
-      rules: {
-        required: (value) => !!value || this.$t(this.footerData.validation.required),
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || this.$t(this.footerData.validation.emailInvalid)
-        },
-      },
     }
   },
-
   props: {
     footerData: {
       type: Object,
@@ -177,6 +168,18 @@ export default {
   computed: {
     show() {
       console.log(this.email)
+    },
+    rules() {
+      return this.$i18n.locale
+        ? [
+            (value) => !!value || this.footerData.validation.required,
+            (value) => {
+              const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              console.log('PATERNAS')
+              return pattern.test(value) || this.footerData.validation.emailInvalid
+            },
+          ]
+        : []
     },
   },
 }

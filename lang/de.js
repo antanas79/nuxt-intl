@@ -64,4 +64,6 @@ export default {
   BOTTOM_BAR: '<b>Später bezahlen</b>. Zahlen Sie in 3 zinslosen Raten von $10,32, die alle 2 Wochen fällig werden, beginnend heute.',
   VALIDATION_REQUIRED: 'Erforderlich',
   VALIDATION_EMAIL_INVALID: 'Ungültige e-mail.',
+  ICON_MICROSOFT_GOLD_CERTIFIED_TITLE: 'Microsoft Gold Certified Partner',
+  ICON_MONEY_BACK_GUARANTEE_TITLE: 'Geld-zurück-Garantie für die Zufriedenheit',
 }

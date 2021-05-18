@@ -1,17 +1,15 @@
 <template>
   <div
     v-if="name"
-    :class="{
-      'payment-cards': payment,
-      'current-flag': flag,
-      'small-icon': smallIcon,
-      'team-logo': teamLogo,
-      'money-back': moneyBack,
-      'microsoft-gold ': moneyBackGuarantee,
-      'money-back-guarantee ml-10': microsoftGold,
-    }"
+    :class="[
+      {
+        'current-flag': flag,
+        'small-icon': smallIcon,
+      },
+      className,
+    ]"
     v-html="src"
-    :title="title"
+    :title="$t(title)"
   ></div>
 </template>
 <script>
@@ -21,10 +19,6 @@ export default {
       type: String,
       required: true,
     },
-    payment: {
-      type: Boolean,
-      required: false,
-    },
     flag: {
       type: Boolean,
       required: false,
@@ -33,23 +27,11 @@ export default {
       type: Boolean,
       required: false,
     },
-    teamLogo: {
-      type: Boolean,
-      required: false,
-    },
-    moneyBack: {
-      type: Boolean,
-      required: false,
-    },
-    moneyBackGuarantee: {
-      type: Boolean,
-      required: false,
-    },
-    microsoftGold: {
-      type: Boolean,
-      required: false,
-    },
     title: {
+      type: String,
+      required: false,
+    },
+    className: {
       type: String,
       required: false,
     },
@@ -62,13 +44,27 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
-.money-back {
+<style lang="scss">
+.svg-gray {
+  fill: #8c8c8c;
+}
+.svg-light-gray {
+  fill: #f6f6f6;
+}
+.svg-light-gray-overlaps {
+  fill: #aaaaaa;
+}
+.svg-dark-gray {
+  fill: #4f4f4f;
+}
+.svg-white {
+  fill: #ffff;
+}
+#money-back {
   width: 30px;
   height: 40px;
 }
-
-.team-logo ::v-deep {
+#team-logo {
   width: 100px;
   height: 120px;
   fill: #969696;
@@ -84,38 +80,143 @@ export default {
   .red {
     transition: fill 0.1s linear 0.3s;
   }
-  :hover .blue {
+  &:hover .blue {
     fill: #8bb8e2;
   }
-  :hover .green {
+  &:hover .green {
     fill: #54b846;
   }
-  :hover .red {
+  &:hover .red {
     fill: #ee6c4a;
   }
-  :hover .yellow {
+  &:hover .yellow {
     fill: #ffd938;
   }
 }
-
-.payment-cards ::v-deep {
-  height: 35px;
-  width: 60px;
+.payment-margin {
   margin: 0 2px;
   &:first-child {
     margin-left: 0;
   }
+  .payment-card {
+    height: 35px;
+    width: 60px;
+  }
+  #visa {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .blue {
+      fill: #265697;
+    }
+    &:hover .orange {
+      fill: #d97b16;
+    }
+  }
+  #american-express {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .blue {
+      fill: #016fd0;
+    }
+  }
+  #master-card {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .red {
+      fill: #eb001b;
+    }
+    &:hover .red-orange-overlaps {
+      fill: #ff5f00;
+    }
+    &:hover .orange {
+      fill: #f79e1b;
+    }
+  }
+  #discover-network {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .orange {
+      fill: #d97b16;
+    }
+  }
+  #wire-transfer {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .light-blue {
+      fill: #00afd8;
+    }
+    &:hover .blue {
+      fill: #006e90;
+    }
+    &:hover .green {
+      fill: #d97b16;
+    }
+  }
+  #purchase-order {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .blue {
+      fill: #3d5aa2;
+    }
+  }
+  #money-order {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .green {
+      fill: #72a551;
+    }
+  }
+  #check-card {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .blue {
+      fill: #3d5aa2;
+    }
+  }
+  #pay-pal {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .light-blue {
+      fill: #107db0;
+    }
+    &:hover .dark-blue {
+      fill: #1b557d;
+    }
+  }
+  #pay-later {
+    path {
+      transition: fill 0.15s ease-in-out;
+    }
+    &:hover .blue {
+      fill: #3d5aa2;
+    }
+    &:hover .green {
+      fill: #72a551;
+    }
+  }
 }
-.money-back-guarantee ::v-deep {
+#money-back-guarantee {
   height: 120px;
   width: 134px;
   fill: #969696;
-  transition: fill 0.15s ease-in-out;
-  :hover.white {
-    fill: #ffff;
+  path {
+    transition: fill 0.15s ease-in-out;
+  }
+  &:hover .inner {
+    fill: #969696;
+    opacity: 0.8;
   }
 }
-.microsoft-gold ::v-deep {
+#microsoft-gold {
   height: 70px;
   width: 150px;
   fill: #969696;
@@ -125,10 +226,10 @@ export default {
   .black {
     transition: fill 0.15s ease-in-out;
   }
-  :hover .gold {
+  &:hover .gold {
     fill: #dac061;
   }
-  :hover .black {
+  &:hover .black {
     fill: #000;
   }
 }
@@ -136,7 +237,7 @@ export default {
   height: 35px;
   width: 35px;
 }
-.small-icon ::v-deep {
+.small-icon {
   display: flex;
 
   svg {
@@ -147,12 +248,16 @@ export default {
     min-height: 15px;
   }
 }
-
-.company-logo {
-  width: 130px;
-  height: 50px;
-}
-::v-deep #pay-later-schema {
+#pay-later-schema {
   width: 220px;
+}
+
+@media (max-width: 360px) {
+  #money-back-guarantee {
+    width: 110px;
+  }
+  #microsoft-gold {
+    width: 130px;
+  }
 }
 </style>

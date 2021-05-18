@@ -64,4 +64,6 @@ export default {
   BOTTOM_BAR: '<b>Payer plus tard</b>. Payez en 3 paiements sans intérêt de 10,32 $ toutes les 2 semaines, à partir d/"aujourd"hui.',
   VALIDATION_REQUIRED: 'Obligatoire',
   VALIDATION_EMAIL_INVALID: 'Email invalide.',
+  ICON_MICROSOFT_GOLD_CERTIFIED_TITLE: 'Partenaire certifié Gold de Microsoft',
+  ICON_MONEY_BACK_GUARANTEE_TITLE: 'Garantie de satisfaction de remboursement',
 }
