@@ -154,7 +154,6 @@ export default {
     },
   },
   mounted() {
-    debugger
     if (process.browser) {
       setTimeout(() => {
         //set selected cards from query ids
