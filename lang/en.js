@@ -72,5 +72,7 @@ export default {
   VALIDATION_EMAIL_INVALID: 'Invalid e-mail.',
   PAY_LATER_BOLDED_TEXT: 'Pay Later',
   PAY_LATER_MAIN_TEXT: 'Pay in {interestPaymentCount} interest-free payments of {currency}{amount} due every {weeksCount} week(s), starting today.',
-  PAY_LATER_BLUE_TEXT: 'How it works.'
+  PAY_LATER_BLUE_TEXT: 'How it works.',
+  ICON_MICROSOFT_GOLD_CERTIFIED_TITLE: 'Microsoft Gold Certified Partner',
+  ICON_MONEY_BACK_GUARANTEE_TITLE: 'Money Back Satisfaction guarantee',
 }

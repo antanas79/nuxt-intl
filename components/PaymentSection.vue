@@ -7,7 +7,7 @@
         </v-col>
         <v-col xl="7" lg="7" md="12" sm="12" cols="12" order="3" order-xl="2" order-lg="2" order-md="3" order-sm="3">
           <div class="d-flex align-center">
-            <SvgRender :name="paymentSectionData.moneyBackIcon.name" moneyBack :title="paymentSectionData.moneyBackIcon.title" />
+            <SvgRender :name="paymentSectionData.moneyBackIcon.name" className="money-back" :title="paymentSectionData.moneyBackIcon.title" />
             <p class="mb-0 text-h6">
               {{ $t(paymentSectionData.mainTextHeading) }}
             </p>
@@ -32,7 +32,7 @@
                 :key="index"
                 :name="`payment/` + icon.name"
                 :title="icon.title"
-                payment
+                className="payment-margin"
               />
             </div>
             <div class="d-flex mt-3">
@@ -41,7 +41,7 @@
                 :key="index"
                 :name="`payment/` + icon.name"
                 :title="icon.title"
-                payment
+                className="payment-margin"
               />
             </div>
           </div>
@@ -53,14 +53,14 @@
               :link="paymentSectionData.microsoftGoldIcon.link"
               :title="$t(paymentSectionData.microsoftGoldIcon.title)"
             >
-              <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" moneyBackGuarantee />
+              <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" className="microsoft-gold" />
             </Link>
             <Link
               :isExternal="paymentSectionData.moneyBacGuaranteekIcon.isExternal"
               :link="paymentSectionData.moneyBacGuaranteekIcon.link"
               :title="$t(paymentSectionData.moneyBacGuaranteekIcon.title)"
             >
-              <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" microsoftGold />
+              <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" className="money-back-guarantee ml-10" />
             </Link>
           </div>
         </v-col>
@@ -96,9 +96,9 @@ export default {
           isExternal: true,
           link: 'https://www.microsoft.com/en-US/solution-providers/home',
           name: 'payment/microsoft-gold',
-          title: 'title',
+          title: 'ICON_MICROSOFT_GOLD_CERTIFIED_TITLE',
         },
-        moneyBacGuaranteekIcon: { isExternal: false, link: '/refund-policy', name: 'payment/money-back-guarantee', title: 'title' },
+        moneyBacGuaranteekIcon: { isExternal: false, link: '/refund-policy', name: 'payment/money-back-guarantee', title: 'ICON_MONEY_BACK_GUARANTEE_TITLE' },
         moneyBackIcon: { name: 'payment/money-back', title: 'title' },
       }),
     },
