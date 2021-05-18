@@ -67,8 +67,12 @@
 import { mapState } from 'vuex'
 export default {
   async fetch() {
-    // this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
-    // console.log(this.posts)
+    if (!this.posts) {
+      this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+      console.log('default doesnt exist')
+    } else {
+      console.log('default  exist')
+    }
   },
   computed: mapState({
     currentStepSelectedCards: (state) => state.cards.currentStepSelectedCards,

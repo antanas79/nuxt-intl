@@ -60,6 +60,8 @@
               :isNuxtLink="!item.isExternal"
               :link="item.innerLink"
               :title="$t(item.title)"
+              nuxtLinkClassName="pt-2 pb-1"
+              anchorClassName="pt-2 pb-1"
               :buttonText="item.name"
             >
             </Button>
