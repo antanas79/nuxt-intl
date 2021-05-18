@@ -267,7 +267,7 @@ button.disabled {
 
 @media all and (min-width: 768px) {
   .main-content {
-    min-height: 506px;
+    min-height: 485px;
   }
 }
 </style>

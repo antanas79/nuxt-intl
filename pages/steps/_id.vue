@@ -39,9 +39,9 @@
                   </div>
                   <div class="d-none d-md-block">
                     <v-sheet class="mx-auto background-grey" max-width="100%">
-                      <v-slide-group v-model="model" center-active class="pa-4" show-arrows multiple>
-                        <v-slide-item v-for="card in currentStepCards" :key="card.cardId" v-slot="{ toggle }">
-                          <div @click="toggle">
+                      <v-slide-group v-model="model" center-active class="pa-0" show-arrows>
+                        <v-slide-item v-for="card in currentStepCards" :key="card.cardId">
+                          <div>
                             <PricingCard
                               @pricing-card-toggled="onCardToggled"
                               :card="card"
@@ -154,7 +154,6 @@ export default {
     },
   },
   mounted() {
-    debugger
     if (process.browser) {
       setTimeout(() => {
         //set selected cards from query ids
@@ -254,7 +253,7 @@ export default {
     overflow-x: auto;
   }
   .cards-container {
-    min-height: 506px;
+    min-height: 485px;
   }
 }
 </style>

@@ -76,8 +76,12 @@
 import { mapState } from 'vuex'
 export default {
   async fetch() {
-    // this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
-    // console.log(this.posts)
+    if (!this.posts) {
+      console.log('post doesnt exist')
+      this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+    } else {
+      console.log('post exist')
+    }
   },
   data() {
     return {
