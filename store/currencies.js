@@ -2,12 +2,12 @@ import client from '../plugins/contentful'
 
 export const state = () => ({
     selectedCurrency: { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
-    // currencies: [
-    //     { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
-    //     { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
-    //     { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-    //     { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
-    // ],
+    currencies: [
+        { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
+        { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
+        { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
+        { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
+    ],
 })
 
 export const mutations = {

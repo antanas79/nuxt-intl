@@ -1,6 +1,5 @@
 export default {
   TOP_BANNER: '<b>CLICK HERE AND SAVE {currency}{amount}</b>. Top Banner Description can be longer and cant be same style like CTA.',
-
   PAY_LATER_BAR: '<b>Pay Later</b>. Pay in 3 interest-free payments of $10.32 due every 2 weeks, starting today.',
   PAY_LATER_BAR_LINK: 'See how Pay Later works',
   SELECT: 'Select',
@@ -75,4 +74,15 @@ export default {
   PAY_LATER_BLUE_TEXT: 'How it works.',
   ICON_MICROSOFT_GOLD_CERTIFIED_TITLE: 'Microsoft Gold Certified Partner',
   ICON_MONEY_BACK_GUARANTEE_TITLE: 'Money Back Satisfaction guarantee',
+  ICON_VISA_TITLE: 'title',
+  ICON_AMERICAN_EXPRESS_TITLE: 'title',
+  ICON_MASTER_CARD_TITLE: 'title',
+  ICON_DISCOVER_NETWORK_TITLE: 'title',
+  ICON_WIRE_TRANSFER_TITLE: 'title',
+  ICON_PURCHASE_ORDER_TITLE: 'title',
+  ICON_MONEY_ORDER_TITLE: 'title',
+  ICON_CHECK_TITLE: 'title',
+  ICON_PAYPAL_TITLE: 'title',
+  ICON_PAY_LATER_TITLE: 'title',
+  ICON_MONEY_BACK_TITLE: 'title',
 }

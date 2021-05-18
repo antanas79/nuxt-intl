@@ -36,14 +36,13 @@
         </v-col>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-start px-1">
           <Button
-            :color="isStepperNextButtonEnabled ? 'primary' : ''"
             :isNuxtLink="isLastStep ? false : true"
             :isAnchor="isLastStep ? true : false"
             :anchorClassName="isStepperNextButtonEnabled ? 'white--text' : 'black--text disabled'"
             :isDisabled="isStepperNextButtonEnabled ? false : true"
             :nuxtLinkClassName="isStepperNextButtonEnabled ? '' : 'disabled'"
             :link="isLastStep ? 'https://www.4team.biz' : `/steps/${nextStepLink}`"
-            :buttonClassName="isLastStep && isStepperNextButtonEnabled ? 'green white--text' : ''"
+            :buttonClassName="isLastStep && isStepperNextButtonEnabled ? 'green white--text' : 'primary'"
             :buttonText="nextButton"
           >
             ({{ currentStepSelectedCards.length }})

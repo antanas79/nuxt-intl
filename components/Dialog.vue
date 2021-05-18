@@ -20,12 +20,12 @@ export default {
   props: {
     maxWidth: {
       type: Number,
-      required: true,
+      required: false,
       default: 560,
     },
     cols: {
       type: Number,
-      required: true,
+      required: false,
       default: 12,
     },
     notificationName: {

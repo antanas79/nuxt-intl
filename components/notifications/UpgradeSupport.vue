@@ -39,9 +39,7 @@
 </template>
 
 <script>
-export default {
-  name: 'PayLater',
-}
+export default {}
 </script>
 
 <style lang="scss" scoped></style>

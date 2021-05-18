@@ -12,7 +12,7 @@
           <Selector
             v-if="isPricingPage"
             @changeSelection="changeSelection"
-            :selectorData="navBarData.currencies"
+            :selectorData="$store.state.currencies.currencies"
             :selectedValue="$store.state.currencies.selectedCurrency"
             :isKey="$store.state.currencies.selectedCurrency.id"
             itemText="currency"
@@ -75,6 +75,10 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  async fetch() {
+    // this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+    // console.log(this.posts)
+  },
   data() {
     return {
       drawer: false,
@@ -143,12 +147,12 @@ export default {
             ],
           },
         ],
-        currencies: [
-          { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
-          { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
-          { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-          { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
-        ],
+        // currencies: [
+        //   { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
+        //   { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
+        //   { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
+        //   { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
+        // ],
       }),
     },
   },

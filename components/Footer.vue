@@ -3,12 +3,7 @@
     <Layout>
       <v-row class="footer-content">
         <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="col-logo-container d-flex">
-          <Link
-            :isExternal="footerData.teamLogo.isExternal"
-            :link="footerData.teamLogo.link"
-            :title="$t(footerData.teamLogo.title)"
-            className="align-self-start"
-          >
+          <Link :isExternal="footerData.teamLogo.isExternal" :link="footerData.teamLogo.link" :title="footerData.teamLogo.title" className="align-self-start">
             <SvgRender name="team-logo" className="team-logo"
           /></Link>
           <div class="pl-3">

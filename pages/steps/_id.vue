@@ -1,18 +1,19 @@
 <template>
   <div class="lighten-5 col-12 pa-0">
-    <div class="cards-container">
+    <div class="cards-container background-grey">
       <div v-if="isLoaded">
-        <div class="background-grey">
+        <div>
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
               <div class="mb-3 upper d-flex flex-column align-items-center">
+                <!-- payload is:{{ payload }} -->
                 <div class="font-weight-bold my-3 text-h4 d-none d-sm-block" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
                 <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].shortH1)"></div>
                 <div class="text-subtitle-1 mb-0 d-none d-md-block text-body-1" v-html="$t(currentSteps[currentStepNumber].paragraph)"></div>
               </div>
               <div class="cards">
                 <div class="pa-0 d-flex flex-column">
-                  <div class="d-flex flex-column flex-md-row">
+                  <div class="d-flex flex-column d-md-none">
                     <PricingCard
                       @pricing-card-toggled="onCardToggled"
                       :card="card"
@@ -36,30 +37,41 @@
                     >
                     </PricingCard>
                   </div>
+                  <div class="d-none d-md-block">
+                    <v-sheet class="mx-auto background-grey" max-width="100%">
+                      <v-slide-group v-model="model" center-active class="pa-4" show-arrows multiple>
+                        <v-slide-item v-for="card in currentStepCards" :key="card.cardId" v-slot="{ toggle }">
+                          <div @click="toggle">
+                            <PricingCard
+                              @pricing-card-toggled="onCardToggled"
+                              :card="card"
+                              cardClass="mx-auto mx-md-3 col-12 pa-0 d-flex flex-column justify-space-between transition-swing mb-3 pricing-card"
+                              iconName="information"
+                              iconColor="blue"
+                              iconClass="ml-3"
+                              :selectedCurrency="selectedCurrency"
+                              :payload="{
+                                cardId: card.cardId,
+                                currentStep: currentStep,
+                                maxCards: currentStepMaxCards,
+                                minCards: currentStepMinCards,
+                              }"
+                              :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
+                              :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
+                              eventName="pricing-card-toggled"
+                              :isSelected="isSelected(card.cardId)"
+                            >
+                            </PricingCard>
+                          </div>
+                        </v-slide-item>
+                      </v-slide-group>
+                    </v-sheet>
+                  </div>
                 </div>
               </div>
             </div>
           </Layout>
         </div>
-
-        <!-- <div class="steps">
-          <template>
-            <v-divider></v-divider>
-            <Stepper
-              :currentStep="currentStep"
-              :currentStepNumber="currentStepNumber"
-              :currentStepMinCards="currentStepMinCards"
-              :currentStepSelectedCards="currentStepSelectedCards"
-              :isStepperNextButtonEnabled="isStepperNextButtonEnabled()"
-              :previousStepLink="previousStepLink"
-              :nextStepLink="nextStepLink"
-              :currentSteps="currentSteps"
-              :isLastStep="isLastStep()"
-              :backButton="'BACK'"
-              :nextButton="'NEXT'"
-            />
-          </template>
-        </div> -->
       </div>
     </div>
   </div>
@@ -67,9 +79,16 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  async asyncData({ params, error, payload }) {
+    if (payload) return { payload: payload }
+    //else make api call to get data from developing locally
+    else return console.log('payload error')
+  },
   data: function () {
     return {
+      payload: null,
       isLoaded: false,
+      model: [],
     }
   },
   computed: mapState({
@@ -95,8 +114,7 @@ export default {
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
           if (this.currentStepSelectedCards.length === 1) {
-            //prevent redirecting if fastly unselected card
-            this.$router.push(this.nextStepLink)
+            this.$router.push({ path: '/steps/' + this.nextStepLink })
           }
         }, 500)
       }
@@ -134,17 +152,9 @@ export default {
     isLastStep() {
       return this.currentStep == this.currentSteps[this.currentSteps.length - 1].link
     },
-    isStepperNextButtonEnabled() {
-      return this.currentStepSelectedCards.length >= this.currentStepMinCards
-    },
   },
   mounted() {
     if (process.browser) {
-      this.$nextTick(() => {
-        this.$nuxt.$loading.start()
-        setTimeout(() => this.$nuxt.$loading.finish(), 500)
-      })
-
       setTimeout(() => {
         //set selected cards from query ids
         if (this.$route.query.selectedCardsIds) {
@@ -177,6 +187,7 @@ export default {
         this.$store.commit('steps/setCurrentStepMaxCards', this.steps.find((el) => el.link == this.currentStep).maxCards)
         this.$store.commit('steps/setCurrentStepMinCards', this.steps.find((el) => el.link == this.currentStep).minCards)
         this.setNextPreviousLinks()
+
         this.isLoaded = true
       }, 0)
     }
@@ -186,6 +197,13 @@ export default {
 <style lang="scss" scoped>
 .cards-container {
   min-height: 360px;
+}
+
+::v-deep .v-slide-group__next:not(.v-slide-group__next--disabled),
+::v-deep .v-slide-group__prev:not(.v-slide-group__prev--disabled) {
+  .theme--light.v-icon {
+    color: #1976d2;
+  }
 }
 
 .container {
@@ -228,17 +246,6 @@ export default {
   padding-top: 15px;
 }
 
-@media all and (max-width: 767px) {
-  // .steps {
-  //   position: fixed;
-  //   min-height: 61px;
-  //   z-index: 100;
-  //   bottom: 0;
-  //   width: 100%;
-  //   background: white;
-  // }
-}
-
 @media all and (min-width: 768px) {
   .row.no-gutters {
     flex-wrap: nowrap;
@@ -246,7 +253,7 @@ export default {
     overflow-x: auto;
   }
   .cards-container {
-    min-height: 475px;
+    min-height: 506px;
   }
 }
 </style>

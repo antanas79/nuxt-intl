@@ -9,7 +9,7 @@
       className,
     ]"
     v-html="src"
-    :title="title"
+    :title="$t(title)"
   ></div>
 </template>
 <script>

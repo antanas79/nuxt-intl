@@ -2,7 +2,7 @@
   <v-hover>
     <template #default="{ hover }">
       <v-card :class="`${!card.isPreSelected && (hover || isSelected) ? 'border-blue' : 'border-white'} ${cardClass} `">
-        <Dialog :maxWidth="600" :cols="12" :class="dialogClass" notificationName="Notification">
+        <Dialog :maxWidth="600" :cols="12" :class="dialogClass" notificationName="PayLater">
           <v-card-title class="mb-0 pa-1 d-flex flex-column" v-if="card.title" :class="titleClass">
             <v-system-bar
               :color="card.isLimitedTimeOffer ? 'red' : card.isRecommended ? 'green' : ''"
@@ -26,8 +26,8 @@
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
-          <v-card-subtitle class="text-subtitle-1 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
         <v-card-actions
@@ -35,7 +35,7 @@
           @click="onPricingCardToggled"
           :class="card.isPreSelected ? 'no-pointer-events' : ''"
         >
-          <v-card-text class="text-subtitle-1 pt-3 pb-0">
+          <v-card-text class="text-subtitle-1 pt-0 pt-md-3 pb-0">
             <div class="d-flex flex-wrap">
               <div class="current-price red--text col-5 pa-0 text-left">
                 <i18n-n :value="39.95" format="currency" :locale="selectedCurrency.name">
@@ -93,7 +93,7 @@
               </i18n>
             </div>
           </v-card-text>
-          <v-card-text class="text-subtitle-1 pt-3 pb-0 d-none d-md-flex justify-center">
+          <v-card-text class="text-subtitle-1 py-3 d-none d-md-flex justify-center">
             <Button
               :isDisabled="card.isPreSelected"
               color="primary"
@@ -128,6 +128,7 @@ export default Vue.extend({
     dialogClass: {
       type: String,
       required: false,
+      default: 'upper-part',
     },
     showTitle: {
       type: Boolean,
@@ -235,15 +236,23 @@ export default Vue.extend({
 
 @media all and (min-width: 0px) and (max-width: 400px) {
   .v-card {
-    height: 176px;
     width: 290px;
   }
 }
 
 @media all and (min-width: 400px) and (max-width: 767px) {
   .v-card {
-    height: 176px;
     width: 353px;
+  }
+}
+@media all and (max-width: 767px) {
+  .v-card {
+    .v-card__title {
+      min-height: 84px;
+    }
+    .v-card__actions {
+      min-height: 88px;
+    }
   }
 }
 @media all and (min-width: 768px) {
@@ -251,6 +260,18 @@ export default Vue.extend({
     width: 308px;
     max-width: 308px;
     height: 362px;
+    .upper-part {
+      height: calc(100% - 144px);
+    }
+    .paragraph-1 {
+      min-height: 64px;
+    }
+    .paragraph-2 {
+      min-height: 84px;
+    }
+    .v-card__actions {
+      min-height: 144px;
+    }
   }
 }
 </style>

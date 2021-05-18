@@ -51,14 +51,14 @@
             <Link
               :isExternal="paymentSectionData.microsoftGoldIcon.isExternal"
               :link="paymentSectionData.microsoftGoldIcon.link"
-              :title="$t(paymentSectionData.microsoftGoldIcon.title)"
+              :title="paymentSectionData.microsoftGoldIcon.title"
             >
               <SvgRender :name="paymentSectionData.microsoftGoldIcon.name" className="microsoft-gold" />
             </Link>
             <Link
               :isExternal="paymentSectionData.moneyBacGuaranteekIcon.isExternal"
               :link="paymentSectionData.moneyBacGuaranteekIcon.link"
-              :title="$t(paymentSectionData.moneyBacGuaranteekIcon.title)"
+              :title="paymentSectionData.moneyBacGuaranteekIcon.title"
             >
               <SvgRender :name="paymentSectionData.moneyBacGuaranteekIcon.name" className="money-back-guarantee ml-10" />
             </Link>
@@ -81,16 +81,16 @@ export default {
         mainTextBottom: { isExternal: false, name: 'PAYMENT_MAIN_TEXT_BOTTOM', link: '/' },
         mainText: 'PAYMENT_MAIN_TEXT',
         cardsIcons: [
-          { name: 'visa', title: 'title' },
-          { name: 'american-express', title: 'title' },
-          { name: 'master-card', title: 'title' },
-          { name: 'discover-network', title: 'title' },
-          { name: 'wire-transfer', title: 'title' },
-          { name: 'purchase-order', title: 'title' },
-          { name: 'money-order', title: 'title' },
-          { name: 'check', title: 'title' },
-          { name: 'pay-pal', title: 'title' },
-          { name: 'pay-later', title: 'title' },
+          { name: 'visa', title: 'ICON_VISA_TITLE' },
+          { name: 'american-express', title: 'ICON_AMERICAN_EXPRESS_TITLE' },
+          { name: 'master-card', title: 'ICON_MASTER_CARD_TITLE' },
+          { name: 'discover-network', title: 'ICON_DISCOVER_NETWORK_TITLE' },
+          { name: 'wire-transfer', title: 'ICON_WIRE_TRANSFER_TITLE' },
+          { name: 'purchase-order', title: 'ICON_PURCHASE_ORDER_TITLE' },
+          { name: 'money-order', title: 'ICON_MONEY_ORDER_TITLE' },
+          { name: 'check', title: 'ICON_CHECK_TITLE' },
+          { name: 'pay-pal', title: 'ICON_PAYPAL_TITLE' },
+          { name: 'pay-later', title: 'ICON_PAY_LATER_TITLE' },
         ],
         microsoftGoldIcon: {
           isExternal: true,
@@ -99,7 +99,7 @@ export default {
           title: 'ICON_MICROSOFT_GOLD_CERTIFIED_TITLE',
         },
         moneyBacGuaranteekIcon: { isExternal: false, link: '/refund-policy', name: 'payment/money-back-guarantee', title: 'ICON_MONEY_BACK_GUARANTEE_TITLE' },
-        moneyBackIcon: { name: 'payment/money-back', title: 'title' },
+        moneyBackIcon: { name: 'payment/money-back', title: 'ICON_MONEY_BACK_TITLE' },
       }),
     },
   },
