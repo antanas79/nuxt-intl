@@ -175,7 +175,6 @@ export default {
             (value) => !!value || this.footerData.validation.required,
             (value) => {
               const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              console.log('PATERNAS')
               return pattern.test(value) || this.footerData.validation.emailInvalid
             },
           ]
