@@ -93,7 +93,7 @@
               </i18n>
             </div>
           </v-card-text>
-          <v-card-text class="text-subtitle-1 py-3 d-none d-md-flex justify-center">
+          <v-card-text class="py-3 d-none d-md-flex justify-center">
             <Button
               :isDisabled="card.isPreSelected"
               color="primary"

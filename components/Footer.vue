@@ -7,12 +7,14 @@
             <SvgRender name="team-logo" className="team-logo"
           /></Link>
           <div class="pl-3">
-            <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
+            <p v-for="(item, index) in footerData.corporationInformation" class="text-body-1" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">
+              {{ item }}
+            </p>
           </div>
         </v-col>
         <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="d-flex justify-lg-start justify-md-end">
           <div>
-            <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2">
+            <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2 text-body-1">
               <span class="font-weight-bold">{{ item.name }}</span>
               <a :href="`tel:` + item.number" class="link-underline">{{ item.number }}</a>
             </p>
@@ -20,9 +22,9 @@
         </v-col>
         <v-col xl="4" lg="4" md="12" sm="12" cols="12" class="d-flex flex-lg-column flex-md-row flex-column justify-space-between">
           <div class="input-arrow">
-            <p class="label mb-2 text-no-wrap" v-html="$t(footerData.footerInputLabel)"></p>
+            <p class="label mb-2 text-wrap text-body-1" v-html="$t(footerData.footerInputLabel)"></p>
 
-            <v-form v-model="isFormValid" class="email-form">
+            <v-form v-model="isFormValid" class="email-form text-body-1">
               <v-text-field
                 :placeholder="$t(footerData.footerInputPlaceholder)"
                 v-model="email"

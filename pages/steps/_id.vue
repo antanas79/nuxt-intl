@@ -105,6 +105,7 @@ export default {
     currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
     selectedCurrency: (state) => state.currencies.selectedCurrency,
+    selectedLocale: (state) => state.locales.selectedLocale,
   }),
   methods: {
     onCardToggled(event) {
@@ -114,10 +115,13 @@ export default {
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
           if (this.currentStepSelectedCards.length === 1) {
-            this.$router.push({ path: '/steps/' + this.nextStepLink })
+            this.$router.push({ path: this.getLocalePath() + '/steps/' + this.nextStepLink })
           }
         }, 500)
       }
+    },
+    getLocalePath() {
+      return this.selectedLocale.code == 'en' ? '' : '/' + this.selectedLocale.code
     },
     toggleCard(payload) {
       if (this.selectedCards.includes(payload.cardId) && !payload.fromQueryParams) {

@@ -238,7 +238,7 @@ export default {
   width: 35px;
 }
 .small-icon {
-  display: flex;
+  display: inline;
 
   svg {
     margin-top: 2px;

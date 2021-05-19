@@ -8,10 +8,10 @@
             <div :class="`d-sm-none font-weight-bold text-h5 ${navBarData.project.nameColor}--text`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
-
+          <div></div>
           <Selector
-            v-if="isPricingPage"
-            @changeSelection="changeSelection"
+            v-if="isPricingPage && isLoaded"
+            @changeSelection="setSelectedCurrency"
             :selectorData="$store.state.currencies.currencies"
             :selectedValue="$store.state.currencies.selectedCurrency"
             :isKey="$store.state.currencies.selectedCurrency.id"
@@ -19,7 +19,7 @@
             flag
             currencyClass
           />
-          <v-menu bottom left>
+          <v-menu bottom left v-if="isLoaded">
             <template v-slot:activator="{ on, attrs }">
               <v-btn icon v-bind="attrs" v-on="on">
                 <v-icon>mdi-web</v-icon>
@@ -27,13 +27,13 @@
             </template>
 
             <v-list>
-              <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt :to="switchLocalePath(locale.code)">
+              <v-list-item v-for="(locale, i) in availableLocales" :key="i" nuxt @click="setLocale(locale)">
                 {{ locale.name }}
               </v-list-item>
             </v-list>
           </v-menu>
 
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon v-if="isLoaded" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </div>
       </Layout>
 
@@ -88,14 +88,44 @@ export default {
       drawer: false,
       group: null,
       selected: false,
+      isLoaded: false,
       // selectedCurrency: this.navBarData.selectedCurrency,
       // currencies: this.navBarData.currencies,
+    }
+  },
+  mounted() {
+    if (process.browser) {
+      setTimeout(() => {
+        console.log(this.$i18n.locales.find((i) => i.code === this.$i18n.locale))
+        this.$store.commit(
+          'locales/setSelectedLocale',
+          this.$i18n.locales.find((i) => i.code === this.$i18n.locale)
+        )
+
+        this.isLoaded = true
+      }, 0)
     }
   },
   computed: mapState({
     currencies: (state) => state.currencies.currencies,
     selectedCurrency: (state) => state.currencies.selectedCurrency,
+    selectedLocale: (state) => state.locales.selectedLocale,
   }),
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
+  },
+  methods: {
+    setSelectedCurrency(event) {
+      this.$store.commit('currencies/setSelectedCurrency', JSON.parse(JSON.stringify(event)))
+    },
+    setLocale(event) {
+      //first set locale in vuex, only then redirect
+      this.$store.commit('locales/setSelectedLocale', JSON.parse(JSON.stringify(event)))
+      this.$i18n.setLocale(JSON.parse(JSON.stringify(event)).code)
+    },
+  },
   props: {
     isPricingPage: {
       type: Boolean,
@@ -158,16 +188,6 @@ export default {
         //   { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
         // ],
       }),
-    },
-  },
-  methods: {
-    changeSelection(event) {
-      this.$store.commit('currencies/setSelectedCurrency', JSON.parse(JSON.stringify(event)))
-    },
-  },
-  computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
   },
 }
