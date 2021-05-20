@@ -42,7 +42,8 @@ export const actions = {
     async getSteps({ commit }) {
         try {
             const response = await client.getEntries({
-                content_type: 'steps'
+                content_type: 'steps',
+                // locale: 'de'
             });
 
             if (response.items.length > 0) {

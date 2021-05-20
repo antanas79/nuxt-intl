@@ -7,12 +7,14 @@
             <SvgRender name="team-logo" className="team-logo"
           /></Link>
           <div class="pl-3">
-            <p v-for="(item, index) in footerData.corporationInformation" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">{{ item }}</p>
+            <p v-for="(item, index) in footerData.corporationInformation" class="text-body-1" :key="index" :class="`${index === 0 && 'font-weight-bold'} pb-2`">
+              {{ item }}
+            </p>
           </div>
         </v-col>
         <v-col xl="4" lg="4" md="6" sm="12" cols="12" class="d-flex justify-lg-start justify-md-end">
           <div>
-            <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2">
+            <p v-for="(item, index) in footerData.contacts" :key="'C' + index" class="pb-2 text-body-1">
               <span class="font-weight-bold">{{ item.name }}</span>
               <a :href="`tel:` + item.number" class="link-underline">{{ item.number }}</a>
             </p>
@@ -20,9 +22,9 @@
         </v-col>
         <v-col xl="4" lg="4" md="12" sm="12" cols="12" class="d-flex flex-lg-column flex-md-row flex-column justify-space-between">
           <div class="input-arrow">
-            <p class="label mb-2 text-no-wrap" v-html="$t(footerData.footerInputLabel)"></p>
+            <p class="label mb-2 text-wrap text-body-1" v-html="$t(footerData.footerInputLabel)"></p>
 
-            <v-form v-model="isFormValid" class="email-form">
+            <v-form v-model="isFormValid" class="email-form text-body-1">
               <v-text-field
                 :placeholder="$t(footerData.footerInputPlaceholder)"
                 v-model="email"
@@ -55,12 +57,13 @@
             <Button
               v-for="(item, index) in footerData.buttons"
               :key="'B' + index"
-              :class="`${index === 1 && 'mx-2'}`"
               isText
               :isAnchor="item.isExternal"
               :isNuxtLink="!item.isExternal"
-              :link="item.innerLink"
+              :link="item.link"
               :title="$t(item.title)"
+              nuxtLinkClassName="pt-2 pb-1"
+              anchorClassName="pt-2 pb-1"
               :buttonText="item.name"
             >
             </Button>
@@ -97,23 +100,23 @@ export default {
         buttons: [
           {
             id: 1,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_1',
-            link: '/about',
+            link: 'https://www.sync2.com/help#About_us',
             title: 'FOOTER_BUTTON_TITLE_1',
           },
           {
             id: 2,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_2',
-            link: '/privacy',
+            link: 'https://www.4team.biz/TermsAndPrivacy.aspx',
             title: 'FOOTER_BUTTON_TITLE_2',
           },
           {
             id: 3,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_3',
-            link: '/terms',
+            link: 'https://www.4team.biz/TermsAndPrivacy.aspx',
             title: 'FOOTER_BUTTON_TITLE_3',
           },
         ],

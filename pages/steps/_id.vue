@@ -5,7 +5,7 @@
         <div>
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
-              <div class="mb-3 upper d-flex flex-column align-items-center">
+              <div class="mb-3 upper d-flex flex-column align-items-center" v-if="currentSteps[currentStepNumber]">
                 <!-- payload is:{{ payload }} -->
                 <div class="font-weight-bold my-3 text-h4 d-none d-sm-block" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
                 <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].shortH1)"></div>
@@ -37,11 +37,11 @@
                     >
                     </PricingCard>
                   </div>
-                  <div class="d-none d-md-block">
+                  <div class="d-none d-md-flex">
                     <v-sheet class="mx-auto background-grey" max-width="100%">
-                      <v-slide-group v-model="model" center-active class="pa-4" show-arrows multiple>
-                        <v-slide-item v-for="card in currentStepCards" :key="card.cardId" v-slot="{ toggle }">
-                          <div @click="toggle">
+                      <v-slide-group v-model="model" center-active class="pa-0" show-arrows>
+                        <v-slide-item v-for="card in currentStepCards" :key="card.cardId">
+                          <div>
                             <PricingCard
                               @pricing-card-toggled="onCardToggled"
                               :card="card"
@@ -82,7 +82,7 @@ export default {
   async asyncData({ params, error, payload }) {
     if (payload) return { payload: payload }
     //else make api call to get data from developing locally
-    else return console.log('payload error')
+    // else return console.log('payload error')
   },
   data: function () {
     return {
@@ -105,6 +105,7 @@ export default {
     currentStepMaxCards: (state) => state.steps.currentStepMaxCards,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
     selectedCurrency: (state) => state.currencies.selectedCurrency,
+    selectedLocale: (state) => state.locales.selectedLocale,
   }),
   methods: {
     onCardToggled(event) {
@@ -114,10 +115,13 @@ export default {
       if (this.currentStepMaxCards === 1 && this.currentStepSelectedCards.length === 1 && !this.isLastStep()) {
         setTimeout(() => {
           if (this.currentStepSelectedCards.length === 1) {
-            this.$router.push({ path: '/steps/' + this.nextStepLink })
+            this.$router.push({ path: this.getLocalePath() + '/steps/' + this.nextStepLink })
           }
         }, 500)
       }
+    },
+    getLocalePath() {
+      return this.selectedLocale.code == 'en' ? '' : '/' + this.selectedLocale.code
     },
     toggleCard(payload) {
       if (this.selectedCards.includes(payload.cardId) && !payload.fromQueryParams) {
@@ -188,6 +192,22 @@ export default {
         this.$store.commit('steps/setCurrentStepMinCards', this.steps.find((el) => el.link == this.currentStep).minCards)
         this.setNextPreviousLinks()
 
+        //redirecting to first step if something needed doesn't exist
+        if (
+          !this.cards ||
+          !this.steps ||
+          !this.currentStep ||
+          !this.currentSteps ||
+          !this.currentStepCards ||
+          this.currentStepNumber < 0 ||
+          (this.currentStepNumber > 0 && this.currentStepNumber !== this.currentSteps.length - 1 && !this.nextStepLink) ||
+          (this.currentStepNumber > 0 && !this.previousStepLink) ||
+          !this.currentStepMaxCards ||
+          !this.currentStepMinCards
+        ) {
+          this.$router.push({ path: this.getLocalePath() + '/steps/' + this.steps[0].link })
+        }
+
         this.isLoaded = true
       }, 0)
     }
@@ -253,7 +273,7 @@ export default {
     overflow-x: auto;
   }
   .cards-container {
-    min-height: 506px;
+    min-height: 485px;
   }
 }
 </style>

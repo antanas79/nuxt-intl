@@ -36,7 +36,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/nuxt-intl/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -148,7 +148,14 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg'],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/svg', "@nuxtjs/sitemap"],
+  sitemap: {
+    hostname: "https://antanas79.github.io/nuxt-intl/",
+    // routes: routesData,
+    path: "/sitemap.xml",
+    gzip: true,
+    generate: false
+  },
   markdownit: {
     injected: true,
   },

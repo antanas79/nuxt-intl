@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     src() {
-      const src = require(`~/assets/sprite/svg/${this.name}.svg?raw`)
+      const src = require(`~/static/sprite/svg/${this.name}.svg?raw`)
       return src
     },
   },
@@ -238,7 +238,7 @@ export default {
   width: 35px;
 }
 .small-icon {
-  display: flex;
+  display: inline;
 
   svg {
     margin-top: 2px;
@@ -246,6 +246,20 @@ export default {
     height: 15px;
     min-width: 15px;
     min-height: 15px;
+  }
+}
+.small-icon-centered {
+  display: inline-flex;
+  position: relative;
+  width: 20px;
+
+  svg {
+    position: absolute;
+    top: -13px;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
   }
 }
 #pay-later-schema {
@@ -266,6 +280,9 @@ export default {
   }
   #pay-later-schema {
     width: 200px;
+    .payment-margin .payment-card {
+      width: 54px;
+    }
   }
 }
 </style>

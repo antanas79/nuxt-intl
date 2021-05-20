@@ -26,7 +26,7 @@
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-4 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
           <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
@@ -38,18 +38,26 @@
           <v-card-text class="text-subtitle-1 pt-0 pt-md-3 pb-0">
             <div class="d-flex flex-wrap">
               <div class="current-price red--text col-5 pa-0 text-left">
-                <i18n-n :value="39.95" format="currency" :locale="selectedCurrency.name">
+                <i18n-n tag="div" class="hide-dot-comma-space main d-flex" :value="39.95" format="currency" :locale="selectedCurrency.name">
                   <template v-slot:currency="slotProps">
-                    <span class="text-h6 vertical-align-top">{{ slotProps.currency }}</span>
+                    <div class="text-h6 currency vertical-align-top">
+                      <span>{{ slotProps.currency }}</span>
+                    </div>
                   </template>
                   <template v-slot:integer="slotProps">
-                    <span class="text-h4">{{ slotProps.integer }}</span>
+                    <span
+                      class="integer text-h3"
+                      :class="{ 'text-h5': card.Price > 1000, 'text-h4': card.Price > 100 && card.Price < 1000, 'text-h3': card.Price <= 100 }"
+                      >{{ slotProps.integer }}</span
+                    >
                   </template>
                   <template v-slot:group="slotProps">
                     <span class="group">{{ slotProps.group }}</span>
                   </template>
                   <template v-slot:fraction="slotProps">
-                    <span class="text-h6 vertical-align-top">{{ slotProps.fraction }}</span>
+                    <div class="text-h6 vertical-align-top fraction">
+                      <span>{{ slotProps.fraction }}</span>
+                    </div>
                   </template>
                 </i18n-n>
               </div>
@@ -71,10 +79,10 @@
                       <br />
                     </template>
                     <template v-slot:paymentAmount>
-                      <span class="old-price text-underlined red--text">{{ $n(13, 'currency', selectedCurrency.name) }}</span>
+                      <span class="pay-later-price text-underlined red--text">{{ $n(13, 'currency', selectedCurrency.name) }}</span>
                     </template>
                     <template v-slot:numberOfPayments>
-                      <a class="old-price no-text-decoration blue--text" href="" target="_blank" v-on:click.stop="">
+                      <a class="pay-later-price no-text-decoration blue--text" href="" target="_blank" v-on:click.stop="">
                         {{ $t(card.payLaterNumberOfPayments, { numberOfPayments: 3 }) }}
                       </a>
                     </template>
@@ -83,9 +91,24 @@
               </div>
             </div>
             <div class="min-height-28px">
-              <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100" v-if="card.oldPriceText">
+              <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100 d-flex" v-if="card.oldPriceText">
                 <template v-slot:oldPrice>
-                  <span class="old-price text-underlined">{{ $n(49.95, 'currency', selectedCurrency.name) }}</span>
+                  <span class="text-underlined pl-1">
+                    <i18n-n tag="div" class="hide-dot-comma-space old-price d-flex" :value="49.95" format="currency" :locale="selectedCurrency.name">
+                      <template v-slot:currency="slotProps">
+                        <span class="currency text-caption">{{ slotProps.currency }}</span>
+                      </template>
+                      <template v-slot:integer="slotProps">
+                        <span class="integer text-caption">{{ slotProps.integer }}</span>
+                      </template>
+                      <template v-slot:group="slotProps">
+                        <span class="group text-caption">{{ slotProps.group }}</span>
+                      </template>
+                      <template v-slot:fraction="slotProps">
+                        <span class="fraction text-caption">{{ slotProps.fraction }}</span>
+                      </template>
+                    </i18n-n>
+                  </span>
                 </template>
                 <template v-slot:percentageDiscount>
                   <span class="old-price-percentage-discount">20</span>
@@ -93,7 +116,7 @@
               </i18n>
             </div>
           </v-card-text>
-          <v-card-text class="text-subtitle-1 py-3 d-none d-md-flex justify-center">
+          <v-card-text class="py-3 d-none d-md-flex justify-center">
             <Button
               :isDisabled="card.isPreSelected"
               color="primary"
@@ -121,6 +144,14 @@ export default Vue.extend({
       type: Object,
       required: true,
     },
+    // color: {
+    //   type: String,
+    //   required: false,
+    // },
+    // toggle: {
+    //   type: Function,
+    //   required: false,
+    // },
     titleClass: {
       type: String,
       required: false,
@@ -232,6 +263,34 @@ export default Vue.extend({
 }
 .min-height-28px {
   min-height: 28px;
+}
+
+.hide-dot-comma-space.main {
+  font-size: 0;
+  div,
+  span {
+    font-family: 'Amazon Ember' !important;
+  }
+  .currency {
+    width: 12px;
+  }
+  .fraction {
+    width: 24px;
+  }
+}
+
+.currency,
+.fraction {
+  position: relative;
+  span {
+    position: absolute;
+    top: -1px;
+  }
+}
+
+.text-subtitle-1 {
+  line-height: 1.45rem;
+  color: #383838 !important;
 }
 
 @media all and (min-width: 0px) and (max-width: 400px) {

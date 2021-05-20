@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('~/assets/fonts/AmazonEmber-Regular.eot');
+  src: url('~/assets/fonts/AmazonEmber-Regular.eot?#iefix') format('embedded-opentype'),
+      url('~/assets/fonts/AmazonEmber-Regular.woff2') format('woff2'),
+      url('~/assets/fonts/AmazonEmber-Regular.woff') format('woff'),
+      url('~/assets/fonts/AmazonEmber-Regular.ttf') format('truetype'),
+      url('~/assets/fonts/AmazonEmber-Regular.svg#AmazonEmber-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import './variables';
 * {
   margin: 0;

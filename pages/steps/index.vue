@@ -25,7 +25,6 @@ export default {
       const value = this.$vuetify.theme.themes[this.theme]
       this.$vuetify.theme.themes[this.theme] = {}
       this.$vuetify.theme.themes[this.theme] = value
-      console.log(value)
     },
     swap() {
       this.$vuetify.theme.isDark = !this.$vuetify.theme.isDark

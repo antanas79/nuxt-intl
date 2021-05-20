@@ -1,13 +1,15 @@
 <template>
-  <v-app>
+  <v-app :class="selectedLocale.code">
     <v-main>
       <v-card class="mx-auto overflow-hidden" height="100%" width="100%">
-        <v-system-bar color="red" class="justify-center text-caption white--text text-center py-8 py-sm-6 py-md-0 cursor-pointer">
-          <span class="mb-0" v-html="$t(bannersData.topBannerText, { currency: bannersData.topBannerTextCurrency, amount: bannersData.topBannerTextAmount })">
-          </span>
+        <v-system-bar color="red" class="justify-center text-caption white--text text-center py-8 py-sm-6 px-0 py-md-0 cursor-pointer">
+          <Layout>
+            <span class="mb-0" v-html="$t(bannersData.topBannerText, { currency: bannersData.topBannerTextCurrency, amount: bannersData.topBannerTextAmount })">
+            </span>
+          </Layout>
         </v-system-bar>
-        <NavBar :isPricingPage="isPricingPage()" />
 
+        <NavBar :isPricingPage="isPricingPage()" />
         <!--  <Dialog notificationName="UpgradeSupport" :width="1000"> -->
         <Dialog notificationName="PayLater" :width="540">
           <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
@@ -26,9 +28,10 @@
                   }}
                 </span>
 
-                <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
-              >
-            </span>
+                  <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
+                >
+              </span>
+            </Layout>
           </v-system-bar>
         </Dialog>
 
@@ -68,8 +71,12 @@
 import { mapState } from 'vuex'
 export default {
   async fetch() {
-    // this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
-    // console.log(this.posts)
+    // if (!this.posts) {
+    //   this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+    //   console.log('default doesnt exist')
+    // } else {
+    //   console.log('default  exist')
+    // }
   },
   computed: mapState({
     currentStepSelectedCards: (state) => state.cards.currentStepSelectedCards,
@@ -79,6 +86,7 @@ export default {
     currentStep: (state) => state.steps.currentStep,
     currentStepNumber: (state) => state.steps.currentStepNumber,
     currentStepMinCards: (state) => state.steps.currentStepMinCards,
+    selectedLocale: (state) => state.locales.selectedLocale,
   }),
   data: function () {
     return {
@@ -251,6 +259,93 @@ button.disabled {
   opacity: 0.65;
 }
 
+//other languages styles (not en):  minus approx 5% from current rem from 768px, minus approx 10% from current rem until 767px from all text classes
+
+//       ['h1', 'Heading 1', '6rem', '300', '-.015625em', -1],
+//       ['h2', 'Heading 2', '3.75rem', '300', '-.0083333333em', 0],
+//       ['h3', 'Heading 3', '3rem', '400', 'normal', 1],
+//       ['h4', 'Heading 4', '2.125rem', '400', '.0073529412em', 2],
+//       ['h5', 'Heading 5', '1.5rem', '400', 'normal', 2],
+//       ['h6', 'Heading 6', '1.25rem', '500', '.0125em', 3],
+//       ['subtitle-1', 'Subtitle 1', '1rem', '400', '.009375em', 4],
+//       ['subtitle-2', 'Subtitle 2', '0.875rem', '500', '.0071428571em', 4],
+//       ['body-1', 'Body 1', '1rem', '400', '.03125em', 4],
+//       ['body-2', 'Body 2', '0.875rem', '400', '.0178571429em', 4],
+//       ['button', 'Button', '0.875rem', '500', '.0892857143em', 4],
+//       ['caption', 'Caption', '0.75rem', '400', '.0333333333em', 4],
+//       ['overline', 'Overline', '0.75rem', '500', '.1666666667em', 4],
+.v-application:not(.en) {
+  .v-btn.v-size--default,
+  .text-body-2,
+  .text-subtitle-2 {
+    font-size: 0.831rem !important;
+  }
+  .text-caption,
+  .v-stepper__label,
+  .text-overline {
+    font-size: 0.713rem !important;
+  }
+
+  .text-subtitle-1,
+  .text-body-1 {
+    font-size: 0.95rem !important;
+  }
+  .text-h1 {
+    font-size: 5.7rem !important;
+  }
+  .text-h2 {
+    font-size: 3.563rem !important;
+  }
+  .text-h4 {
+    font-size: 2.019rem !important;
+  }
+
+  .text-h5 {
+    font-size: 1.425rem !important;
+  }
+
+  .v-card__title,
+  .text-h6 {
+    font-size: 1.1875rem !important;
+  }
+
+  @media all and (max-width: 767px) {
+    .v-btn.v-size--default,
+    .text-body-2,
+    .text-subtitle-2 {
+      font-size: 0.79rem !important;
+    }
+    .text-caption,
+    .v-stepper__label,
+    .text-overline {
+      font-size: 0.67rem !important;
+    }
+
+    .text-subtitle-1,
+    .text-body-1 {
+      font-size: 0.9025rem !important;
+    }
+    .text-h1 {
+      font-size: 5.415rem !important;
+    }
+    .text-h2 {
+      font-size: 3.385rem !important;
+    }
+    .text-h4 {
+      font-size: 1.918 !important;
+    }
+
+    .text-h5 {
+      font-size: 1.354rem !important;
+    }
+
+    .v-card__title,
+    .text-h6 {
+      font-size: 1.128rem !important;
+    }
+  }
+}
+
 @media all and (max-width: 767px) {
   .main-content {
     min-height: 360px;
@@ -268,7 +363,7 @@ button.disabled {
 
 @media all and (min-width: 768px) {
   .main-content {
-    min-height: 506px;
+    min-height: 485px;
   }
 }
 </style>
