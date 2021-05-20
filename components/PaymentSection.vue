@@ -18,8 +18,9 @@
           </p>
 
           <Link
-            :isExternal="!paymentSectionData.mainTextBottom.isExternal"
+            :isExternal="paymentSectionData.mainTextBottom.isExternal"
             :link="paymentSectionData.mainTextBottom.link"
+            :title="paymentSectionData.mainTextBottom.title"
             className="text-caption link-underline"
             >{{ $t(paymentSectionData.mainTextBottom.name) }}</Link
           >
@@ -78,7 +79,12 @@ export default {
         topCaption: 'PAYMENT_TOP_CAPTION',
         mainTextHeading: 'PAYMENT_MAIN_TEXT_HEADING',
         mainTextRefund: 'PAYMENT_MAIN_TEXT_REFUND',
-        mainTextBottom: { isExternal: false, name: 'PAYMENT_MAIN_TEXT_BOTTOM', link: '/' },
+        mainTextBottom: {
+          isExternal: true,
+          name: 'PAYMENT_MAIN_TEXT_BOTTOM',
+          title: 'PAYMENT_MAIN_TEXT_BOTTOM',
+          link: 'https://www.sync2.com//frequently-asked-questions',
+        },
         mainText: 'PAYMENT_MAIN_TEXT',
         cardsIcons: [
           { name: 'visa', title: 'ICON_VISA_TITLE' },
@@ -98,7 +104,12 @@ export default {
           name: 'payment/microsoft-gold',
           title: 'ICON_MICROSOFT_GOLD_CERTIFIED_TITLE',
         },
-        moneyBacGuaranteekIcon: { isExternal: false, link: '/refund-policy', name: 'payment/money-back-guarantee', title: 'ICON_MONEY_BACK_GUARANTEE_TITLE' },
+        moneyBacGuaranteekIcon: {
+          isExternal: true,
+          link: 'https://www.sync2.com/frequently-asked-questions',
+          name: 'payment/money-back-guarantee',
+          title: 'ICON_MONEY_BACK_GUARANTEE_TITLE',
+        },
         moneyBackIcon: { name: 'payment/money-back', title: 'ICON_MONEY_BACK_TITLE' },
       }),
     },

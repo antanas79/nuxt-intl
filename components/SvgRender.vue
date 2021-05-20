@@ -248,6 +248,20 @@ export default {
     min-height: 15px;
   }
 }
+.small-icon-centered {
+  display: inline-flex;
+  position: relative;
+  width: 20px;
+
+  svg {
+    position: absolute;
+    top: -13px;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+  }
+}
 #pay-later-schema {
   width: 220px;
 }

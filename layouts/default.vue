@@ -12,11 +12,11 @@
         <NavBar :isPricingPage="isPricingPage()" />
 
         <Dialog notificationName="PayLater">
-          <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 px-0 cursor-pointer">
+          <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-lg-0 px-0 cursor-pointer">
             <Layout>
-              <span class="text-caption mb-0 d-flex justify-center">
+              <span class="text-body-2 mb-0 d-inline text-center">
                 <span class="font-weight-bold">
-                  <SvgRender :name="bannersData.payLaterIconName" smallIcon />{{ $t(bannersData.payLaterBoldedText) }}
+                  <SvgRender :name="bannersData.payLaterIconName" className="small-icon-centered" />{{ $t(bannersData.payLaterBoldedText) }}
                   <span class="font-weight-regular">
                     {{
                       $t(bannersData.payLaterMainText, {

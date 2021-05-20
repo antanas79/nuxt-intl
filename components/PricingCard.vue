@@ -26,7 +26,7 @@
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-2 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-4 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
           <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
         </Dialog>
 
@@ -279,10 +279,6 @@ export default Vue.extend({
   }
 }
 
-.hide-dot-comma-space.old-price:empty {
-  font-size: 0;
-}
-
 .currency,
 .fraction {
   position: relative;
@@ -290,6 +286,11 @@ export default Vue.extend({
     position: absolute;
     top: -1px;
   }
+}
+
+.text-subtitle-1 {
+  line-height: 1.45rem;
+  color: #383838 !important;
 }
 
 @media all and (min-width: 0px) and (max-width: 400px) {

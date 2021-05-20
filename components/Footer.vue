@@ -60,7 +60,7 @@
               isText
               :isAnchor="item.isExternal"
               :isNuxtLink="!item.isExternal"
-              :link="item.innerLink"
+              :link="item.link"
               :title="$t(item.title)"
               nuxtLinkClassName="pt-2 pb-1"
               anchorClassName="pt-2 pb-1"
@@ -100,23 +100,23 @@ export default {
         buttons: [
           {
             id: 1,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_1',
-            link: '/about',
+            link: 'https://www.sync2.com/help#About_us',
             title: 'FOOTER_BUTTON_TITLE_1',
           },
           {
             id: 2,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_2',
-            link: '/privacy',
+            link: 'https://www.4team.biz/TermsAndPrivacy.aspx',
             title: 'FOOTER_BUTTON_TITLE_2',
           },
           {
             id: 3,
-            isExternal: false,
+            isExternal: true,
             name: 'FOOTER_BUTTON_NAME_3',
-            link: '/terms',
+            link: 'https://www.4team.biz/TermsAndPrivacy.aspx',
             title: 'FOOTER_BUTTON_TITLE_3',
           },
         ],
