@@ -53,7 +53,7 @@
             :buttonClassName="isLastStep && isStepperNextButtonEnabled ? 'green white--text' : 'primary'"
             :buttonText="nextButton"
           >
-            ({{ currentStepSelectedCards.length }})
+            <span v-if="currentStepSelectedCards.length > 0"> ({{ currentStepSelectedCards.length }}) </span>
           </Button>
         </v-col>
       </v-row>

@@ -5,7 +5,7 @@
         <div>
           <Layout small>
             <div class="d-flex flex-column justify-center pa-0">
-              <div class="mb-3 upper d-flex flex-column align-items-center">
+              <div class="mb-3 upper d-flex flex-column align-items-center" v-if="currentSteps[currentStepNumber]">
                 <!-- payload is:{{ payload }} -->
                 <div class="font-weight-bold my-3 text-h4 d-none d-sm-block" v-html="$t(currentSteps[currentStepNumber].h1)"></div>
                 <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].shortH1)"></div>
@@ -37,7 +37,7 @@
                     >
                     </PricingCard>
                   </div>
-                  <div class="d-none d-md-block">
+                  <div class="d-none d-md-flex">
                     <v-sheet class="mx-auto background-grey" max-width="100%">
                       <v-slide-group v-model="model" center-active class="pa-0" show-arrows>
                         <v-slide-item v-for="card in currentStepCards" :key="card.cardId">
@@ -82,7 +82,7 @@ export default {
   async asyncData({ params, error, payload }) {
     if (payload) return { payload: payload }
     //else make api call to get data from developing locally
-    else return console.log('payload error')
+    // else return console.log('payload error')
   },
   data: function () {
     return {
@@ -191,6 +191,22 @@ export default {
         this.$store.commit('steps/setCurrentStepMaxCards', this.steps.find((el) => el.link == this.currentStep).maxCards)
         this.$store.commit('steps/setCurrentStepMinCards', this.steps.find((el) => el.link == this.currentStep).minCards)
         this.setNextPreviousLinks()
+
+        //redirecting to first step if something needed doesn't exist
+        if (
+          !this.cards ||
+          !this.steps ||
+          !this.currentStep ||
+          !this.currentSteps ||
+          !this.currentStepCards ||
+          this.currentStepNumber < 0 ||
+          (this.currentStepNumber > 0 && this.currentStepNumber !== this.currentSteps.length - 1 && !this.nextStepLink) ||
+          (this.currentStepNumber > 0 && !this.previousStepLink) ||
+          !this.currentStepMaxCards ||
+          !this.currentStepMinCards
+        ) {
+          this.$router.push({ path: this.getLocalePath() + '/steps/' + this.steps[0].link })
+        }
 
         this.isLoaded = true
       }, 0)

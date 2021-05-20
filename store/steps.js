@@ -45,7 +45,6 @@ export const actions = {
                 content_type: 'steps',
                 // locale: 'de'
             });
-            console.log(response.items)
 
             if (response.items.length > 0) {
                 commit('setSteps', response.items.map(el => el.fields));
