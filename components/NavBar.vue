@@ -75,14 +75,12 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  async fetch() {
-    if (!this.posts) {
-      console.log('post doesnt exist')
-      this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
-    } else {
-      console.log('post exist')
-    }
-  },
+  // async fetch() {
+  //   if (!this.posts) {
+  //     this.posts = await this.$http.$get('https://api.nuxtjs.dev/posts/1')
+  //   } else {
+  //   }
+  // },
   data() {
     return {
       drawer: false,
@@ -96,7 +94,6 @@ export default {
   mounted() {
     if (process.browser) {
       setTimeout(() => {
-        console.log(this.$i18n.locales.find((i) => i.code === this.$i18n.locale))
         this.$store.commit(
           'locales/setSelectedLocale',
           this.$i18n.locales.find((i) => i.code === this.$i18n.locale)
