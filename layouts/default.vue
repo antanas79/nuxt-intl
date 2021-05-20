@@ -8,7 +8,8 @@
         </v-system-bar>
         <NavBar :isPricingPage="isPricingPage()" />
 
-        <Dialog notificationName="PayLater">
+        <!--  <Dialog notificationName="UpgradeSupport" :width="1000"> -->
+        <Dialog notificationName="PayLater" :width="540">
           <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
             <span class="text-caption mb-0 d-flex">
               <SvgRender :name="bannersData.payLaterIconName" smallIcon />

@@ -154,7 +154,7 @@ export default {
         footerInputLabel: 'FOOTER_INPUT_LABEL',
         footerInputPlaceholder: 'FOOTER_INPUT_PLACEHOLDER',
         teamLogo: {
-          title: 'TEAM_LOGO_ICON_TITLE',
+          title: 'ICON_TEAM_LOGO_TITLE',
           isExternal: true,
           link: 'http://www.4team.biz',
         },
@@ -175,7 +175,6 @@ export default {
             (value) => !!value || this.footerData.validation.required,
             (value) => {
               const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              console.log('PATERNAS')
               return pattern.test(value) || this.footerData.validation.emailInvalid
             },
           ]

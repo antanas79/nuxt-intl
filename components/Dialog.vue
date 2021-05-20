@@ -1,12 +1,12 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-model="dialog" :width="width">
       <template v-slot:activator="{ on, attrs }">
         <div color="red lighten-2" class="flex flex-column" dark v-bind="attrs" v-on="on"><slot /></div>
       </template>
-      <Card :cols="cols" :maxWidth="600">
-        <component :is="notificationName"></component>
-      </Card>
+      <v-card>
+        <component :is="notificationName" @closeDialog="onDialogCardToggled"></component>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -18,15 +18,9 @@ export default {
     }
   },
   props: {
-    maxWidth: {
+    width: {
       type: Number,
       required: false,
-      default: 560,
-    },
-    cols: {
-      type: Number,
-      required: false,
-      default: 12,
     },
     notificationName: {
       type: String,

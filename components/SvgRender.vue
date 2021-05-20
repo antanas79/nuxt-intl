@@ -251,13 +251,21 @@ export default {
 #pay-later-schema {
   width: 220px;
 }
-
+.notification {
+  #pay-later {
+    height: 32px;
+    width: 30px;
+  }
+}
 @media (max-width: 360px) {
   #money-back-guarantee {
     width: 110px;
   }
   #microsoft-gold {
     width: 130px;
+  }
+  #pay-later-schema {
+    width: 200px;
   }
 }
 </style>
