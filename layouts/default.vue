@@ -280,70 +280,70 @@ button.disabled {
   .v-btn.v-size--default,
   .text-body-2,
   .text-subtitle-2 {
-    font-size: 0.831rem !important;
+    font-size: calc(0.875rem - 5%);
   }
   .text-caption,
   .v-stepper__label,
   .text-overline {
-    font-size: 0.713rem !important;
+    font-size: calc(0.75rem - 5%);
   }
 
   .text-subtitle-1,
   .text-body-1 {
-    font-size: 0.95rem !important;
+    font-size: calc(1rem - 5%);
   }
   .text-h1 {
-    font-size: 5.7rem !important;
+    font-size: calc(6rem - 5%);
   }
   .text-h2 {
-    font-size: 3.563rem !important;
+    font-size: calc(3.75rem - 5%);
   }
   .text-h4 {
-    font-size: 2.019rem !important;
+    font-size: calc(2.125rem - 5%);
   }
 
   .text-h5 {
-    font-size: 1.425rem !important;
+    font-size: calc(1.5rem - 5%);
   }
 
   .v-card__title,
   .text-h6 {
-    font-size: 1.1875rem !important;
+    font-size: calc(1.25rem - 5%);
   }
 
   @media all and (max-width: 767px) {
     .v-btn.v-size--default,
     .text-body-2,
     .text-subtitle-2 {
-      font-size: 0.79rem !important;
+      font-size: calc(0.875rem - 5%);
     }
     .text-caption,
     .v-stepper__label,
     .text-overline {
-      font-size: 0.67rem !important;
+      font-size: calc(0.75rem - 10%);
     }
 
     .text-subtitle-1,
     .text-body-1 {
-      font-size: 0.9025rem !important;
+      font-size: calc(1rem - 10%);
     }
     .text-h1 {
-      font-size: 5.415rem !important;
+      font-size: calc(6rem - 10%);
     }
     .text-h2 {
-      font-size: 3.385rem !important;
+      font-size: calc(3.75rem - 10%);
     }
     .text-h4 {
-      font-size: 1.918 !important;
+      font-size: calc(2.125rem - 10%);
     }
 
     .text-h5 {
-      font-size: 1.354rem !important;
+      font-size: calc(1.5rem - 10%);
     }
 
     .v-card__title,
     .text-h6 {
-      font-size: 1.128rem !important;
+      font-size: calc(1.25rem - 10%);
     }
   }
 }
