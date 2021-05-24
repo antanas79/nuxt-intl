@@ -118,6 +118,10 @@ export default {
     isStepperNextButtonEnabled() {
       return this.currentStepSelectedCards.length >= this.currentStepMinCards
     },
+    handleScroll() {
+      this.scrollY = Math.round(window.scrollY)
+      this.stepperTop = this.$refs.stepper?.getBoundingClientRect().top
+    },
   },
   props: {
     bannersData: {
@@ -142,16 +146,14 @@ export default {
         this.$nuxt.$loading.start()
         setTimeout(() => this.$nuxt.$loading.finish(), 500)
       })
-      window.addEventListener('load', () => {
-        window.addEventListener('scroll', () => {
-          this.scrollY = Math.round(window.scrollY)
-        })
-        this.stepperTop = this.$refs.stepper?.getBoundingClientRect().top
-      })
+      window.addEventListener('scroll', this.handleScroll)
       setTimeout(() => {
         this.isLoaded = true
       }, 0)
     }
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>

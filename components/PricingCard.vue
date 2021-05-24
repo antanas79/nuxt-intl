@@ -144,14 +144,6 @@ export default Vue.extend({
       type: Object,
       required: true,
     },
-    // color: {
-    //   type: String,
-    //   required: false,
-    // },
-    // toggle: {
-    //   type: Function,
-    //   required: false,
-    // },
     titleClass: {
       type: String,
       required: false,
