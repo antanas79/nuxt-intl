@@ -22,14 +22,28 @@
                 <v-icon :color="iconColor" v-if="card.iconName" :class="iconClass">mdi-{{ iconName }}</v-icon>
               </div>
               <div class="d-none d-md-flex align-self-start min-height-32px">
-                <div v-html="$t(card.titleLine2)"></div>
+                <div class="blue--text text-caption" v-if="card.benefitsText" v-html="$t(card.benefitsText)"></div>
+                <div v-else v-html="$t(card.titleLine2)"></div>
               </div>
             </div>
           </v-card-title>
-          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-4 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph1)"></v-card-subtitle>
-          <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block" v-html="$t(card.paragraph2)"></v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-1 pt-4 pb-0 text-left d-none d-md-block">
+            <span :class="{ 'blue--text': card.typeOfParagraph1 == 'why' }" v-html="$t(card.paragraph1)"> </span>
+            <span v-if="card.typeOfParagraph1 == 'list'"
+              ><span class="blue--text" v-for="(item, index) in card.whatsIncludedList" :key="item">
+                {{ item }}<span class="black--text" v-if="index !== card.whatsIncludedList.length - 1">,</span>
+              </span>
+            </span>
+          </v-card-subtitle>
+          <v-card-subtitle class="text-subtitle-1 paragraph-2 pt-0 pb-0 text-left d-none d-md-block">
+            <span :class="{ 'blue--text': card.typeOfParagraph2 == 'why' }" v-html="$t(card.paragraph2)"> </span>
+            <span v-if="card.typeOfParagraph2 == 'list'"
+              ><span class="blue--text" v-for="(item, index) in card.whatsIncludedList" :key="item">
+                {{ item }}<span class="black--text" v-if="index !== card.whatsIncludedList.length - 1">,</span>
+              </span>
+            </span>
+          </v-card-subtitle>
         </Dialog>
-
         <v-card-actions
           class="d-flex flex-column justify-center align-end cursor-pointer"
           @click="onPricingCardToggled"
@@ -67,7 +81,7 @@
                 :isOutlined="true"
                 :isText="true"
                 :buttonClassName="`${buttonClassName} d-md-none d-flex align-self-end ml-auto text-caption`"
-                :buttonText="buttonText"
+                :buttonText="payload.maxCards > 1 ? (isSelected ? 'REMOVE' : 'ADD_TO_CART') : isSelected ? 'SELECTED' : 'SELECT'"
                 :iconName="card.isPreSelected ? 'lock' : ''"
               >
               </Button>
@@ -91,7 +105,7 @@
               </div>
             </div>
             <div class="min-height-28px">
-              <i18n tag="div" :path="card.oldPriceText" class="text-caption text-left w-100 d-flex" v-if="card.oldPriceText">
+              <i18n tag="div" :path="card.oldPriceText" class="grey--text text-caption text-left w-100 d-flex" v-if="card.oldPriceText">
                 <template v-slot:oldPrice>
                   <span class="text-underlined pl-1">
                     <i18n-n tag="div" class="hide-dot-comma-space old-price d-flex" :value="49.95" format="currency" :locale="selectedCurrency.name">
@@ -123,7 +137,7 @@
               :isOutlined="true"
               :isText="true"
               :buttonClassName="`${buttonClassName}`"
-              :buttonText="buttonText"
+              :buttonText="payload.maxCards > 1 ? (isSelected ? 'REMOVE' : 'ADD_TO_CART') : isSelected ? 'SELECTED' : 'SELECT'"
               :iconName="card.isPreSelected ? 'lock' : ''"
             >
             </Button

@@ -7,6 +7,7 @@ export const state = () => ({
         { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
         { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
         { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
+        { id: 5, name: 'en-CA', currency: 'CAD', path: 'flags/cad' },
     ],
 })
 

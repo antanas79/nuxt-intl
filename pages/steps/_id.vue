@@ -29,7 +29,6 @@
                         minCards: currentStepMinCards,
                       }"
                       :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
-                      :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
                       eventName="pricing-card-toggled"
                       :isSelected="isSelected(card.cardId)"
                       v-for="card in currentStepCards"
@@ -57,7 +56,6 @@
                                 minCards: currentStepMinCards,
                               }"
                               :buttonClassName="isSelected(card.cardId) ? 'no-uppercase blue-grey lighten-5' : 'no-uppercase'"
-                              :buttonText="isSelected(card.cardId) ? card.buttonTextRemove : card.buttonTextAdd"
                               eventName="pricing-card-toggled"
                               :isSelected="isSelected(card.cardId)"
                             >
