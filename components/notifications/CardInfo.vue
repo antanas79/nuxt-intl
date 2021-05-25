@@ -5,7 +5,7 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </div>
-    <v-card-title class="text-h5 pt-0 pb-6 pl-8" v-html="$t(data.Title)"> </v-card-title>
+    <v-card-title class="text-h5 pt-0 pb-6 pl-8" v-html="$t(data.TitleLine1)"> </v-card-title>
     <v-card-text class="pb-4 pl-8">
       <p v-html="$t(data.Paragraph1)" class="mb-2"></p>
       <p v-if="data.Paragraph2" v-html="$t(data.Paragraph2)" class="mb-8"></p>
@@ -33,7 +33,6 @@
           </template>
         </i18n-n>
       </div>
-      {{ data }}
       <div class="min-height-28px pb-8">
         <i18n tag="div" :path="data.OldPriceText" class="text-caption text-left w-100 d-flex" v-if="data.OldPriceText">
           <template v-slot:oldPrice>

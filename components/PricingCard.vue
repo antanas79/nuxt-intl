@@ -10,7 +10,7 @@
           :data="card"
           contentClass="ma-0 ma-sm-6 align-self-sm-center align-self-end"
         >
-          <v-card-title class="mb-0 pa-1 d-flex flex-column" v-if="card.title" :class="titleClass">
+          <v-card-title class="mb-0 pa-1 d-flex flex-column" :class="titleClass">
             <v-system-bar
               :color="card.IsLimitedTimeOffer ? 'red' : card.IsRecommended ? 'green' : ''"
               :class="`d-flex align-self-end ${card.IsRecommended || card.IsLimitedTimeOffer ? '' : 'hidden'}`"
@@ -86,6 +86,7 @@
                   </template>
                 </i18n-n>
               </div>
+
               <Button
                 :isDisabled="card.IsPreSelected"
                 color="primary"

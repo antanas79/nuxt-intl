@@ -20,14 +20,14 @@
                 :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-6' : 'col-10'"
               >
                 <template v-for="(step, index) in currentSteps">
-                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.link" :key="step.Id" className="stepper-link">
+                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.Link" :key="step.Id" className="stepper-link">
                     <v-stepper-step
                       step=""
                       :class="{
                         'passed-or-current-steps': currentStepNumber >= index,
                       }"
                     >
-                      {{ $t(step.title) }}
+                      {{ $t(step.Title) }}
                     </v-stepper-step>
                   </Link>
                   <v-stepper-step
@@ -41,7 +41,7 @@
                   </v-stepper-step>
                   <v-divider
                     v-if="currentSteps.length - 1 !== index"
-                    :key="step.Id"
+                    :key="'A' + step.Id"
                     :class="[
                       {
                         'passed-or-current-steps': currentStepNumber > index,
