@@ -28,4 +28,18 @@ export const numberFormats = {
       currencyDisplay: 'symbol',
     },
   },
+  'en-CA': {
+    currency: {
+      style: 'currency',
+      currency: 'CAD',
+      currencyDisplay: 'symbol',
+    },
+  },
+  // 'it': {
+  //   currency: {
+  //     style: 'currency',
+  //     currency: 'EUR',
+  //     currencyDisplay: 'symbol',
+  //   },
+  // },
 }

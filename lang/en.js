@@ -6,6 +6,7 @@ export default {
   SELECTED: 'Selected',
   REMOVE: 'Remove',
   ADD_TO_CART: 'Add to cart',
+  LEARN_ABOUT_FREE_BENEFITS: 'Learn about FREE benefits',
   UPGRADE_ONLY: '<b>Upgrade only</b>',
   PRODUCT_SUBSCRIPTION: 'Product subscription',
   TECHNICAL_LICENSE: '<b>Technical license</b>',

@@ -26,6 +26,18 @@ export const state = () => ({
             iso: 'en-US',
             file: 'en.js',
         },
+        {
+            code: 'es',
+            name: 'Español',
+            iso: 'es',
+            file: 'es.js',
+        },
+        {
+            code: 'it',
+            name: 'Italiano',
+            iso: 'it',
+            file: 'it.js',
+        },
     ],
 })
 

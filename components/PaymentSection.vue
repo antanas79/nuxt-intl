@@ -83,7 +83,7 @@ export default {
           isExternal: true,
           name: 'PAYMENT_MAIN_TEXT_BOTTOM',
           title: 'PAYMENT_MAIN_TEXT_BOTTOM',
-          link: 'https://www.sync2.com//frequently-asked-questions',
+          link: 'https://www.sync2.com/refundpolicy',
         },
         mainText: 'PAYMENT_MAIN_TEXT',
         cardsIcons: [
@@ -106,7 +106,7 @@ export default {
         },
         moneyBacGuaranteekIcon: {
           isExternal: true,
-          link: 'https://www.sync2.com/frequently-asked-questions',
+          link: 'https://www.sync2.com/refundpolicy',
           name: 'payment/money-back-guarantee',
           title: 'ICON_MONEY_BACK_GUARANTEE_TITLE',
         },
