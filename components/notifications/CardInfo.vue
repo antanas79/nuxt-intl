@@ -5,10 +5,10 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </div>
-    <v-card-title class="text-h5 pt-0 pb-6 pl-8" v-html="$t(data.title)"> </v-card-title>
+    <v-card-title class="text-h5 pt-0 pb-6 pl-8" v-html="$t(data.Title)"> </v-card-title>
     <v-card-text class="pb-4 pl-8">
-      <p v-html="$t(data.paragraph1)" class="mb-2"></p>
-      <p v-if="data.paragraph2" v-html="$t(data.paragraph2)" class="mb-8"></p>
+      <p v-html="$t(data.Paragraph1)" class="mb-2"></p>
+      <p v-if="data.Paragraph2" v-html="$t(data.Paragraph2)" class="mb-8"></p>
       <div class="current-price red--text text-left">
         <i18n-n tag="div" class="hide-dot-comma-space main d-flex" :value="39.95" format="currency" :locale="selectedCurrency">
           <template v-slot:currency="slotProps">
@@ -33,8 +33,9 @@
           </template>
         </i18n-n>
       </div>
+      {{ data }}
       <div class="min-height-28px pb-8">
-        <i18n tag="div" :path="data.oldPriceText" class="text-caption text-left w-100 d-flex" v-if="data.oldPriceText">
+        <i18n tag="div" :path="data.OldPriceText" class="text-caption text-left w-100 d-flex" v-if="data.OldPriceText">
           <template v-slot:oldPrice>
             <span class="pl-1">
               <i18n-n tag="div" class="hide-dot-comma-space old-price d-flex" :value="49.95" format="currency" :locale="selectedCurrency">
@@ -58,13 +59,13 @@
           </template>
         </i18n>
       </div>
-      <i18n tag="div" :path="data.payLater" class="text-caption text-left">
+      <i18n tag="div" :path="data.OrPayLaterText" class="text-caption text-left">
         <template v-slot:paymentAmount>
           <span class="pay-later-price red--text">{{ $n(13, 'currency', selectedCurrency) }}</span>
         </template>
         <template v-slot:numberOfPayments>
           <a class="pay-later-price no-text-decoration blue--text" href="" target="_blank" v-on:click.stop="">
-            {{ $t(data.payLaterNumberOfPayments, { numberOfPayments: 3 }) }}
+            {{ $t(data.PayLaterNumberOfPaymentsText, { numberOfPayments: 3 }) }}
           </a>
         </template>
       </i18n>
