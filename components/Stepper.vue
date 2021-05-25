@@ -20,7 +20,18 @@
                 :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-6' : 'col-10'"
               >
                 <template v-for="(step, index) in currentSteps">
+                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.link" :key="step.Id" className="stepper-link">
+                    <v-stepper-step
+                      step=""
+                      :class="{
+                        'passed-or-current-steps': currentStepNumber >= index,
+                      }"
+                    >
+                      {{ $t(step.title) }}
+                    </v-stepper-step>
+                  </Link>
                   <v-stepper-step
+                    v-else
                     :key="step.Id"
                     step=""
                     :class="{
@@ -32,9 +43,12 @@
                   <v-divider
                     v-if="currentSteps.length - 1 !== index"
                     :key="step.Id"
-                    :class="{
-                      'passed-or-current-steps': currentStepNumber > index,
-                    }"
+                    :class="[
+                      {
+                        'passed-or-current-steps': currentStepNumber > index,
+                      },
+                      'link-divider',
+                    ]"
                   ></v-divider>
                 </template>
               </v-stepper-header>
@@ -60,7 +74,6 @@
     </div>
   </div>
 </template>
-
 
 <script lang="ts">
 export default {
@@ -153,6 +166,24 @@ export default {
     background: #0d47a1 !important;
     background-color: #0d47a1 !important;
   }
+
+  .v-divider.link-divider {
+    margin: 35px -57px 0;
+  }
+  @media (max-width: 1175px) {
+    .v-divider.link-divider {
+      margin: 35px -42px 0;
+    }
+  }
+  @media (max-width: 967px) {
+    .v-divider.link-divider {
+      margin: 35px -30px 0;
+    }
+    .v-stepper__step {
+      padding: 24px 10px;
+    }
+  }
+
   @media all and (max-width: 767px) {
     .v-stepper__step {
       flex-basis: 0px !important;

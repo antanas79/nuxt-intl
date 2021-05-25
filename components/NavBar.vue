@@ -36,9 +36,6 @@
           <v-app-bar-nav-icon v-if="isLoaded" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         </div>
       </Layout>
-
-      <!-- 
-      <p>{{ $n(70, 'currency', selectedCurrency.name) }}</p> -->
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary right>
       <v-list nav dense>

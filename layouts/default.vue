@@ -28,10 +28,9 @@
                   }}
                 </span>
 
-                  <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
-                >
-              </span>
-            </Layout>
+                <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
+              >
+            </span>
           </v-system-bar>
         </Dialog>
 

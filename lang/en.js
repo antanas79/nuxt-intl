@@ -81,6 +81,7 @@ export default {
   NOTIFICATION_PURCHASE_UPGRADE_CAPTION_TEXT_3: 'Your opinion is extremely important.',
   NOTIFICATION_BUTTON_CHAT_NOW: 'Chat now',
   NOTIFICATION_BUTTON_CLOSE: 'Close',
+  NOTIFICATION_BUTTON_KEEP_SHOPPING: 'Keep shopping',
   FOOTER_BUTTONS_COUNT: '3',
   FOOTER_BUTTON_NAME_1: 'About Us',
   FOOTER_BUTTON_TITLE_1: 'Click here to learn about 4Team Corporation',
