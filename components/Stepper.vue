@@ -20,7 +20,7 @@
                 :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-6' : 'col-10'"
               >
                 <template v-for="(step, index) in currentSteps">
-                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.Link" :key="step.Id" className="stepper-link">
+                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.Link" :key="'A' + step.Id" className="stepper-link">
                     <v-stepper-step
                       step=""
                       :class="{
@@ -31,17 +31,21 @@
                     </v-stepper-step>
                   </Link>
                   <v-stepper-step
-                    :key="'step' + index"
+                    v-else
+                    :key="step.Id"
                     step=""
-                    :class="{
-                      'passed-or-current-steps': currentStepNumber >= index,
-                    }"
+                    :class="[
+                      {
+                        'passed-or-current-steps': currentStepNumber >= index,
+                      },
+                      'step',
+                    ]"
                   >
                     {{ $t(step.Title) }}
                   </v-stepper-step>
                   <v-divider
                     v-if="currentSteps.length - 1 !== index"
-                    :key="'A' + step.Id"
+                    :key="step.Id"
                     :class="[
                       {
                         'passed-or-current-steps': currentStepNumber > index,
@@ -169,9 +173,15 @@ export default {
   .v-divider.link-divider {
     margin: 35px -57px 0;
   }
+  .v-stepper__step {
+    flex-basis: 140px !important;
+  }
   @media (max-width: 1175px) {
     .v-divider.link-divider {
       margin: 35px -42px 0;
+    }
+    .v-stepper__step {
+      flex-basis: 110px !important;
     }
   }
   @media (max-width: 967px) {
@@ -180,6 +190,7 @@ export default {
     }
     .v-stepper__step {
       padding: 24px 10px;
+      flex-basis: 90px !important;
     }
   }
 
