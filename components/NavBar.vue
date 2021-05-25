@@ -87,8 +87,6 @@ export default {
       group: null,
       selected: false,
       isLoaded: false,
-      // selectedCurrency: this.navBarData.selectedCurrency,
-      // currencies: this.navBarData.currencies,
     }
   },
   mounted() {
@@ -178,12 +176,6 @@ export default {
             ],
           },
         ],
-        // currencies: [
-        //   { id: 1, name: 'en-Us', currency: 'USD', path: 'flags/usd' },
-        //   { id: 2, name: 'en-GB', currency: 'GBP', path: 'flags/gbp' },
-        //   { id: 3, name: 'eu', currency: 'EUR', path: 'flags/eur' },
-        //   { id: 4, name: 'en-AU', currency: 'AUD', path: 'flags/aud' },
-        // ],
       }),
     },
   },

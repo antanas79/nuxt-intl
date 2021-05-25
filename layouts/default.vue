@@ -113,7 +113,7 @@ export default {
       return this.$route.path.includes('/steps/')
     },
     isLastStep() {
-      return this.currentStep == this.currentSteps[this.currentSteps.length - 1]?.link
+      return this.currentStep == this.currentSteps[this.currentSteps.length - 1]?.Link
     },
     isStepperNextButtonEnabled() {
       return this.currentStepSelectedCards.length >= this.currentStepMinCards

@@ -21,10 +21,10 @@ export const mutations = {
         state.selectedCards.splice(payload.index, payload.amount)
     },
     setCurrentStepCards(state, payload) {
-        state.currentStepCards = state.cards.filter(el => el?.stepLink === payload).sort((a, b) => a.order.toString().localeCompare(b.order.toString()))
+        state.currentStepCards = state.cards.filter(el => el?.StepLink === payload).sort((a, b) => a.Order.toString().localeCompare(b.Order.toString()))
     },
     setCurrentStepSelectedCards(state, payload) {
-        state.currentStepSelectedCards = state.cards.filter(el => el.stepLink == payload && state.selectedCards.includes(el.cardId))
+        state.currentStepSelectedCards = state.cards.filter(el => el.StepLink == payload && state.selectedCards.includes(el.Id))
     }
 }
 

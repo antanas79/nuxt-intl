@@ -1,6 +1,6 @@
 <template>
   <div class="stepper-container container py-3 py-md-0">
-    <div class="pa-0" v-if="currentSteps && currentStep">
+    <div class="pa-0" v-if="currentSteps && currentStep && currentStepMinCards">
       <v-row no-gutters>
         <v-col cols="5" sm="3" md="2" class="d-flex align-center justify-center justify-sm-end px-1">
           <Button
@@ -21,17 +21,17 @@
               >
                 <template v-for="(step, index) in currentSteps">
                   <v-stepper-step
-                    :key="step.Id"
+                    :key="'step' + index"
                     step=""
                     :class="{
                       'passed-or-current-steps': currentStepNumber >= index,
                     }"
                   >
-                    {{ $t(step.title) }}
+                    {{ $t(step.Title) }}
                   </v-stepper-step>
                   <v-divider
                     v-if="currentSteps.length - 1 !== index"
-                    :key="step.Id"
+                    :key="'divider' + index"
                     :class="{
                       'passed-or-current-steps': currentStepNumber > index,
                     }"

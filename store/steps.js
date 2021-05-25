@@ -13,7 +13,7 @@ export const state = () => ({
 
 export const mutations = {
     setSteps(state, payload) {
-        state.steps = payload.sort((a, b) => a.order.toString().localeCompare(b.order.toString()))
+        state.steps = payload.sort((a, b) => a.Order.toString().localeCompare(b.Order.toString()))
     },
     setCurrentStep(state, payload) {
         state.currentStep = payload
