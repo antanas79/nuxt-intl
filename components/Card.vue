@@ -11,8 +11,8 @@
 </template>
 <script lang="ts">
 import { mapState } from 'vuex'
-import Vue from 'vue'
-export default Vue.extend({
+
+export default {
   props: {
     maxWidth: {
       type: Number,
@@ -46,7 +46,7 @@ export default Vue.extend({
     //   this.$emit(event)
     // },
   },
-})
+}
 </script>
 
 <style lang="scss" scoped>

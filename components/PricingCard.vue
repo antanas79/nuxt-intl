@@ -54,7 +54,7 @@
               <div class="current-price red--text col-5 pa-0 text-left">
                 <i18n-n tag="div" class="hide-dot-comma-space main d-flex" :value="39.95" format="currency" :locale="selectedCurrency.name">
                   <template v-slot:currency="slotProps">
-                    <div class="text-h6 currency vertical-align-top">
+                    <div class="text-h6 currency vertical-align-top" :class="$store.state.currencies.selectedCurrency.currency">
                       <span>{{ slotProps.currency }}</span>
                     </div>
                   </template>
@@ -267,9 +267,18 @@ export default Vue.extend({
   span {
     font-family: 'Amazon Ember' !important;
   }
+
   .currency {
     width: 12px;
   }
+
+  .currency.HKD {
+    width: 21px;
+    span {
+      font-size: 12px;
+    }
+  }
+
   .fraction {
     width: 24px;
   }
