@@ -265,7 +265,12 @@ export default {
 #pay-later-schema {
   width: 220px;
 }
-
+.notification {
+  #pay-later {
+    height: 32px;
+    width: 30px;
+  }
+}
 @media (max-width: 360px) {
   #money-back-guarantee {
     width: 110px;
@@ -273,8 +278,11 @@ export default {
   #microsoft-gold {
     width: 130px;
   }
-  .payment-margin .payment-card {
-    width: 54px;
+  #pay-later-schema {
+    width: 200px;
+    .payment-margin .payment-card {
+      width: 54px;
+    }
   }
 }
 </style>

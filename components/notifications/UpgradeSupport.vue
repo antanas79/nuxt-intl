@@ -1,45 +1,118 @@
 <template>
   <div>
-    <v-card-title class="headline">
-      <div class="d-flex">
-        <SvgRender name="pay-later" smallIcon />
-        Pay Later
+    <div class="d-flex flex-md-row flex-column upgrade-support-container">
+      <div class="lifetime-license px-0 pl-md-3 pr-md-4">
+        <v-card-title class="headline pb-6 text-h5"> {{ $t(upgradeSupportData.lifetimeLicenseTitle) }}</v-card-title>
+        <v-card-text class="pb-0 text-subtitle-2">
+          <p class="">{{ $t(upgradeSupportData.lifetimeLicenseSubtitle) }}</p>
+          <ul class="list-lifetime-license">
+            <li class="pb-4" v-for="item in upgradeSupportData.lifetimeLicenseList" :key="'A' + item.id">{{ $t(item.name) }}</li>
+          </ul>
+        </v-card-text>
       </div>
-    </v-card-title>
-    <v-card-text class="pb-0">
-      <p>Pay with 2-weeks installments, without price increase.</p>
-      <div class="d-flex gray pa-3 d-flex justify-space-between">
-        <SvgRender name="pay-later-schema" />
-        <ul class="schema-text d-flex flex-column justify-center blue--text pr-5">
-          <li>NO FEES</li>
-          <li>NO APPROVAL NEEDED</li>
-          <li>NO PRICE INCREASE</li>
-        </ul>
-        <!--   <v-divider vertical class=""></v-divider> -->
+      <v-divider vertical class="my-5 d-md-block d-none"></v-divider>
+      <v-divider class="d-block d-md-none mx-5"></v-divider>
+      <div class="purchase-upgrade-container d-flex flex-column px-0 pl-md-3 pr-md-4">
+        <v-card-title class="headline pb-6 text-h5">{{ $t(upgradeSupportData.purchaseUpgradeTitle) }} </v-card-title>
+        <v-card-text class="pb-0 card-text-block flex-grow-1 d-flex flex-column justify-space-between">
+          <div>
+            <ul class="list-purchase-upgrade text-subtitle-2">
+              <li class="pb-4" v-for="item in upgradeSupportData.purchaseUpgradeList" :key="'B' + item.id">{{ $t(item.name) }}</li>
+            </ul>
+            <p class="text-caption pt-2">{{ $t(upgradeSupportData.purchaseUpgradeCaption1) }}</p>
+          </div>
+          <div class="caption-block justify-space-between">
+            <div class="">
+              <Link link="/">
+                <p class="text-caption mb-0">{{ $t(upgradeSupportData.purchaseUpgradeCaption2) }}</p>
+              </Link>
+              <p class="text-caption">{{ $t(upgradeSupportData.purchaseUpgradeCaption3) }}</p>
+            </div>
+          </div>
+        </v-card-text>
       </div>
-      <p class="mb-0">Your order is divided into multiple bi-weekly payments according to the total order sum:</p>
-      <div class="prices-block">
-        <p class="mb-1">$20.00 - $29.99 - <b>2 payments</b></p>
-        <p class="mb-1">$20.00 - $29.99 - <b>2 payments</b></p>
-        <p class="mb-1">$20.00 - $29.99 - <b>2 payments</b></p>
-        <p class="mb-1">$20.00 - $29.99 - <b>2 payments</b></p>
-        <p class="mb-1">$20.00 - $29.99 - <b>2 payments</b></p>
-      </div>
-      <p class="mb-0">
-        <b>If Easy Pay method is selected, you will be charged each 2 weeks</b> You will then be receiving bi-weekly billing statements with payment due and a
-        remaining balance of your order
-      </p>
-    </v-card-text>
+    </div>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="blue" text @click="dialog = false"> chat now </v-btn>
-      <v-btn color="blue" text @click="dialog = false"> Close </v-btn>
+      <Button buttonClassName="text-subtitle-1" color="blue" isText :buttonText="payLaterData.buttonChatNow"></Button>
+      <Button
+        buttonClassName="text-subtitle-1"
+        color="blue"
+        isText
+        :buttonText="payLaterData.buttonClose"
+        eventName="closeDialog"
+        @closeDialog="$emit('closeDialog')"
+      ></Button>
     </v-card-actions>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+  props: {
+    upgradeSupportData: {
+      type: Object,
+      default: () => ({
+        lifetimeLicenseTitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_TITLE',
+        lifetimeLicenseSubtitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_SUBTITLE',
+        lifetimeLicenseList: [
+          { id: 1, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_1' },
+          { id: 2, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_2' },
+          { id: 3, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_3' },
+          { id: 4, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_4' },
+          { id: 5, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_5' },
+          { id: 6, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_6' },
+        ],
+        purchaseUpgradeTitle: 'NOTIFICATION_PURCHASE_UPGRADE_TITLE',
+        purchaseUpgradeList: [
+          { id: 1, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_1' },
+          { id: 2, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_2' },
+          { id: 3, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_3' },
+          { id: 4, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_4' },
+        ],
+        purchaseUpgradeCaption1: 'NOTIFICATION_PURCHASE_UPGRADE_CAPTION_TEXT_1',
+        purchaseUpgradeCaption2: 'NOTIFICATION_PURCHASE_UPGRADE_CAPTION_TEXT_2',
+        purchaseUpgradeCaption3: 'NOTIFICATION_PURCHASE_UPGRADE_CAPTION_TEXT_3',
+        buttonChatNow: 'NOTIFICATION_BUTTON_CHAT_NOW',
+        buttonClose: 'NOTIFICATION_BUTTON_CLOSE',
+      }),
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.headline {
+  word-break: normal;
+}
+.lifetime-license {
+  max-width: 550px;
+  flex: 1;
+  .list-lifetime-license {
+    li {
+      list-style: disc;
+    }
+  }
+}
+.purchase-upgrade-container {
+  flex: 1;
+  max-width: 450px;
+  .list-purchase-upgrade {
+    li {
+      list-style: decimal;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .lifetime-license {
+    max-width: 100%;
+  }
+  .purchase-upgrade-container {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+</style>

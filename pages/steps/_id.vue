@@ -189,7 +189,6 @@ export default {
         this.$store.commit('steps/setCurrentStepMaxCards', this.steps.find((el) => el.Link == this.currentStep).MaxCards)
         this.$store.commit('steps/setCurrentStepMinCards', this.steps.find((el) => el.Link == this.currentStep).MinCards)
         this.setNextPreviousLinks()
-
         //redirecting to first step if something needed doesn't exist
         if (
           !this.cards ||

@@ -1,65 +1,66 @@
 import client from '../plugins/contentful'
 
 export const state = () => ({
-    steps: [],
-    currentStep: null,
-    currentStepNumber: null,
-    previousStepLink: '',
-    nextStepLink: '',
-    currentSteps: [],
-    currentStepMaxCards: null,
-    currentStepMinCards: null
+  steps: [],
+  currentStep: null,
+  currentStepNumber: null,
+  previousStepLink: '',
+  nextStepLink: '',
+  currentSteps: [],
+  currentStepMaxCards: null,
+  currentStepMinCards: null,
 })
 
 export const mutations = {
-    setSteps(state, payload) {
-        state.steps = payload.sort((a, b) => a.Order.toString().localeCompare(b.Order.toString()))
-    },
-    setCurrentStep(state, payload) {
-        state.currentStep = payload
-    },
-    setCurrentStepNumber(state, payload) {
-        state.currentStepNumber = payload;
-    },
-    setCurrentSteps(state, payload) {
-        state.currentSteps = payload;
-    },
-    setCurrentStepMaxCards(state, payload) {
-        state.currentStepMaxCards = payload;
-    },
-    setCurrentStepMinCards(state, payload) {
-        state.currentStepMinCards = payload;
-    },
-    setPreviousStepLink(state, payload) {
-        state.previousStepLink = payload
-    },
-    setNextStepLink(state, payload) {
-        state.nextStepLink = payload
-    }
+  setSteps(state, payload) {
+    state.steps = payload.sort((a, b) => a.Order.toString().localeCompare(b.Order.toString()))
+  },
+  setCurrentStep(state, payload) {
+    state.currentStep = payload
+  },
+  setCurrentStepNumber(state, payload) {
+    state.currentStepNumber = payload
+  },
+  setCurrentSteps(state, payload) {
+    state.currentSteps = payload
+  },
+  setCurrentStepMaxCards(state, payload) {
+    state.currentStepMaxCards = payload
+  },
+  setCurrentStepMinCards(state, payload) {
+    state.currentStepMinCards = payload
+  },
+  setPreviousStepLink(state, payload) {
+    state.previousStepLink = payload
+  },
+  setNextStepLink(state, payload) {
+    state.nextStepLink = payload
+  },
 }
 
 export const actions = {
-    async getSteps({ commit }) {
-        try {
-            const response = await client.getEntries({
-                content_type: 'steps',
-                // locale: 'de'
-            });
+  async getSteps({ commit }) {
+    try {
+      const response = await client.getEntries({
+        content_type: 'steps',
+        // locale: 'de'
+      })
 
-            if (response.items.length > 0) {
-                commit('setSteps', response.items.map(el => el.fields));
-            }
-        } catch (error) {
-            // you could redirect to custom error page for instance
-            console.error(error);
-        }
-    },
+      if (response.items.length > 0) {
+        commit(
+          'setSteps',
+          response.items.map((el) => el.fields)
+        )
+      }
+    } catch (error) {
+      // you could redirect to custom error page for instance
+      console.error(error)
+    }
+  },
 }
 
 export const getters = {
-    getStepsList() {
-        return this.state.steps
-    }
+  getStepsList() {
+    return this.state.steps
+  },
 }
-
-

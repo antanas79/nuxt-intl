@@ -10,28 +10,27 @@
         </v-system-bar>
 
         <NavBar :isPricingPage="isPricingPage()" />
+        <!--  <Dialog notificationName="UpgradeSupport" :width="1000"> -->
+        <Dialog notificationName="PayLater" :width="540">
+          <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-md-0 cursor-pointer">
+            <span class="text-caption mb-0 d-flex">
+              <SvgRender :name="bannersData.payLaterIconName" smallIcon />
+              <span class="font-weight-bold"
+                >{{ $t(bannersData.payLaterBoldedText) }}
+                <span class="font-weight-regular">
+                  {{
+                    $t(bannersData.payLaterMainText, {
+                      interestPaymentCount: bannersData.interestPaymentCount,
+                      currency: bannersData.currency,
+                      amount: bannersData.amount,
+                      weeksCount: bannersData.weeksCount,
+                    })
+                  }}
+                </span>
 
-        <Dialog notificationName="PayLater">
-          <v-system-bar color="gray" height="40" class="justify-center py-10 py-sm-6 py-lg-0 px-0 cursor-pointer">
-            <Layout>
-              <span class="text-body-2 mb-0 d-inline text-center">
-                <span class="font-weight-bold">
-                  <SvgRender :name="bannersData.payLaterIconName" className="small-icon-centered" />{{ $t(bannersData.payLaterBoldedText) }}
-                  <span class="font-weight-regular">
-                    {{
-                      $t(bannersData.payLaterMainText, {
-                        interestPaymentCount: bannersData.interestPaymentCount,
-                        currency: bannersData.currency,
-                        amount: bannersData.amount,
-                        weeksCount: bannersData.weeksCount,
-                      })
-                    }}
-                  </span>
-
-                  <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
-                >
-              </span>
-            </Layout>
+                <span class="blue--text">{{ $t(bannersData.payLaterBlueText) }}</span> <v-icon>mdi-arrow-right</v-icon></span
+              >
+            </span>
           </v-system-bar>
         </Dialog>
 

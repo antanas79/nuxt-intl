@@ -30,4 +30,23 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.stepper-link {
+  flex-basis: 140px;
+}
+@media (max-width: 1175px) {
+  .stepper-link {
+    flex-basis: 110px;
+  }
+}
+@media (max-width: 967px) {
+  .stepper-link {
+    flex-basis: 90px;
+  }
+}
+@media (max-width: 767px) {
+  .stepper-link {
+    flex-basis: 0px;
+  }
+}
+</style>

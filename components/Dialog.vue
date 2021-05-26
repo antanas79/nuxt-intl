@@ -1,12 +1,18 @@
 <template>
-  <div class="text-center">
-    <v-dialog v-model="dialog" width="500">
+  <div :class="['text-center', className]">
+    <v-dialog
+      v-model="dialog"
+      :width="width"
+      class="dialog"
+      :transition="$vuetify.breakpoint.xsOnly ? 'dialog-bottom-transition' : ''"
+      :content-class="contentClass"
+    >
       <template v-slot:activator="{ on, attrs }">
         <div color="red lighten-2" class="flex flex-column" dark v-bind="attrs" v-on="on"><slot /></div>
       </template>
-      <Card :cols="cols" :maxWidth="600">
-        <component :is="notificationName"></component>
-      </Card>
+      <v-card>
+        <component :is="notificationName" @closeDialog="onDialogCardToggled" :data="data"></component>
+      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -18,19 +24,25 @@ export default {
     }
   },
   props: {
-    maxWidth: {
-      type: Number,
+    width: {
+      type: [Number, String],
       required: false,
-      default: 560,
-    },
-    cols: {
-      type: Number,
-      required: false,
-      default: 12,
     },
     notificationName: {
       type: String,
       required: true,
+    },
+    data: {
+      type: [Object, Array],
+      required: false,
+    },
+    className: {
+      type: String,
+      required: false,
+    },
+    contentClass: {
+      type: String,
+      required: false,
     },
   },
   methods: {
@@ -40,3 +52,4 @@ export default {
   },
 }
 </script>
+<style scoped></style>

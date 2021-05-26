@@ -157,7 +157,7 @@ export default {
         footerInputLabel: 'FOOTER_INPUT_LABEL',
         footerInputPlaceholder: 'FOOTER_INPUT_PLACEHOLDER',
         teamLogo: {
-          title: 'TEAM_LOGO_ICON_TITLE',
+          title: 'ICON_TEAM_LOGO_TITLE',
           isExternal: true,
           link: 'http://www.4team.biz',
         },
