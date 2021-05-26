@@ -70,7 +70,6 @@ export default {
           { id: 4, name: 'NOTIFICATION_PAY_LATER_TOTAL_ORDER_SUM_LIST_TEXT_4', orderPayment: 50, totalOrderSum: 50.99 },
           { id: 5, name: 'NOTIFICATION_PAY_LATER_TOTAL_ORDER_SUM_LIST_TEXT_5', orderPayment: 60, totalOrderSum: 500 },
         ],
-
         paymentMethodSelected: 'NOTIFICATION_PAY_LATER_EASY_PAY_METHOD_SELECTED',
         buttonChatNow: 'NOTIFICATION_BUTTON_CHAT_NOW',
         buttonClose: 'NOTIFICATION_BUTTON_CLOSE',
