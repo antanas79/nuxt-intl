@@ -7,21 +7,31 @@
     </div>
     <v-card-title class="text-h5 pt-0 pb-6 pl-8" v-html="$t(data.TitleLine1)"> </v-card-title>
     <v-card-text class="pb-4 pl-8">
-      <p v-html="$t(data.Paragraph1)" class="mb-2"></p>
-      <p v-if="data.Paragraph2" v-html="$t(data.Paragraph2)" class="mb-8"></p>
+      <p class="mb-2 text-subtitle-1">
+        <span :class="{ 'blue--text': data.TypeOfParagraph1 == 'why' }" v-html="$t(data.Paragraph1)"> </span>
+        <span v-if="data.TypeOfParagraph1 == 'list'"
+          ><span class="blue--text" v-for="(item, index) in data.WhatsIncludedList" :key="item">
+            {{ item }}<span class="black--text" v-if="index !== data.WhatsIncludedList.length - 1">,</span>
+          </span>
+        </span>
+      </p>
+      <p class="mb-8 text-subtitle-1">
+        <span :class="{ 'blue--text': data.TypeOfParagraph2 == 'why' }" v-html="$t(data.Paragraph2)"> </span>
+        <span v-if="data.TypeOfParagraph2 == 'list'"
+          ><span class="blue--text" v-for="(item, index) in data.WhatsIncludedList" :key="item">
+            {{ item }}<span class="black--text" v-if="index !== data.WhatsIncludedList.length - 1">,</span>
+          </span>
+        </span>
+      </p>
       <div class="current-price red--text text-left">
-        <i18n-n tag="div" class="hide-dot-comma-space main d-flex" :value="39.95" format="currency" :locale="selectedCurrency">
+        <i18n-n tag="div" class="hide-dot-comma-space main d-flex" :value="39.95" format="currency" :locale="$store.state.currencies.selectedCurrency.name">
           <template v-slot:currency="slotProps">
             <div class="text-h6 currency vertical-align-top">
               <span>{{ slotProps.currency }}</span>
             </div>
           </template>
           <template v-slot:integer="slotProps">
-            <span
-              class="integer text-h3"
-              :class="{ 'text-h5': data.Price > 1000, 'text-h4': data.Price > 100 && data.Price < 1000, 'text-h3': data.Price <= 100 }"
-              >{{ slotProps.integer }}</span
-            >
+            <span class="integer text-h2">{{ slotProps.integer }}</span>
           </template>
           <template v-slot:group="slotProps">
             <span class="group">{{ slotProps.group }}</span>
@@ -33,11 +43,17 @@
           </template>
         </i18n-n>
       </div>
-      <div class="min-height-28px pb-8">
+      <div v-if="data.OldPriceText" class="min-height-28px pb-8">
         <i18n tag="div" :path="data.OldPriceText" class="text-caption text-left w-100 d-flex" v-if="data.OldPriceText">
           <template v-slot:oldPrice>
             <span class="pl-1">
-              <i18n-n tag="div" class="hide-dot-comma-space old-price d-flex" :value="49.95" format="currency" :locale="selectedCurrency">
+              <i18n-n
+                tag="div"
+                class="hide-dot-comma-space old-price d-flex"
+                :value="49.95"
+                format="currency"
+                :locale="$store.state.currencies.selectedCurrency.name"
+              >
                 <template v-slot:currency="slotProps">
                   <span class="currency text-caption">{{ slotProps.currency }}</span>
                 </template>
@@ -58,9 +74,9 @@
           </template>
         </i18n>
       </div>
-      <i18n tag="div" :path="data.OrPayLaterText" class="text-caption text-left">
+      <i18n v-if="data.OrPayLaterText" tag="div" :path="data.OrPayLaterText" class="text-caption text-left">
         <template v-slot:paymentAmount>
-          <span class="pay-later-price red--text">{{ $n(13, 'currency', selectedCurrency) }}</span>
+          <span class="pay-later-price red--text">{{ $n(13, 'currency', $store.state.currencies.selectedCurrency.name) }}</span>
         </template>
         <template v-slot:numberOfPayments>
           <a class="pay-later-price no-text-decoration blue--text" href="" target="_blank" v-on:click.stop="">
@@ -93,10 +109,6 @@ export default {
     data: {
       type: Object,
       required: true,
-    },
-    selectedCurrency: {
-      type: String,
-      required: false,
     },
   },
 }

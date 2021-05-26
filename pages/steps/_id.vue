@@ -172,7 +172,6 @@ export default {
         }
         this.$store.commit('steps/setCurrentStep', this.$route.params.id)
         let selectedFirstStepCard = this.cards.find((el) => el.StepId === 1 && this.selectedCards?.includes(el.Id))
-        console.log(selectedFirstStepCard)
         if (selectedFirstStepCard && this.currentStep != this.steps[0].Link) {
           this.$store.commit(
             'steps/setCurrentSteps',
@@ -187,13 +186,9 @@ export default {
           this.currentSteps.findIndex((el) => el.Link == this.currentStep)
         )
         this.$store.commit('cards/setCurrentStepSelectedCards', this.currentStep)
-        console.log(this.steps)
-        console.log(this.currentStep)
-        console.log(this.steps.find((el) => el.Link == this.currentStep).MaxCards)
         this.$store.commit('steps/setCurrentStepMaxCards', this.steps.find((el) => el.Link == this.currentStep).MaxCards)
         this.$store.commit('steps/setCurrentStepMinCards', this.steps.find((el) => el.Link == this.currentStep).MinCards)
         this.setNextPreviousLinks()
-
         //redirecting to first step if something needed doesn't exist
         if (
           !this.cards ||

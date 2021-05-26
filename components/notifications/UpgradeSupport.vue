@@ -6,7 +6,7 @@
         <v-card-text class="pb-0 text-subtitle-2">
           <p class="">{{ $t(upgradeSupportData.lifetimeLicenseSubtitle) }}</p>
           <ul class="list-lifetime-license">
-            <li class="pb-4" v-for="item in upgradeSupportData.listLifetimeLicense" :key="'A' + item.id">{{ $t(item.name) }}</li>
+            <li class="pb-4" v-for="item in upgradeSupportData.lifetimeLicenseList" :key="'A' + item.id">{{ $t(item.name) }}</li>
           </ul>
         </v-card-text>
       </div>
@@ -58,7 +58,7 @@ export default {
       default: () => ({
         lifetimeLicenseTitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_TITLE',
         lifetimeLicenseSubtitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_SUBTITLE',
-        lifetimeLicenseist: [
+        lifetimeLicenseList: [
           { id: 1, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_1' },
           { id: 2, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_2' },
           { id: 3, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_3' },

@@ -4,9 +4,8 @@
       <v-card :class="`${!card.isPreSelected && (hover || isSelected) ? 'border-blue' : 'border-white'} ${cardClass} `">
         <Dialog
           :width="600"
-          notificationName="CardInfo"
+          notificationName="PricingCardInfo"
           :className="dialogClass"
-          :selectedCurrency="selectedCurrency.name"
           :data="card"
           contentClass="ma-0 ma-sm-6 align-self-sm-center align-self-end"
         >

@@ -11,7 +11,7 @@
         <div color="red lighten-2" class="flex flex-column" dark v-bind="attrs" v-on="on"><slot /></div>
       </template>
       <v-card>
-        <component :is="notificationName" @closeDialog="onDialogCardToggled" :data="data" :selectedCurrency="selectedCurrency"></component>
+        <component :is="notificationName" @closeDialog="onDialogCardToggled" :data="data"></component>
       </v-card>
     </v-dialog>
   </div>
@@ -34,10 +34,6 @@ export default {
     },
     data: {
       type: [Object, Array],
-      required: false,
-    },
-    selectedCurrency: {
-      type: String,
       required: false,
     },
     className: {
