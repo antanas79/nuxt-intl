@@ -8,7 +8,6 @@
             <div :class="`d-sm-none font-weight-bold text-h5 ${navBarData.project.nameColor}--text`">{{ navBarData.project.name }}</div>
           </a>
           <v-spacer></v-spacer>
-          <div></div>
           <Selector
             v-if="isPricingPage && isLoaded"
             @changeSelection="setSelectedCurrency"

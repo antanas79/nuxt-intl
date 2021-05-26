@@ -17,7 +17,7 @@
         <v-card-text class="pb-0 card-text-block flex-grow-1 d-flex flex-column justify-space-between">
           <div>
             <ul class="list-purchase-upgrade text-subtitle-2">
-              <li class="pb-4" v-for="item in upgradeSupportData.listPurchaseUpgrade" :key="'B' + item.id">{{ $t(item.name) }}</li>
+              <li class="pb-4" v-for="item in upgradeSupportData.purchaseUpgradeList" :key="'B' + item.id">{{ $t(item.name) }}</li>
             </ul>
             <p class="text-caption pt-2">{{ $t(upgradeSupportData.purchaseUpgradeCaption1) }}</p>
           </div>
@@ -58,7 +58,7 @@ export default {
       default: () => ({
         lifetimeLicenseTitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_TITLE',
         lifetimeLicenseSubtitle: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_SUBTITLE',
-        listLifetimeLicense: [
+        lifetimeLicenseist: [
           { id: 1, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_1' },
           { id: 2, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_2' },
           { id: 3, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_3' },
@@ -67,7 +67,7 @@ export default {
           { id: 6, name: 'NOTIFICATION_LIFETIME_LICENSE_BENEFITS_LIST_TEXT_6' },
         ],
         purchaseUpgradeTitle: 'NOTIFICATION_PURCHASE_UPGRADE_TITLE',
-        listPurchaseUpgrade: [
+        purchaseUpgradeList: [
           { id: 1, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_1' },
           { id: 2, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_2' },
           { id: 3, name: 'NOTIFICATION_PURCHASE_UPGRADE_LIST_TEXT_3' },

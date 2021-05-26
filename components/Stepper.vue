@@ -45,7 +45,7 @@
                   </v-stepper-step>
                   <v-divider
                     v-if="currentSteps.length - 1 !== index"
-                    :key="step.Id"
+                    :key="'B' + step.Id"
                     :class="[
                       {
                         'passed-or-current-steps': currentStepNumber > index,

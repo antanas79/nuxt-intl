@@ -347,6 +347,10 @@ button.disabled {
   }
 }
 
+.v-menu__content.theme--light {
+  max-height: none !important;
+}
+
 @media all and (max-width: 767px) {
   .main-content {
     min-height: 360px;

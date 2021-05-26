@@ -35,11 +35,18 @@ export const numberFormats = {
       currencyDisplay: 'symbol',
     },
   },
-  // 'it': {
-  //   currency: {
-  //     style: 'currency',
-  //     currency: 'EUR',
-  //     currencyDisplay: 'symbol',
-  //   },
-  // },
+  'ja-JP': {
+    currency: {
+      style: 'currency',
+      currency: 'JPY',
+      currencyDisplay: 'symbol',
+    },
+  },
+  'zh-hk': {
+    currency: {
+      style: 'currency',
+      currency: 'HKD',
+      currencyDisplay: 'symbol',
+    },
+  },
 }
