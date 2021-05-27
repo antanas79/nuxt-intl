@@ -20,16 +20,20 @@
                 :class="currentSteps.length == 3 ? 'col-8' : currentSteps.length == 2 ? 'col-6' : 'col-10'"
               >
                 <template v-for="(step, index) in currentSteps">
-                  <Link v-if="currentStepNumber != 0 && index < currentStepNumber" :link="step.Link" :key="'A' + step.Id" className="stepper-link">
-                    <v-stepper-step
-                      step=""
-                      :class="{
+                  <v-stepper-step
+                    v-if="currentStepNumber != 0 && index < currentStepNumber"
+                    :key="'A' + step.Id"
+                    @click="$router.push({ path: '/steps/' + step.Link })"
+                    step=""
+                    :class="[
+                      {
                         'passed-or-current-steps': currentStepNumber >= index,
-                      }"
-                    >
-                      {{ $t(step.Title) }}
-                    </v-stepper-step>
-                  </Link>
+                      },
+                      'step-redirect',
+                    ]"
+                  >
+                    {{ $t(step.Title) }}
+                  </v-stepper-step>
                   <v-stepper-step
                     v-else
                     :key="step.Id"
@@ -144,7 +148,9 @@ export default {
   letter-spacing: 0.0333333333em !important;
   font-family: 'Roboto', sans-serif !important;
 }
-
+.step-redirect {
+  cursor: pointer;
+}
 .v-stepper__step {
   flex-basis: 170px !important;
 }

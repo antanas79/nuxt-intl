@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :class="nuxtLinkClassName" :to="localePath({ path: link })" v-if="isNuxtLink" :title="title">
+  <NuxtLink :class="nuxtLinkClassName" :to="{ path: localePath(link) }" v-if="isNuxtLink" :title="title">
     <v-btn :disabled="isDisabled" :text="isText" :outlined="isOutlined" :color="color" :rounded="isRounded" :small="isSmall" :class="buttonClassName">
       <v-icon v-if="iconName">mdi-{{ iconName }}</v-icon
       >{{ $t(buttonText) }} <slot />
@@ -114,7 +114,6 @@ export default {
       required: false,
     },
   },
-  // computed: {},
 }
 </script>
 
