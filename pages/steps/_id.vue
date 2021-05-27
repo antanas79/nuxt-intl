@@ -11,7 +11,6 @@
                 <div class="font-weight-bold my-3 text-h5 d-sm-none" v-html="$t(currentSteps[currentStepNumber].ShortH5)"></div>
                 <div class="text-subtitle-1 mb-0 d-none d-md-block text-body-1" v-html="$t(currentSteps[currentStepNumber].TextBody1)"></div>
               </div>
-
               <div class="cards">
                 <div class="pa-0 d-flex flex-column">
                   <div class="d-flex flex-column d-md-none">
@@ -204,7 +203,6 @@ export default {
         ) {
           this.$router.push({ path: this.getLocalePath() + '/steps/' + this.steps[0].Link })
         }
-
         this.isLoaded = true
       }, 0)
     }
@@ -222,10 +220,8 @@ export default {
     color: #1976d2;
   }
 }
-
 .container {
   margin: 0 auto;
-
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -262,7 +258,10 @@ export default {
 .links {
   padding-top: 15px;
 }
-
+.v-slide-group::v-deep .v-slide-group__next--disabled .v-icon,
+.v-slide-group::v-deep .v-slide-group__prev--disabled .v-icon {
+  display: none;
+}
 @media all and (min-width: 768px) {
   .row.no-gutters {
     flex-wrap: nowrap;
