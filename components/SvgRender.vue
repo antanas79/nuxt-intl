@@ -278,11 +278,8 @@ export default {
   #microsoft-gold {
     width: 130px;
   }
-  #pay-later-schema {
-    width: 200px;
-    .payment-margin .payment-card {
-      width: 54px;
-    }
+  .payment-margin .payment-card {
+    width: 54px;
   }
 }
 </style>

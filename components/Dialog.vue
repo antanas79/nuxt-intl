@@ -5,7 +5,7 @@
       :width="width"
       class="dialog"
       :transition="$vuetify.breakpoint.xsOnly ? 'dialog-bottom-transition' : ''"
-      :content-class="contentClass"
+      content-class="ma-0 ma-sm-6 align-self-sm-center align-self-end"
     >
       <template v-slot:activator="{ on, attrs }">
         <div color="red lighten-2" class="flex flex-column" dark v-bind="attrs" v-on="on"><slot /></div>
@@ -37,10 +37,6 @@ export default {
       required: false,
     },
     className: {
-      type: String,
-      required: false,
-    },
-    contentClass: {
       type: String,
       required: false,
     },

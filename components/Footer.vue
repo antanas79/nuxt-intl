@@ -23,7 +23,6 @@
         <v-col xl="4" lg="4" md="12" sm="12" cols="12" class="d-flex flex-lg-column flex-md-row flex-column justify-space-between">
           <div class="input-arrow">
             <p class="label mb-2 text-wrap text-body-1" v-html="$t(footerData.footerInputLabel)"></p>
-
             <v-form v-model="isFormValid" class="email-form text-body-1">
               <v-text-field
                 :placeholder="$t(footerData.footerInputPlaceholder)"
